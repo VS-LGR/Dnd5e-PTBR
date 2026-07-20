@@ -1,0 +1,26 @@
+:root {
+  --phb-parchment: #f4e8d0;
+  --phb-parchment-dark: #e8d4b0;
+  --phb-ink: #1a1208;
+  --phb-ink-muted: #4a3c2a;
+  --phb-crimson: #6b1c1c;
+  --phb-crimson-deep: #4a1010;
+  --phb-gold: #8b6914;
+  --phb-border: #2a1f14;
+  --phb-frame: #5c3d2e;
+  --phb-panel: rgba(244, 232, 208, 0.92);
+  --phb-shadow: rgba(26, 18, 8, 0.18);
+}
+
+@theme inline {
+  --color-parchment: var(--phb-parchment);
+  --color-parchment-dark: var(--phb-parchment-dark);
+  --color-ink: var(--phb-ink);
+  --color-ink-muted: var(--phb-ink-muted);
+  --color-crimson: var(--phb-crimson);
+  --color-crimson-deep: var(--phb-crimson-deep);
+  --color-gold: var(--phb-gold);
+  --color-frame: var(--phb-frame);
+  --font-display: var(--font-cinzel), "Cinzel", serif;
+  --font-body: var(--font-libre), "Libre Baskerville", serif;
+}

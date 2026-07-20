@@ -1,0 +1,3852 @@
+[
+  {
+    "id": "acid-splash",
+    "name": "Respingo Ácido",
+    "level": 0,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você arremessa uma bolha de ácido contra uma ou duas criaturas próximas, causando dano ácido se elas falharem no teste de resistência. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "blade-ward",
+    "name": "Proteção de Lâminas",
+    "level": 0,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 rodada",
+    "concentration": false,
+    "description": "Você traça um sinal protetor e recebe resistência a dano contundente, perfurante e cortante de ataques de armas até o próximo turno. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "chill-touch",
+    "name": "Toque Arrepiante",
+    "level": 0,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria uma mão espectral que causa dano necrótico e impede a criatura de recuperar pontos de vida até o início do seu próximo turno. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "dancing-lights",
+    "name": "Luzes Dançantes",
+    "level": 0,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria até quatro luzes flutuantes que podem se mover conforme você as dirige. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "druidcraft",
+    "name": "Druidismo",
+    "level": 0,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você produz um pequeno efeito natural inofensivo, como prever o clima, fazer uma flor brotar ou criar uma sensação sensorial. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "eldritch-blast",
+    "name": "Rajada Mística",
+    "level": 0,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você dispara energia crepitante contra uma criatura, causando dano energético em um acerto. O resultado ocorre no momento da conjuração e não exige concentração.",
+    "higherLevels": "Você cria mais raios nos níveis 5, 11 e 17."
+  },
+  {
+    "id": "fire-bolt",
+    "name": "Raio de Fogo",
+    "level": 0,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você arremessa uma fagulha de fogo contra uma criatura ou objeto, causando dano de fogo em um acerto. O resultado ocorre no momento da conjuração e não exige concentração.",
+    "higherLevels": "O dano aumenta em 1d10 nos níveis 5, 11 e 17."
+  },
+  {
+    "id": "guidance",
+    "name": "Orientação",
+    "level": 0,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": false,
+    "description": "Você toca uma criatura voluntária, que pode adicionar 1d4 a um teste de habilidade escolhido antes da magia terminar. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "light",
+    "name": "Luz",
+    "level": 0,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 hora",
+    "concentration": false,
+    "description": "Você toca um objeto que passa a emitir luz plena e luz fraca ao redor, como uma tocha mágica. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "mage-hand",
+    "name": "Mãos Mágicas",
+    "level": 0,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 minuto",
+    "concentration": false,
+    "description": "Você cria uma mão espectral que manipula objetos à distância, mas não pode atacar nem carregar mais que 5 quilos. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "message",
+    "name": "Conselho",
+    "level": 0,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 rodada",
+    "concentration": false,
+    "description": "Você sussurra uma mensagem para uma criatura dentro do alcance, que pode responder em um sussurro direcionado a você. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "minor-illusion",
+    "name": "Ilusão Menor",
+    "level": 0,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria um som ou imagem ilusória estática, que desaparece quando é examinada fisicamente ou revelada por investigação. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "poison-spray",
+    "name": "Rajada Venenosa",
+    "level": 0,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você projeta gás nocivo sobre uma criatura próxima, causando dano de veneno se ela falhar no teste de resistência. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "prestidigitation",
+    "name": "Prestidigitação",
+    "level": 0,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Até 1 hora",
+    "concentration": false,
+    "description": "Você produz um efeito mágico menor, como limpar um objeto, criar uma sensação breve ou acender uma pequena chama. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "ray-of-frost",
+    "name": "Raio de Gelo",
+    "level": 0,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um raio de frio atinge uma criatura, causando dano de frio e reduzindo seu deslocamento por um turno. O resultado ocorre no momento da conjuração e não exige concentração.",
+    "higherLevels": "O dano aumenta em 1d8 nos níveis 5, 11 e 17."
+  },
+  {
+    "id": "resistance",
+    "name": "Resistência",
+    "level": 0,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": false,
+    "description": "Você toca uma criatura voluntária, que pode adicionar 1d4 a um teste de resistência escolhido antes da magia terminar. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "sacred-flame",
+    "name": "Chama Sagrada",
+    "level": 0,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma chama radiante desce sobre uma criatura que falhar em um teste de Destreza, causando dano radiante. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "shocking-grasp",
+    "name": "Toque Chocante",
+    "level": 0,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você descarrega eletricidade por meio de um toque, causando dano elétrico e impedindo reações por um turno. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "thaumaturgy",
+    "name": "Taumaturgia",
+    "level": 0,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Até 1 minuto",
+    "concentration": false,
+    "description": "Você manifesta um prodígio menor, como alterar a voz, abrir uma porta destrancada ou fazer tremular chamas. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "thorn-whip",
+    "name": "Chicote de Espinhos",
+    "level": 0,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria um chicote de espinhos que causa dano perfurante e pode puxar uma criatura Grande ou menor. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "vicious-mockery",
+    "name": "Zombaria Viciosa",
+    "level": 0,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você insulta uma criatura, causando dano psíquico se ela falhar no teste e impondo desvantagem no próximo ataque. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "alarm",
+    "name": "Alarme",
+    "level": 1,
+    "school": "abjuration",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um sino minúsculo e um fio de prata"
+    },
+    "duration": "8 horas",
+    "concentration": false,
+    "description": "Você protege uma área contra intrusos; um alarme mental ou audível avisa quando uma criatura entra nela. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "animal-friendship",
+    "name": "Amizade Animal",
+    "level": 1,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você convence uma besta a não atacá-lo se ela falhar em um teste de Sabedoria, enquanto você mantiver a concentração. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "armor-of-agathys",
+    "name": "Armadura de Agathys",
+    "level": 1,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 hora",
+    "concentration": false,
+    "description": "Uma geada protetora concede pontos de vida temporários e causa dano de frio a quem atingir você em combate corpo a corpo. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "arms-of-hadar",
+    "name": "Braços de Hadar",
+    "level": 1,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Tentáculos sombrios surgem de você, causando dano necrótico e impedindo reações de criaturas próximas que falharem no teste. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "bane",
+    "name": "Perdição",
+    "level": 1,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Até três criaturas que falharem no teste subtraem 1d4 de ataques e testes de resistência enquanto você mantiver a concentração. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "bless",
+    "name": "Bênção",
+    "level": 1,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Até três criaturas recebem 1d4 para adicionar a jogadas de ataque e testes de resistência enquanto você mantiver a concentração. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "burning-hands",
+    "name": "Mãos Flamejantes",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Chamas se espalham de suas mãos em um cone, causando dano de fogo a criaturas que falharem no teste de Destreza. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "charm-person",
+    "name": "Enfeitiçar Pessoa",
+    "level": 1,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 hora",
+    "concentration": false,
+    "description": "Uma criatura humanoide que falhar no teste fica enfeitiçada por você e o considera um conhecido amigável. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "chromatic-orb",
+    "name": "Orbe Cromático",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um diamante de valor mínimo de 50 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você lança uma esfera de energia e escolhe seu tipo de dano entre ácido, frio, fogo, elétrico, veneno ou trovão. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "color-spray",
+    "name": "Leque Cromático",
+    "level": 1,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um clarão de cores ofusca criaturas com poucos pontos de vida, deixando-as cegas até o fim do seu próximo turno. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "command",
+    "name": "Comando",
+    "level": 1,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você profere uma ordem de uma palavra que uma criatura deve obedecer se falhar em um teste de Sabedoria. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "comprehend-languages",
+    "name": "Compreender Idiomas",
+    "level": 1,
+    "school": "divination",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 hora",
+    "concentration": false,
+    "description": "Você entende o significado literal de qualquer idioma falado e pode ler textos, embora não decifre códigos secretos. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "cure-wounds",
+    "name": "Cura Ferimentos",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma criatura que você toca recupera pontos de vida iguais a 1d8 mais seu modificador de habilidade de conjuração. A cura ou retorno à vida acontece imediatamente quando a magia é concluída.",
+    "higherLevels": "A cura aumenta em 1d8 para cada espaço acima do 1º nível."
+  },
+  {
+    "id": "detect-evil-and-good",
+    "name": "Detectar o Bem e o Mal",
+    "level": 1,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 10 minutos",
+    "concentration": false,
+    "description": "Você percebe presenças sobrenaturais próximas, como aberrações, celestiais, elementais, fadas, ínferos e mortos-vivos. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "detect-magic",
+    "name": "Detectar Magia",
+    "level": 1,
+    "school": "divination",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 10 minutos",
+    "concentration": false,
+    "description": "Você sente a presença de magia e pode perceber a escola de uma magia visível ou de um objeto mágico próximo. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "detect-poison-and-disease",
+    "name": "Detectar Veneno e Doença",
+    "level": 1,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você percebe venenos, criaturas envenenadas e doenças dentro do alcance durante a duração. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "disguise-self",
+    "name": "Disfarçar-se",
+    "level": 1,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 hora",
+    "concentration": false,
+    "description": "Você altera sua aparência para parecer outra criatura, sem mudar suas capacidades físicas ou seus equipamentos. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "divine-favor",
+    "name": "Favor Divino",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Sua arma brilha com energia divina e causa dano radiante adicional em cada ataque bem-sucedido. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "entangle",
+    "name": "Constrição",
+    "level": 1,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Plantas agarram o chão em uma área e podem restringir criaturas que falharem no teste de Força. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "expeditious-retreat",
+    "name": "Retirada Acelerada",
+    "level": 1,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 10 minutos",
+    "concentration": false,
+    "description": "Você pode realizar a ação de Disparada como ação bônus em cada turno enquanto mantiver a concentração. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "faerie-fire",
+    "name": "Fogo das Fadas",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Objetos e criaturas em uma área ficam delineados por luz; ataques contra criaturas afetadas têm vantagem. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "false-life",
+    "name": "Vitalidade Falsa",
+    "level": 1,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 hora",
+    "concentration": false,
+    "description": "Você se fortalece com uma imitação sombria de vida e recebe pontos de vida temporários. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "feather-fall",
+    "name": "Queda Suave",
+    "level": 1,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 reação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 minuto",
+    "concentration": false,
+    "description": "Até cinco criaturas em queda descem lentamente e não sofrem dano ao atingir o chão. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "find-familiar",
+    "name": "Encontrar Familiar",
+    "level": 1,
+    "school": "conjuration",
+    "ritual": true,
+    "castingTime": "1 hora",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "carvão, incenso e ervas no valor de 10 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você invoca um espírito que assume uma forma animal e serve como seu familiar, podendo transmitir magia de toque. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "fog-cloud",
+    "name": "Nuvem de Névoa",
+    "level": 1,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 hora",
+    "concentration": false,
+    "description": "Você cria uma esfera de névoa que obscurece pesadamente sua área. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "goodberry",
+    "name": "Bom Fruto",
+    "level": 1,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria bagas mágicas que restauram um ponto de vida e alimentam uma criatura por um dia. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "grease",
+    "name": "Gordura",
+    "level": 1,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cobre o solo com graxa escorregadia, fazendo criaturas caírem se falharem em um teste de Destreza. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "guiding-bolt",
+    "name": "Raio Guiador",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um clarão radiante causa dano e concede vantagem ao próximo ataque feito contra o alvo. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "healing-word",
+    "name": "Palavra Curativa",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação bônus",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma criatura que você pode ver recupera 1d4 mais seu modificador de habilidade de conjuração como ação bônus. A cura ou retorno à vida acontece imediatamente quando a magia é concluída.",
+    "higherLevels": "A cura aumenta em 1d4 para cada espaço acima do 1º nível."
+  },
+  {
+    "id": "heroism",
+    "name": "Heroísmo",
+    "level": 1,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma criatura voluntária fica imune a medo e recebe pontos de vida temporários a cada turno. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "hex",
+    "name": "Azarar",
+    "level": 1,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação bônus",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você amaldiçoa uma criatura, causando dano necrótico adicional quando a atinge e impondo desvantagem a uma habilidade escolhida. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "hunters-mark",
+    "name": "Marca do Caçador",
+    "level": 1,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação bônus",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você marca uma presa, causando dano adicional quando a acerta e obtendo vantagem para encontrá-la. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "identify",
+    "name": "Identificar",
+    "level": 1,
+    "school": "divination",
+    "ritual": true,
+    "castingTime": "1 minuto",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma pérola de valor mínimo de 100 po e uma pena de coruja"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você aprende as propriedades de um objeto mágico, como usá-lo e se ele está afetado por alguma magia. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "inflict-wounds",
+    "name": "Infligir Ferimentos",
+    "level": 1,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você faz um ataque mágico corpo a corpo que causa dano necrótico intenso em um acerto. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "jump",
+    "name": "Salto",
+    "level": 1,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 minuto",
+    "concentration": false,
+    "description": "A distância de salto de uma criatura é triplicada durante a duração. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "longstrider",
+    "name": "Passos Largos",
+    "level": 1,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 hora",
+    "concentration": false,
+    "description": "O deslocamento de uma criatura aumenta em 3 metros durante uma hora. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "mage-armor",
+    "name": "Armadura Arcana",
+    "level": 1,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um pedaço de couro curado"
+    },
+    "duration": "8 horas",
+    "concentration": false,
+    "description": "Você protege uma criatura sem armadura com uma força mágica que define sua CA base como 13 mais Destreza. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "magic-missile",
+    "name": "Mísseis Mágicos",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria três dardos de força que atingem automaticamente criaturas à sua escolha. O resultado ocorre no momento da conjuração e não exige concentração.",
+    "higherLevels": "Você cria um dardo adicional para cada espaço acima do 1º nível."
+  },
+  {
+    "id": "protection-from-evil-and-good",
+    "name": "Proteção contra o Bem e o Mal",
+    "level": 1,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "água benta ou pó de prata e ferro"
+    },
+    "duration": "Concentração, até 10 minutos",
+    "concentration": false,
+    "description": "Uma criatura voluntária recebe proteção contra certos tipos sobrenaturais, que têm desvantagem para atacá-la. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "purify-food-and-drink",
+    "name": "Purificar Alimento e Bebida",
+    "level": 1,
+    "school": "transmutation",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você remove veneno e doença não mágicos de alimento e bebida em uma pequena área. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "ray-of-sickness",
+    "name": "Raio de Enjoo",
+    "level": 1,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um raio esverdeado causa dano de veneno e pode envenenar a criatura atingida. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "shield",
+    "name": "Escudo",
+    "level": 1,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 reação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 rodada",
+    "concentration": false,
+    "description": "Uma barreira invisível surge como reação, concede +5 na CA e bloqueia os efeitos de Mísseis Mágicos até seu próximo turno. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "shield-of-faith",
+    "name": "Escudo da Fé",
+    "level": 1,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um campo brilhante envolve uma criatura e concede +2 na CA enquanto você mantiver a concentração. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "silent-image",
+    "name": "Imagem Silenciosa",
+    "level": 1,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 10 minutos",
+    "concentration": false,
+    "description": "Você cria uma imagem visual de um objeto, criatura ou fenômeno que pode se mover conforme você orientar. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "sleep",
+    "name": "Sono",
+    "level": 1,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "areia fina, pétalas de rosa ou um grilo"
+    },
+    "duration": "1 minuto",
+    "concentration": false,
+    "description": "Você faz criaturas em uma área adormecerem, começando pelas que têm menos pontos de vida atuais. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "speak-with-animals",
+    "name": "Falar com Animais",
+    "level": 1,
+    "school": "divination",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "10 minutos",
+    "concentration": false,
+    "description": "Você compreende e se comunica verbalmente com bestas, podendo influenciá-las de modo limitado. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "tashas-hideous-laughter",
+    "name": "Risada Nefasta de Tasha",
+    "level": 1,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Uma criatura cai em gargalhadas e fica incapacitada e caída se falhar no teste de Sabedoria. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "thunderwave",
+    "name": "Onda Trovejante",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma onda de força sonora explode a partir de você, causando dano de trovão e empurrando criaturas. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "unseen-servant",
+    "name": "Servo Invisível",
+    "level": 1,
+    "school": "conjuration",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 hora",
+    "concentration": false,
+    "description": "Você cria uma força invisível e sem mente que executa tarefas simples sob seu comando. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "acid-arrow",
+    "name": "Flecha Ácida de Melf",
+    "level": 2,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma flecha de ácido causa dano imediato e dano adicional no turno seguinte ao atingir o alvo. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "aid",
+    "name": "Auxílio",
+    "level": 2,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "8 horas",
+    "concentration": false,
+    "description": "Até três criaturas aumentam seus pontos de vida máximos e atuais durante oito horas. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "alter-self",
+    "name": "Alterar-se",
+    "level": 2,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você assume adaptações físicas temporárias, como guelras, armas naturais ou aparência diferente. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "arcane-lock",
+    "name": "Tranca Arcana",
+    "level": 2,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "ouro em pó no valor de 25 po"
+    },
+    "duration": "Até ser dissipada",
+    "concentration": false,
+    "description": "Você torna uma porta, janela, portão ou baú mais difícil de abrir por meios mágicos ou mundanos. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "barkskin",
+    "name": "Pele de Árvore",
+    "level": 2,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "A pele de uma criatura se torna resistente e sua CA não pode ser inferior a 16. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "blindness-deafness",
+    "name": "Cegueira/Surdez",
+    "level": 2,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você pode cegar ou ensurdecer uma criatura que falhar em um teste de Constituição. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "blur",
+    "name": "Borrão",
+    "level": 2,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Seu corpo fica borrado e ataques contra você têm desvantagem, salvo para criaturas que não dependem da visão. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "calm-emotions",
+    "name": "Acalmar Emoções",
+    "level": 2,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você suprime emoções fortes ou torna indiferentes criaturas humanoides em uma área. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "continual-flame",
+    "name": "Chama Contínua",
+    "level": 2,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "pó de rubi no valor de 50 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma chama permanente surge em um objeto e emite luz sem consumir oxigênio ou gerar calor. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "darkness",
+    "name": "Escuridão",
+    "level": 2,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria uma esfera de escuridão mágica que bloqueia visão normal e visão no escuro. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "detect-thoughts",
+    "name": "Detectar Pensamentos",
+    "level": 2,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma moeda de cobre"
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você lê pensamentos superficiais de uma criatura e pode sondar mais profundamente se ela falhar no teste. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "enhance-ability",
+    "name": "Aprimorar Habilidade",
+    "level": 2,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 hora",
+    "concentration": true,
+    "description": "Você concede vantagem em testes de uma habilidade escolhida e um benefício adicional associado a ela. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "enlarge-reduce",
+    "name": "Aumentar/Reduzir",
+    "level": 2,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "pó de ferro"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você aumenta ou reduz uma criatura ou objeto, alterando tamanho, dano e capacidade de carga. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "find-steed",
+    "name": "Encontrar Montaria",
+    "level": 2,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "10 minutos",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você invoca uma montaria leal com inteligência incomum e vínculo telepático com você. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "flaming-sphere",
+    "name": "Esfera Flamejante",
+    "level": 2,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você cria uma esfera de fogo rolante que causa dano de fogo a criaturas que ela atinge. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "gentle-repose",
+    "name": "Repouso Tranquilo",
+    "level": 2,
+    "school": "necromancy",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você preserva um cadáver contra decomposição e impede que ele se torne morto-vivo durante a duração. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "gust-of-wind",
+    "name": "Rajada de Vento",
+    "level": 2,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma linha de vento forte empurra criaturas, dispersa gases e dificulta o movimento contra ela. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "hold-person",
+    "name": "Imobilizar Pessoa",
+    "level": 2,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você paralisa um humanoide que falhar em um teste de Sabedoria enquanto mantiver a concentração. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "invisibility",
+    "name": "Invisibilidade",
+    "level": 2,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma pestana envolta em goma arábica"
+    },
+    "duration": "Concentração, até 1 hora",
+    "concentration": true,
+    "description": "Uma criatura fica invisível até atacar, conjurar uma magia ou a duração terminar. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "knock",
+    "name": "Abrir",
+    "level": 2,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você abre fechaduras mundanas, mágicas simples e objetos presos dentro do alcance. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "lesser-restoration",
+    "name": "Restauração Menor",
+    "level": 2,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você encerra uma doença ou uma condição entre cego, surdo, paralisado ou envenenado. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "levitate",
+    "name": "Levitação",
+    "level": 2,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma presilha de couro"
+    },
+    "duration": "Concentração, até 10 minutos",
+    "concentration": true,
+    "description": "Uma criatura ou objeto sobe verticalmente e pode ser movido apenas de forma limitada durante a duração. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "locate-object",
+    "name": "Localizar Objeto",
+    "level": 2,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um galho bifurcado"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você sente a direção de um objeto conhecido ou da categoria de objeto escolhida dentro do alcance. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "misty-step",
+    "name": "Passo Nebuloso",
+    "level": 2,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação bônus",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você se teletransporta em uma nuvem de névoa para um espaço desocupado que possa ver. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "moonbeam",
+    "name": "Raio Lunar",
+    "level": 2,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Um feixe de luz prateada causa dano radiante a criaturas em sua área e pode revelar metamorfos. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "pass-without-trace",
+    "name": "Passos sem Pegadas",
+    "level": 2,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você e aliados próximos recebem +10 em testes de Furtividade e não podem ser rastreados por meios não mágicos. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "prayer-of-healing",
+    "name": "Prece de Cura",
+    "level": 2,
+    "school": "evocation",
+    "ritual": true,
+    "castingTime": "10 minutos",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você conduz uma oração de dez minutos que cura até seis criaturas dentro do alcance. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "protection-from-poison",
+    "name": "Proteção contra Veneno",
+    "level": 2,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você neutraliza veneno em uma criatura e concede imunidade à condição e dano de veneno durante a duração. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "scorching-ray",
+    "name": "Raio Ardente",
+    "level": 2,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "pó vermelho e amarelo"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria três raios de fogo e realiza um ataque mágico à distância para cada um. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "see-invisibility",
+    "name": "Ver Invisibilidade",
+    "level": 2,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você vê criaturas e objetos invisíveis, além de enxergar no Plano Etéreo próximo. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "shatter",
+    "name": "Despedaçar",
+    "level": 2,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma lasca de mica"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um ruído explosivo causa dano de trovão em uma área e é especialmente eficaz contra materiais inorgânicos. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "silence",
+    "name": "Silêncio",
+    "level": 2,
+    "school": "illusion",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria uma esfera sem som; criaturas dentro dela não podem lançar magias com componente verbal. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "spider-climb",
+    "name": "Patas de Aranha",
+    "level": 2,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma gota de betume e uma aranha"
+    },
+    "duration": "Concentração, até 1 hora",
+    "concentration": false,
+    "description": "Uma criatura pode se mover por paredes e tetos, mantendo as mãos livres. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "spike-growth",
+    "name": "Crescimento de Espinhos",
+    "level": 2,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Espinhos camuflados tornam uma área difícil e causam dano perfurante a quem se move nela. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "spiritual-weapon",
+    "name": "Arma Espiritual",
+    "level": 2,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação bônus",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 minuto",
+    "concentration": false,
+    "description": "Você cria uma arma espectral que ataca como ação bônus e causa dano de força. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "suggestion",
+    "name": "Sugestão",
+    "level": 2,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você sugere um curso de ação razoável que uma criatura deve seguir se falhar no teste de Sabedoria. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "web",
+    "name": "Teia",
+    "level": 2,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um pedaço de teia"
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você preenche uma área com teias pegajosas que podem restringir criaturas e são inflamáveis. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "beacon-of-hope",
+    "name": "Sinal de Esperança",
+    "level": 3,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Aliados em uma área têm vantagem em testes de Sabedoria e testes contra a morte, e recebem cura máxima. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "bestow-curse",
+    "name": "Rogar Maldição",
+    "level": 3,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você toca uma criatura e impõe uma maldição prejudicial escolhida se ela falhar no teste de Sabedoria. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "clairvoyance",
+    "name": "Clarividência",
+    "level": 3,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um foco de valor mínimo de 100 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria um sensor invisível em um local familiar para ver ou ouvir através dele. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "conjure-animals",
+    "name": "Conjurar Animais",
+    "level": 3,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você invoca espíritos feéricos que assumem formas de bestas e obedecem a seus comandos. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "counterspell",
+    "name": "Contrafeitiço",
+    "level": 3,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 reação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você usa sua reação para interromper a conjuração de uma magia que possa ver. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "daylight",
+    "name": "Luz do Dia",
+    "level": 3,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria uma esfera de luz brilhante que ilumina uma grande área e pode dispersar escuridão mágica fraca. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "dispel-magic",
+    "name": "Dissipar Magia",
+    "level": 3,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você encerra uma magia ativa em uma criatura, objeto ou efeito mágico dentro do alcance. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "fear",
+    "name": "Medo",
+    "level": 3,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Uma imagem aterradora força criaturas que falharem no teste a largar objetos e fugir de você. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "fireball",
+    "name": "Bola de Fogo",
+    "level": 3,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "guano de morcego e enxofre"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma explosão de fogo irrompe em um ponto escolhido, causando 8d6 de dano de fogo em uma ampla área. O resultado ocorre no momento da conjuração e não exige concentração.",
+    "higherLevels": "O dano aumenta em 1d6 para cada espaço acima do 3º nível."
+  },
+  {
+    "id": "fly",
+    "name": "Voo",
+    "level": 3,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 10 minutos",
+    "concentration": true,
+    "description": "Uma criatura voluntária ganha deslocamento de voo de 18 metros enquanto você mantiver a concentração. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "gaseous-form",
+    "name": "Forma Gasosa",
+    "level": 3,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma criatura se torna uma nuvem gasosa capaz de passar por frestas, mas não pode atacar ou conjurar magias. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "haste",
+    "name": "Acelerar",
+    "level": 3,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Uma criatura fica extremamente rápida, recebe +2 na CA, vantagem em testes de Destreza e uma ação adicional limitada. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "hypnotic-pattern",
+    "name": "Padrão Hipnótico",
+    "level": 3,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Um padrão luminoso encanta e incapacita criaturas em uma área que falharem no teste de Sabedoria. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "lightning-bolt",
+    "name": "Relâmpago",
+    "level": 3,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "30 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um pouco de pelo e uma haste de âmbar"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um raio elétrico percorre uma linha, causando 8d6 de dano elétrico a criaturas que falharem no teste. O resultado ocorre no momento da conjuração e não exige concentração.",
+    "higherLevels": "O dano aumenta em 1d6 para cada espaço acima do 3º nível."
+  },
+  {
+    "id": "major-image",
+    "name": "Imagem Maior",
+    "level": 3,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria uma ilusão visual, sonora e sensorial convincente que pode ser movida e alterada. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "plant-growth",
+    "name": "Crescimento de Plantas",
+    "level": 3,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você faz vegetação crescer de forma exuberante, tornando terreno difícil ou enriquecendo a terra por longo prazo. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "protection-from-energy",
+    "name": "Proteção contra Energia",
+    "level": 3,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma criatura recebe resistência a um tipo de dano energético escolhido durante a duração. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "remove-curse",
+    "name": "Remover Maldição",
+    "level": 3,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você toca uma criatura ou objeto e encerra todas as maldições que o afetam, quando aplicável. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "revivify",
+    "name": "Revivificar",
+    "level": 3,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "diamantes no valor de 300 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você devolve à vida uma criatura que morreu no último minuto, desde que ela não tenha morrido de velhice. A cura ou retorno à vida acontece imediatamente quando a magia é concluída."
+  },
+  {
+    "id": "sending",
+    "name": "Enviar Mensagem",
+    "level": 3,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um pequeno fio de cobre"
+    },
+    "duration": "1 rodada",
+    "concentration": false,
+    "description": "Você envia uma mensagem curta a uma criatura conhecida em qualquer distância, que pode responder imediatamente. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "sleet-storm",
+    "name": "Tempestade de Granizo",
+    "level": 3,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria uma tempestade gelada que obscurece visão, torna o solo escorregadio e pode quebrar concentração. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "slow",
+    "name": "Lentidão",
+    "level": 3,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Até seis criaturas têm deslocamento, reações, ataques e conjurações reduzidos se falharem no teste. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "speak-with-dead",
+    "name": "Falar com os Mortos",
+    "level": 3,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você faz um cadáver responder até cinco perguntas com o conhecimento que possuía em vida. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "stinking-cloud",
+    "name": "Nuvem Fétida",
+    "level": 3,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma nuvem de gás nauseante impede ações de criaturas que falharem no teste de Constituição. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "tongues",
+    "name": "Idiomas",
+    "level": 3,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma criatura entende qualquer idioma falado e qualquer criatura que a escute entende o que ela diz. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "water-breathing",
+    "name": "Respirar na Água",
+    "level": 3,
+    "school": "transmutation",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma palha curta ou junco"
+    },
+    "duration": "24 horas",
+    "concentration": false,
+    "description": "Até dez criaturas voluntárias podem respirar debaixo d água durante vinte e quatro horas. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "water-walk",
+    "name": "Caminhar sobre a Água",
+    "level": 3,
+    "school": "transmutation",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 hora",
+    "concentration": false,
+    "description": "Até dez criaturas voluntárias podem se mover sobre líquidos como se fossem solo sólido. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "wall-of-fire",
+    "name": "Muralha de Fogo",
+    "level": 4,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você cria uma parede de fogo que causa dano a criaturas próximas e bloqueia passagem com chamas perigosas. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "banishment",
+    "name": "Banimento",
+    "level": 4,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um objeto desagradável ao alvo"
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você tenta enviar uma criatura para outro plano; extraplanares podem ser banidos permanentemente. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "blight",
+    "name": "Flagelo",
+    "level": 4,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Energia necrótica drena uma criatura, causando dano elevado e sendo especialmente destrutiva para plantas. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "confusion",
+    "name": "Confusão",
+    "level": 4,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você perturba a mente de criaturas em uma área, fazendo-as agir de forma aleatória. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "conjure-minor-elementals",
+    "name": "Conjurar Elementais Menores",
+    "level": 4,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você invoca elementais de baixo desafio que obedecem a seus comandos durante a duração. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "dimension-door",
+    "name": "Porta Dimensional",
+    "level": 4,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "150 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um pouco de enxofre e um fio de cobre"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você se teletransporta para um local dentro do alcance e pode levar uma criatura voluntária consigo. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "divination",
+    "name": "Adivinhação",
+    "level": 4,
+    "school": "divination",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você recebe uma resposta enigmática de uma entidade divina sobre um objetivo específico. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "dominate-beast",
+    "name": "Dominar Besta",
+    "level": 4,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você controla telepaticamente uma besta que falhar no teste de Sabedoria. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "fire-shield",
+    "name": "Escudo de Fogo",
+    "level": 4,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Chamas quentes ou frias protegem você, concedem resistência e ferem quem o atingir em combate corpo a corpo. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "greater-invisibility",
+    "name": "Invisibilidade Maior",
+    "level": 4,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você ou uma criatura fica invisível mesmo ao atacar ou conjurar magias enquanto durar a concentração. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "guardian-of-faith",
+    "name": "Guardião da Fé",
+    "level": 4,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você invoca um guardião espectral imóvel que causa dano radiante a inimigos que entram em sua área. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "locate-creature",
+    "name": "Localizar Criatura",
+    "level": 4,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você percebe a direção de uma criatura conhecida, desde que ela esteja dentro do alcance e não bloqueada. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "polymorph",
+    "name": "Polimorfia",
+    "level": 4,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um casulo de lagarta"
+    },
+    "duration": "Concentração, até 1 hora",
+    "concentration": true,
+    "description": "Você transforma uma criatura em uma besta com estatísticas substituídas, limitada por seu nível ou valor de desafio. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "resilient-sphere",
+    "name": "Esfera Resiliente de Otiluke",
+    "level": 4,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você aprisiona uma criatura ou objeto em uma esfera de força indestrutível que bloqueia efeitos externos. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "stoneskin",
+    "name": "Pele de Pedra",
+    "level": 4,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "pó de diamante no valor de 100 po"
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Uma criatura ganha resistência a dano não mágico contundente, perfurante e cortante. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "storm-sphere",
+    "name": "Esfera de Tempestade",
+    "level": 4,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria uma esfera de vento e relâmpagos que causa dano e dificulta ataques à distância contra você. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "vitriolic-sphere",
+    "name": "Esfera Vítrea de Vitriolo",
+    "level": 4,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você lança uma esfera de ácido que explode, causando dano imediato e dano ácido persistente. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "arcane-hand",
+    "name": "Mão Arcana de Bigby",
+    "level": 5,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "casca de ovo e uma luva de pele de cobra"
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você cria uma mão de força grande que pode golpear, agarrar, empurrar ou proteger conforme seus comandos. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "commune",
+    "name": "Comunhão",
+    "level": 5,
+    "school": "divination",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você faz até três perguntas a uma divindade e recebe respostas verdadeiras, embora possivelmente enigmáticas. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "cone-of-cold",
+    "name": "Cone de Frio",
+    "level": 5,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um pequeno cone ou pó de cristal"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma explosão de frio em forma de cone causa dano de frio a criaturas que falharem no teste. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "conjure-elemental",
+    "name": "Conjurar Elemental",
+    "level": 5,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você invoca um elemental que obedece enquanto mantiver a concentração, mas pode se tornar hostil se a perder. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "contact-other-plane",
+    "name": "Contato Extraplanar",
+    "level": 5,
+    "school": "divination",
+    "ritual": true,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você consulta uma entidade extraplanar em busca de conhecimento, arriscando dano psíquico e insanidade temporária. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "creation",
+    "name": "Criação",
+    "level": 5,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria um objeto não mágico de matéria vegetal, pedra, metal precioso ou gema por uma duração limitada. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "dispel-evil-and-good",
+    "name": "Dissipar o Bem e o Mal",
+    "level": 5,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você protege a si mesmo contra criaturas sobrenaturais e pode encerrar seus efeitos de possessão ou bani-las. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "dominate-person",
+    "name": "Dominar Pessoa",
+    "level": 5,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você controla telepaticamente as ações de um humanoide que falhar em um teste de Sabedoria. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "flame-strike",
+    "name": "Coluna de Chamas",
+    "level": 5,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um cilindro de fogo e luz radiante desce sobre um ponto, causando dano de fogo e radiante. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "greater-restoration",
+    "name": "Restauração Maior",
+    "level": 5,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você reduz exaustão e encerra efeitos debilitantes, incluindo maldições, redução de atributos e máximos de vida. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "hallow",
+    "name": "Consagrar",
+    "level": 5,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "24 horas",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você imbui uma área com poder sagrado permanente que protege contra tipos de criaturas e pode impor efeito adicional. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "legend-lore",
+    "name": "Lenda",
+    "level": 5,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você traz à mente conhecimento lendário sobre uma pessoa, lugar ou objeto de grande importância. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "mislead",
+    "name": "Despistar",
+    "level": 5,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você fica invisível enquanto uma duplicata ilusória aparece, fala e se move sob seu controle. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "raise-dead",
+    "name": "Erguer os Mortos",
+    "level": 5,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "diamante no valor de 500 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você devolve à vida uma criatura morta há até dez dias, impondo penalidades temporárias após o retorno. A cura ou retorno à vida acontece imediatamente quando a magia é concluída."
+  },
+  {
+    "id": "scrying",
+    "name": "Vidência",
+    "level": 5,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um foco no valor de 1.000 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você observa e escuta uma criatura em um sensor mágico distante se ela falhar no teste de resistência. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "telekinesis",
+    "name": "Telecinese",
+    "level": 5,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você move criaturas ou objetos com força mental, podendo restringir ou arremessar um alvo. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "chain-lightning",
+    "name": "Relâmpago em Cadeia",
+    "level": 6,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um relâmpago salta do alvo inicial para outras criaturas próximas, causando dano elétrico em cada uma. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "circle-of-death",
+    "name": "Círculo da Morte",
+    "level": 6,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma esfera de energia negativa explode em uma área e causa dano necrótico intenso. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "contingency",
+    "name": "Contingência",
+    "level": 6,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "10 minutos",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você vincula uma magia de quinto nível ou menor a uma condição que a ativa automaticamente em você. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "create-undead",
+    "name": "Criar Mortos-Vivos",
+    "level": 6,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria servos mortos-vivos poderosos a partir de cadáveres humanoides. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "disintegrate",
+    "name": "Desintegrar",
+    "level": 6,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um ímã e pó"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um raio verde causa enorme dano de força e reduz a pó criaturas que chegam a zero pontos de vida. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "forbiddance",
+    "name": "Proibição",
+    "level": 6,
+    "school": "abjuration",
+    "ritual": true,
+    "castingTime": "10 minutos",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você protege uma área contra viagem planar e pode causar dano a tipos de criaturas escolhidos. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "globe-of-invulnerability",
+    "name": "Globo de Invulnerabilidade",
+    "level": 6,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma conta de vidro"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma barreira imóvel bloqueia magias de quinto nível ou menor lançadas de fora dela. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "heal",
+    "name": "Curar",
+    "level": 6,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma onda de energia positiva restaura 70 pontos de vida e remove cegueira, surdez e doenças. A cura ou retorno à vida acontece imediatamente quando a magia é concluída."
+  },
+  {
+    "id": "mass-suggestion",
+    "name": "Sugestão em Massa",
+    "level": 6,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você influencia até doze criaturas com uma sugestão razoável que persiste por longo período. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "move-earth",
+    "name": "Mover a Terra",
+    "level": 6,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você remodela terra e pedra em uma área ampla, criando ou removendo elevações e valas. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "true-seeing",
+    "name": "Visão da Verdade",
+    "level": 6,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "unguento no valor de 25 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma criatura ganha visão verdadeira, percebendo ilusões, invisibilidade, metamorfos e outros planos próximos. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "wall-of-ice",
+    "name": "Muralha de Gelo",
+    "level": 6,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria uma parede de gelo que bloqueia passagem e pode explodir em estilhaços congelantes. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "delayed-blast-fireball",
+    "name": "Bola de Fogo de Explosão Retardada",
+    "level": 7,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria uma esfera de fogo que acumula energia até explodir ou ser liberada. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "etherealness",
+    "name": "Eterealidade",
+    "level": 7,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você e criaturas voluntárias entram no Plano Etéreo e podem atravessar objetos no plano material. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "finger-of-death",
+    "name": "Dedo da Morte",
+    "level": 7,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você lança energia negativa que causa dano necrótico massivo e pode erguer humanoides mortos como zumbis. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "forcecage",
+    "name": "Prisão de Força",
+    "level": 7,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "pó de rubi no valor de 1.500 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria uma prisão invisível e imóvel de força que aprisiona criaturas sem permitir fuga comum. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "mirage-arcane",
+    "name": "Miragem Arcana",
+    "level": 7,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você altera a aparência e características sensoriais de um terreno em uma área enorme. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "plane-shift",
+    "name": "Viagem Planar",
+    "level": 7,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma haste de metal sintonizada"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você transporta criaturas para outro plano de existência ou tenta banir um alvo para seu plano natal. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "teleport",
+    "name": "Teletransporte",
+    "level": 7,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "3 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você transporta instantaneamente a si mesmo e criaturas voluntárias para um destino conhecido, com risco de desvio para locais menos familiares. Os objetos carregados também são transportados conforme as regras da magia. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "regenerate",
+    "name": "Regenerar",
+    "level": 7,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma criatura recupera vida ao longo do tempo e pode restaurar membros perdidos. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "resurrection",
+    "name": "Ressurreição",
+    "level": 7,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "diamante no valor de 1.000 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você traz de volta uma criatura morta há até um século, restaurando doenças, venenos e mutilações. A cura ou retorno à vida acontece imediatamente quando a magia é concluída."
+  },
+  {
+    "id": "antimagic-field",
+    "name": "Campo Antimagia",
+    "level": 8,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma pitada de ferro ou limalha"
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Uma aura ao seu redor suprime magia e itens mágicos dentro de sua área enquanto mantiver a concentração. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "dominate-monster",
+    "name": "Dominar Monstro",
+    "level": 8,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você controla telepaticamente uma criatura, mesmo que não seja humanoide, se ela falhar no teste. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "feeblemind",
+    "name": "Debilitar",
+    "level": 8,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você causa dano psíquico e reduz drasticamente Inteligência e Carisma de uma criatura que falhar no teste. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "glibness",
+    "name": "Lábia",
+    "level": 8,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Sua fala se torna sobrenaturalmente convincente e seus testes de Carisma não podem resultar abaixo de 15. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "holy-aura",
+    "name": "Aura Sagrada",
+    "level": 8,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Luz divina envolve aliados, melhorando defesas e punindo criaturas malignas que os atacam. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "maze",
+    "name": "Labirinto",
+    "level": 8,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma pedra de labirinto"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você bane uma criatura para um labirinto extradimensional do qual ela deve escapar por conta própria. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "mind-blank",
+    "name": "Mente em Branco",
+    "level": 8,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "casca de ovo"
+    },
+    "duration": "24 horas",
+    "concentration": false,
+    "description": "Você protege uma criatura contra dano psíquico, leitura mental, emoções e adivinhação. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "sunburst",
+    "name": "Explosão Solar",
+    "level": 8,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Luz solar intensa causa dano radiante e pode cegar criaturas em uma grande área. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "astral-projection",
+    "name": "Projeção Astral",
+    "level": 9,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "jacinto no valor de 1.000 po e barra de prata"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você e aliados projetam seus corpos astrais para o Plano Astral, deixando os corpos físicos em animação suspensa. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "foresight",
+    "name": "Previsão",
+    "level": 9,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "8 horas",
+    "concentration": false,
+    "description": "Você concede a uma criatura percepção do futuro, com vantagem ampla e desvantagem para ataques contra ela. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "gate",
+    "name": "Portal",
+    "level": 9,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "diamante no valor de 5.000 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você abre um portal para outro plano e pode atrair uma criatura específica para perto de você. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "mass-heal",
+    "name": "Cura em Massa",
+    "level": 9,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Uma onda de energia restauradora cura severamente muitas criaturas e remove condições debilitantes. A cura ou retorno à vida acontece imediatamente quando a magia é concluída."
+  },
+  {
+    "id": "meteor-swarm",
+    "name": "Chuva de Meteoros",
+    "level": 9,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "1,6 quilômetro",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Quatro esferas flamejantes explodem em pontos distantes, causando enorme dano de fogo e contundente. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "shapechange",
+    "name": "Metamorfose Verdadeira",
+    "level": 9,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você assume a forma de outra criatura e adquire muitas de suas capacidades físicas. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "true-resurrection",
+    "name": "Ressurreição Verdadeira",
+    "level": 9,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "diamantes no valor de 25.000 po"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você restaura à vida uma criatura morta há até duzentos anos, recriando seu corpo se necessário. A cura ou retorno à vida acontece imediatamente quando a magia é concluída."
+  },
+  {
+    "id": "wish",
+    "name": "Desejo",
+    "level": 9,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma pena de papagaio"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você altera a realidade para reproduzir magias poderosas ou tentar alcançar efeitos extraordinários, com risco de nunca mais poder conjurá-la. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "true-strike",
+    "name": "Ataque Certeiro",
+    "level": 0,
+    "school": "divination",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "9 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 rodada",
+    "concentration": false,
+    "description": "Você estende a mão e aponta para um alvo dentro do alcance. No próximo turno, recebe vantagem no primeiro ataque contra ele. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "friends",
+    "name": "Amizade",
+    "level": 0,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você obtém vantagem em testes de Carisma contra uma criatura não hostil escolhida. Quando a magia termina, a criatura percebe que foi influenciada magicamente. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "spare-the-dying",
+    "name": "Poupar os Moribundos",
+    "level": 0,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Toque",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você toca uma criatura viva com zero pontos de vida. Ela se torna estável sem recuperar pontos de vida. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "shillelagh",
+    "name": "Bordão Mágico",
+    "level": 0,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação bônus",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 minuto",
+    "concentration": false,
+    "description": "Um porrete ou cajado que você segura se torna mágico. Ele usa sua habilidade de conjuração para ataques e causa 1d8 de dano. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "darkvision",
+    "name": "Visão no Escuro",
+    "level": 2,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "uma cenoura seca ou uma ágata"
+    },
+    "duration": "8 horas",
+    "concentration": false,
+    "description": "Você concede visão no escuro a uma criatura voluntária. Ela enxerga no escuro por 18 metros em tons de cinza. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "hellish-rebuke",
+    "name": "Repreensão Infernal",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 reação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você aponta para a criatura que acabou de feri-lo e a envolve em chamas infernais. Ela sofre dano de fogo se falhar em um teste de Destreza. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "witch-bolt",
+    "name": "Raio de Bruxa",
+    "level": 1,
+    "school": "evocation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "9 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "um ramo de árvore atingida por relâmpago"
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Um raio de energia crepitante liga você a uma criatura dentro do alcance. Enquanto mantiver a concentração, pode causar dano elétrico automaticamente nos turnos seguintes. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "cloud-of-daggers",
+    "name": "Nuvem de Adagas",
+    "level": 2,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você preenche um cubo com adagas giratórias feitas de força. Uma criatura sofre dano cortante ao entrar na área ou iniciar o turno nela. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "hunger-of-hadar",
+    "name": "Fome de Hadar",
+    "level": 3,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você cria uma esfera de escuridão gelada e ruidosa. Criaturas em seu interior sofrem dano de frio e ácido e têm o movimento dificultado. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "vampiric-touch",
+    "name": "Toque Vampírico",
+    "level": 3,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "Pessoal",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Sua mão fica envolta em energia sombria para ataques mágicos corpo a corpo. Você recupera metade do dano necrótico causado por esses ataques. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "dream",
+    "name": "Sonho",
+    "level": 5,
+    "school": "illusion",
+    "ritual": false,
+    "castingTime": "1 minuto",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "8 horas",
+    "concentration": false,
+    "description": "Você molda o sonho de uma criatura conhecida e pode conversar com ela durante o descanso. Um mensageiro pode transformar o sonho em pesadelo e causar dano psíquico. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "hold-monster",
+    "name": "Imobilizar Monstro",
+    "level": 5,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você paralisa uma criatura que falhar em um teste de Sabedoria. Ela pode repetir o teste ao fim de cada turno para encerrar o efeito. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "arcane-gate",
+    "name": "Portal Arcano",
+    "level": 6,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "150 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria dois portais conectados em superfícies visíveis. Qualquer criatura pode atravessar um portal para sair pelo outro. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "eyebite",
+    "name": "Olhar Aterrador",
+    "level": 6,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Seus olhos se tornam condutos de magia sombria contra uma criatura que você vê. A cada turno, você pode fazê-la dormir, entrar em pânico ou adoecer. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "flesh-to-stone",
+    "name": "Carne em Pedra",
+    "level": 6,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você tenta transformar uma criatura em pedra após sucessivos testes de resistência falhos. Uma criatura petrificada dessa forma pode ser restaurada por magia apropriada. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "demiplane",
+    "name": "Semiplano",
+    "level": 8,
+    "school": "conjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "1 hora",
+    "concentration": false,
+    "description": "Você cria uma porta para uma câmara extradimensional vazia ou para um semiplano conhecido. A porta permanece aberta por uma hora. O benefício ou obstáculo permanece até a duração indicada terminar."
+  },
+  {
+    "id": "power-word-stun",
+    "name": "Palavra de Poder Atordoar",
+    "level": 8,
+    "school": "enchantment",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você profere uma palavra de poder contra uma criatura com 150 pontos de vida ou menos. Ela fica atordoada até conseguir superar o efeito. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "true-polymorph",
+    "name": "Polimorfia Verdadeira",
+    "level": 9,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Concentração, até 1 minuto",
+    "concentration": true,
+    "description": "Você transforma uma criatura ou objeto em outra forma de maneira duradoura. Após a concentração completa, a transformação pode se tornar permanente. Você precisa manter a concentração para conservar esse efeito ativo."
+  },
+  {
+    "id": "death-ward",
+    "name": "Proteção contra a Morte",
+    "level": 4,
+    "school": "abjuration",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "36 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você protege uma criatura contra a morte súbita. A primeira vez que ela cair a zero pontos de vida, cai para 1 em vez disso. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "magic-weapon",
+    "name": "Arma Mágica",
+    "level": 2,
+    "school": "transmutation",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": "ferrugem em pó"
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você transforma uma arma não mágica em uma arma mágica com bônus em ataques e dano. O bônus aumenta quando conjurada com espaços de nível mais alto. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "ray-of-enfeeblement",
+    "name": "Raio do Enfraquecimento",
+    "level": 2,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "18 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Um raio negro enfraquece uma criatura que falhar no ataque mágico. Seus ataques com armas baseados em Força passam a causar metade do dano. O resultado ocorre no momento da conjuração e não exige concentração."
+  },
+  {
+    "id": "clone",
+    "name": "Clone",
+    "level": 8,
+    "school": "necromancy",
+    "ritual": false,
+    "castingTime": "1 ação",
+    "range": "45 metros",
+    "components": {
+      "v": true,
+      "s": true,
+      "m": null
+    },
+    "duration": "Instantânea",
+    "concentration": false,
+    "description": "Você cria um duplicado inerte de uma criatura viva em um recipiente selado. Se ela morrer, sua alma pode ocupar o clone e retornar à vida. O resultado ocorre no momento da conjuração e não exige concentração."
+  }
+]
