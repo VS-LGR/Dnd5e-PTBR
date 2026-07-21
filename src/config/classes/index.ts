@@ -1,4 +1,5 @@
 import type { ClassDefinition, SubclassDefinition } from "@/config/types";
+import { enrichClassesWithTasha } from "@/config/classes/tashaExtras";
 
 const noSpellcasting = {
   type: "none" as const,
@@ -7,7 +8,7 @@ const noSpellcasting = {
   startsAtLevel: 0,
 };
 
-export const CLASSES: ClassDefinition[] = [
+const PHB_CLASSES: Omit<ClassDefinition, "source">[] = [
   // ─── BÁRBARO ───────────────────────────────────────────
   {
     id: "barbarian",
@@ -1018,6 +1019,10 @@ export const CLASSES: ClassDefinition[] = [
     ],
   },
 ];
+
+export const CLASSES: ClassDefinition[] = enrichClassesWithTasha(
+  PHB_CLASSES.map((c) => ({ ...c, source: "phb" as const })),
+);
 
 export function getClass(id: string): ClassDefinition | undefined {
   return CLASSES.find((c) => c.id === id);

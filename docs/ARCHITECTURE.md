@@ -2,90 +2,49 @@
 
 Ferramenta de fichas D&D 5e PT-BR (Next.js App Router + TypeScript + Tailwind + Supabase).
 
+## Fontes de conteúdo
+
+| Tag | Livro | No app |
+|-----|-------|--------|
+| `phb` | Livro do Jogador | Raças core, 12 classes, talentos PHB |
+| `motm` | Monstros do Multiverso (OCR BR) | 33 raças com ASI flutuante |
+| `tcoe` | Caldeirão de Tasha | Artífice, subclasses, opcionais, 15 talentos, linhagem customizada |
+
+PDFs de estudo ficam fora do Git (`*.pdf` no `.gitignore`).
+
 ## Estrutura do projeto
 
 ```
 /src
-  /app                 # Rotas (App Router)
-  /components
-    /layout            # Header, Footer, AppShell (sem lógica de regras)
-    /sections          # Composição de páginas (props + orquestração)
-    /ui                # Button, Input, Panel, Tabs, Badge (puros)
-  /lib
-    /rules             # Motor DnD (mods, PB, HP, CA, slots, multiclasse)
-    /spells            # Resolução de listas / preparação
-    /character         # Tipos, level-up, repositório (Supabase ou localStorage)
-    /supabase          # Clients browser/server + tipos DB
-  /config              # Dados estáticos PHB (raças, classes, magias, regras…)
-  /styles              # Tokens tema livro (pergaminho / carmim)
-  /assets              # Assets estáticos
-/supabase/migrations   # SQL: profiles, characters, RLS
-/scripts               # Extração offline de PDFs (opcional)
-/docs                  # Documentação
+  /app
+  /components/layout|sections|ui
+  /lib/rules|spells|character|supabase
+  /config/races (phb + motm) | classes (+ tashaExtras) | feats | spells | …
 ```
 
-## Mapa de componentes
+## MotM
 
-| Área | Componentes |
-|------|-------------|
-| Layout | `AppShell`, `Header`, `Footer` |
-| Home | `HomeHeroSection`, `HomeFeaturesSection` |
-| Personagens | `CharacterListSection`, `CharacterWizardSection`, `CharacterSheetSection`, `LevelUpSection` |
-| Magias | `SpellsCatalogSection`, `SpellDetailSection` |
-| Regras | `RulesIndexSection`, `RuleArticleSection` |
-| Auth | `AuthSection` |
-| UI | `Button`, `Input`, `Select`, `Textarea`, `Panel`, `Badge`, `Tabs` |
+- `abilityScoreModel: "motm-floating"` → picker +2/+1 ou +1/+1/+1 em `motmAbilityBonuses`
+- `countsAs`, `sizeOptions`, `choices` (revelação, morfismo, legado, estação)
+- Motor: [`src/lib/rules/index.ts`](../src/lib/rules/index.ts) aplica MotM / origem Tasha / feat picks
 
-## Localização das lógicas
+## Tasha (escopo C)
 
-| Domínio | Onde |
-|---------|------|
-| Modificadores, PB, perícias, HP, CA, slots, DC | `src/lib/rules/index.ts` |
-| Subir de nível / ASI / talento | `src/lib/character/levelUp.ts` |
-| Persistência | `src/lib/character/repository.ts` |
-| Dados PHB | `src/config/**` |
-| Artigos de regras | `src/config/rules/articles.ts` |
-| Magias | `src/config/spells/**` |
+- Artífice half-caster + 4 especializações
+- Subclasses novas em todas as classes PHB (`src/config/classes/tashaExtras.ts`)
+- `optionalFeatures` selecionáveis → `optionalFeatureIds`
+- FeatPicker com descrição completa
+- Customizar origem + Linhagem Customizada
 
-## Rotas
+## Wizard
 
-- `/` — entrada da ferramenta
-- `/auth` — login/registro Supabase (ou instruções modo local)
-- `/characters` — lista
-- `/characters/new` — wizard Cap. 1
-- `/characters/[id]` — ficha (Combate / Narrativa / Magias)
-- `/characters/[id]/level-up` — evolução
-- `/spells`, `/spells/[slug]` — catálogo
-- `/rules`, `/rules/[slug]` — consulta
+- Nível inicial 1–20, point buy validado (27 pts), MotM ASI, ASI/talentos em lote, opcionais
 
-## Supabase
+## Persistência
 
-1. Crie um projeto no Supabase.
-2. Copie `.env.example` → `.env.local` e preencha URL + anon key.
-3. Execute `supabase/migrations/001_init.sql` no SQL Editor.
-4. Sem env válido, a app usa **localStorage** (desenvolvimento offline).
+- `schemaVersion: 2` + `migrateCharacterState`
+- Sem Supabase: localStorage
 
-## Deploy (Vercel)
+## Deploy
 
-1. Importe o repositório na Vercel.
-2. Defina `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-3. Deploy (`vercel.json` incluso). Framework: Next.js.
-
-## Metadata
-
-Metadata básica por página (`title` / `description` no root). Sem funil comercial.
-
-## Expansão futura
-
-- Livros adicionais (Xanathar, Tasha) como packs em `/config`
-- Import/export JSON da ficha
-- Homebrew com `schemaVersion`
-- Multiclasse com validação completa de pré-requisitos na UI
-- Sincronizar texto das magias a partir dos PDFs via `scripts/extract-spell-pdfs.ts`
-
-## Observações técnicas
-
-- Dependências extras: apenas `@supabase/supabase-js` e `@supabase/ssr`.
-- Sections não calculam regras — chamam `/lib`.
-- `CharacterState` em JSONB permite evolução sem migrações destrutivas.
-- Conteúdo WotC: em produção pública, publique apenas o permitido pela licença/SRD.
+Vercel + env Supabase; SQL em `supabase/migrations/001_init.sql`.

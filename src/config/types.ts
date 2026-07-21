@@ -1,9 +1,29 @@
 import type { AbilityKey, AbilityScores, CastingType, SizeCategory, SkillKey } from "@/lib/character/types";
 
+export type ContentSource = "phb" | "motm" | "tcoe";
+
+export type AbilityScoreModel = "fixed" | "motm-floating";
+
+export type CreatureType = "humanoid" | "fey" | "monstrosity" | "undead" | "construct";
+
 export interface RacialTrait {
   id: string;
   name: string;
   description: string;
+}
+
+export interface RaceChoiceOption {
+  id: string;
+  name: string;
+  description: string;
+}
+
+export interface RaceChoiceDefinition {
+  id: string;
+  name: string;
+  /** When the choice becomes relevant (display only if character level >= this) */
+  minLevel?: number;
+  options: RaceChoiceOption[];
 }
 
 export interface SubraceDefinition {
@@ -13,24 +33,45 @@ export interface SubraceDefinition {
   traits: RacialTrait[];
   extraLanguages?: string[];
   speedOverride?: number;
+  source?: ContentSource;
+}
+
+export interface SpeedDetail {
+  walk: number;
+  fly?: number;
+  swim?: number;
+  climb?: number;
 }
 
 export interface RaceDefinition {
   id: string;
   name: string;
+  source: ContentSource;
   size: SizeCategory;
+  /** When race may choose Medium or Small */
+  sizeOptions?: SizeCategory[];
   speed: number;
+  speedDetail?: SpeedDetail;
+  abilityScoreModel: AbilityScoreModel;
+  /** Used when abilityScoreModel === "fixed" */
   abilityBonuses: Partial<AbilityScores>;
   languages: string[];
   traits: RacialTrait[];
   subraces: SubraceDefinition[];
   darkvision?: number;
+  countsAs?: string[];
+  creatureType?: CreatureType;
+  choices?: RaceChoiceDefinition[];
 }
 
 export interface ClassFeature {
+  id?: string;
   level: number;
   name: string;
   description: string;
+  /** Feature name this optional feature replaces */
+  replaces?: string;
+  source?: ContentSource;
 }
 
 export interface SubclassDefinition {
@@ -38,15 +79,14 @@ export interface SubclassDefinition {
   name: string;
   description: string;
   features: ClassFeature[];
-  /** Always-prepared or expanded spell list IDs by level */
   expandedSpells?: Record<number, string[]>;
+  source?: ContentSource;
 }
 
 export interface SpellcastingInfo {
   type: CastingType;
   ability: AbilityKey;
   preparation: "prepared" | "known" | "none";
-  /** Class level when spellcasting begins */
   startsAtLevel: number;
   ritualCasting?: boolean;
 }
@@ -54,6 +94,7 @@ export interface SpellcastingInfo {
 export interface ClassDefinition {
   id: string;
   name: string;
+  source: ContentSource;
   hitDie: number;
   primaryAbilities: AbilityKey[];
   savingThrows: AbilityKey[];
@@ -62,6 +103,7 @@ export interface ClassDefinition {
   toolProficiencies: string[];
   skillChoices: { choose: number; from: SkillKey[] };
   features: ClassFeature[];
+  optionalFeatures?: ClassFeature[];
   subclasses: SubclassDefinition[];
   subclassLevel: number;
   spellcasting: SpellcastingInfo;
@@ -82,6 +124,7 @@ export interface BackgroundDefinition {
   ideals: string[];
   bonds: string[];
   flaws: string[];
+  source?: ContentSource;
 }
 
 export interface FeatDefinition {
@@ -90,6 +133,10 @@ export interface FeatDefinition {
   description: string;
   prerequisites?: string;
   abilityBonus?: Partial<AbilityScores>;
+  /** Player picks one (or more) abilities to raise by 1 */
+  abilityBonusChoices?: AbilityKey[];
+  abilityBonusChoiceCount?: number;
+  source?: ContentSource;
 }
 
 export type ArmorCategory = "light" | "medium" | "heavy" | "shield" | "none";

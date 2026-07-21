@@ -11,6 +11,7 @@ import { characterLevel } from "@/lib/rules";
 import { Button } from "@/components/ui/Button";
 import { Input, Select } from "@/components/ui/Input";
 import { Panel } from "@/components/ui/Panel";
+import { FeatPicker } from "@/components/ui/FeatPicker";
 
 export interface LevelUpSectionProps {
   characterId: string;
@@ -26,6 +27,9 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
   const [asiAbility, setAsiAbility] = useState<AbilityKey>("strength");
   const [asiAmount, setAsiAmount] = useState(2);
   const [featId, setFeatId] = useState(FEATS[0]?.id ?? "alert");
+  const [featAbilityPicks, setFeatAbilityPicks] = useState<
+    Partial<Record<AbilityKey, number>>
+  >({});
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -37,25 +41,30 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
   }, [characterId]);
 
   const classDef = getClass(classId);
+  const nextClassLevel = (state?.classes.find((c) => c.classId === classId)?.level ?? 0) + 1;
   const nextLevel = state ? characterLevel(state) + 1 : 1;
-  const isAsiLevel = [4, 8, 12, 16, 19].includes(
-    (state?.classes.find((c) => c.classId === classId)?.level ?? 0) + 1,
-  );
+  const isAsiLevel = [4, 8, 12, 16, 19].includes(nextClassLevel);
 
   async function confirm() {
     if (!state) return;
     setSaving(true);
     try {
-      const next = applyLevelUp(state, {
+      let next = applyLevelUp(state, {
         classId,
         hitDieRoll,
         subclassId: subclassId || null,
-        asi:
-          mode === "asi" && isAsiLevel
-            ? { [asiAbility]: asiAmount }
-            : undefined,
+        asi: mode === "asi" && isAsiLevel ? { [asiAbility]: asiAmount } : undefined,
         featId: mode === "feat" && isAsiLevel ? featId : undefined,
       });
+      if (mode === "feat" && isAsiLevel && featId) {
+        next = {
+          ...next,
+          featAbilityPicks: {
+            ...next.featAbilityPicks,
+            [featId]: featAbilityPicks,
+          },
+        };
+      }
       await saveCharacter(next, characterId);
       router.push(`/characters/${characterId}`);
     } finally {
@@ -138,17 +147,17 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
                   onChange={(e) => setAsiAmount(Number(e.target.value))}
                   options={[
                     { value: "2", label: "+2 em um atributo" },
-                    { value: "1", label: "+1 (use duas vezes na ficha se quiser +1/+1)" },
+                    { value: "1", label: "+1" },
                   ]}
                 />
               </div>
             )}
             {mode === "feat" && (
-              <Select
-                label="Talento"
+              <FeatPicker
                 value={featId}
-                onChange={(e) => setFeatId(e.target.value)}
-                options={FEATS.map((f) => ({ value: f.id, label: f.name }))}
+                onChange={setFeatId}
+                abilityPicks={featAbilityPicks}
+                onAbilityPicksChange={setFeatAbilityPicks}
               />
             )}
           </div>

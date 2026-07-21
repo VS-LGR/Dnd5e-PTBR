@@ -44,12 +44,23 @@ export function finalAbilityScores(state: CharacterState): AbilityScores {
     "wisdom",
     "charisma",
   ];
+  const useMotm = race?.abilityScoreModel === "motm-floating";
+  const useOriginRemap = Boolean(state.originCustomization?.remappedAbilityBonuses);
   const result = { ...state.baseAbilities };
   for (const key of keys) {
     let score = state.baseAbilities[key];
-    score += race?.abilityBonuses[key] ?? 0;
-    score += subrace?.abilityBonuses[key] ?? 0;
+    if (useMotm) {
+      score += state.motmAbilityBonuses[key] ?? 0;
+    } else if (useOriginRemap && state.originCustomization) {
+      score += state.originCustomization.remappedAbilityBonuses[key] ?? 0;
+    } else {
+      score += race?.abilityBonuses[key] ?? 0;
+      score += subrace?.abilityBonuses[key] ?? 0;
+    }
     score += state.abilityOverrides[key] ?? 0;
+    for (const pick of Object.values(state.featAbilityPicks ?? {})) {
+      score += pick[key] ?? 0;
+    }
     result[key] = Math.min(30, Math.max(1, score));
   }
   return result;

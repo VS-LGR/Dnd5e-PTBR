@@ -1,9 +1,12 @@
 import type { RaceDefinition, SubraceDefinition } from "@/config/types";
+import { MOTM_RACES } from "@/config/races/motm";
 
-export const RACES: RaceDefinition[] = [
+export const PHB_RACES: RaceDefinition[] = [
   {
     id: "dwarf",
     name: "Anão",
+    source: "phb",
+    abilityScoreModel: "fixed",
     size: "medium",
     speed: 25,
     abilityBonuses: { constitution: 2 },
@@ -72,6 +75,8 @@ export const RACES: RaceDefinition[] = [
   {
     id: "elf",
     name: "Elfo",
+    source: "phb",
+    abilityScoreModel: "fixed",
     size: "medium",
     speed: 30,
     abilityBonuses: { dexterity: 2 },
@@ -183,6 +188,8 @@ export const RACES: RaceDefinition[] = [
   {
     id: "halfling",
     name: "Halfling",
+    source: "phb",
+    abilityScoreModel: "fixed",
     size: "small",
     speed: 25,
     abilityBonuses: { dexterity: 2 },
@@ -238,6 +245,8 @@ export const RACES: RaceDefinition[] = [
   {
     id: "human",
     name: "Humano",
+    source: "phb",
+    abilityScoreModel: "fixed",
     size: "medium",
     speed: 30,
     abilityBonuses: {
@@ -262,6 +271,8 @@ export const RACES: RaceDefinition[] = [
   {
     id: "dragonborn",
     name: "Draconato",
+    source: "phb",
+    abilityScoreModel: "fixed",
     size: "medium",
     speed: 30,
     abilityBonuses: { strength: 2, charisma: 1 },
@@ -291,6 +302,8 @@ export const RACES: RaceDefinition[] = [
   {
     id: "gnome",
     name: "Gnomo",
+    source: "phb",
+    abilityScoreModel: "fixed",
     size: "small",
     speed: 25,
     abilityBonuses: { intelligence: 2 },
@@ -354,6 +367,8 @@ export const RACES: RaceDefinition[] = [
   {
     id: "half-elf",
     name: "Meio-Elfo",
+    source: "phb",
+    abilityScoreModel: "fixed",
     size: "medium",
     speed: 30,
     abilityBonuses: { charisma: 2 },
@@ -389,6 +404,8 @@ export const RACES: RaceDefinition[] = [
   {
     id: "half-orc",
     name: "Meio-Orc",
+    source: "phb",
+    abilityScoreModel: "fixed",
     size: "medium",
     speed: 30,
     abilityBonuses: { strength: 2, constitution: 1 },
@@ -424,6 +441,8 @@ export const RACES: RaceDefinition[] = [
   {
     id: "tiefling",
     name: "Tiefling",
+    source: "phb",
+    abilityScoreModel: "fixed",
     size: "medium",
     speed: 30,
     abilityBonuses: { intelligence: 1, charisma: 2 },
@@ -450,7 +469,49 @@ export const RACES: RaceDefinition[] = [
     ],
     subraces: [],
   },
+  {
+    id: "custom-lineage",
+    name: "Linhagem Customizada",
+    source: "tcoe",
+    abilityScoreModel: "motm-floating",
+    size: "medium",
+    sizeOptions: ["small", "medium"],
+    speed: 30,
+    abilityBonuses: {},
+    languages: ["Comum"],
+    darkvision: 60,
+    creatureType: "humanoid",
+    traits: [
+      {
+        id: "custom-lineage-trait",
+        name: "Origem Flexível",
+        description:
+          "Você é humanóide Pequeno ou Médio, deslocamento 9 m, +2 em um atributo (use o seletor MotM com +2 e ignore o +1, ou use +1×3 conforme a mesa), ganha 1 talento no 1º nível, e escolhe visão no escuro 18 m ou proficiência em uma perícia. Idiomas: Comum + 1.",
+      },
+    ],
+    choices: [
+      {
+        id: "lineage-sense",
+        name: "Sentidos / perícia",
+        options: [
+          {
+            id: "darkvision",
+            name: "Visão no escuro (18 m)",
+            description: "Você enxerga na penumbra a 18 m como luz plena.",
+          },
+          {
+            id: "skill",
+            name: "Proficiência em uma perícia",
+            description: "Escolha uma perícia na ficha após criar o personagem.",
+          },
+        ],
+      },
+    ],
+    subraces: [],
+  },
 ];
+
+export const RACES: RaceDefinition[] = [...PHB_RACES, ...MOTM_RACES];
 
 export function getRace(id: string): RaceDefinition | undefined {
   return RACES.find((r) => r.id === id);

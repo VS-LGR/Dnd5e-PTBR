@@ -8,6 +8,7 @@ import {
   getSubrace,
   getBackground,
   getSpell,
+  getFeat,
   ARMORS,
 } from "@/config";
 import { ABILITY_LABELS, SKILL_META, ALIGNMENT_LABELS } from "@/config/tables/labels";
@@ -319,8 +320,13 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
               {state.classes.flatMap((cls) => {
                 const def = getClass(cls.classId);
                 if (!def) return [];
-                return def.features
-                  .filter((f) => f.level <= cls.level)
+                const replaced = new Set(
+                  (def.optionalFeatures ?? [])
+                    .filter((f) => state.optionalFeatureIds.includes(f.id ?? f.name) && f.replaces)
+                    .map((f) => f.replaces!),
+                );
+                const core = def.features
+                  .filter((f) => f.level <= cls.level && !replaced.has(f.name))
                   .map((f) => (
                     <li key={`${cls.classId}-${f.level}-${f.name}`} className="mb-2 break-inside-avoid">
                       <strong>
@@ -329,8 +335,63 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                       {f.description}
                     </li>
                   ));
+                const optional = (def.optionalFeatures ?? [])
+                  .filter(
+                    (f) =>
+                      f.level <= cls.level &&
+                      state.optionalFeatureIds.includes(f.id ?? f.name),
+                  )
+                  .map((f) => (
+                    <li
+                      key={`opt-${cls.classId}-${f.id ?? f.name}`}
+                      className="mb-2 break-inside-avoid"
+                    >
+                      <strong>
+                        {def.name} {f.level} — {f.name} (opcional):
+                      </strong>{" "}
+                      {f.description}
+                    </li>
+                  ));
+                const subclass = def.subclasses.find((s) => s.id === cls.subclassId);
+                const subFeats =
+                  subclass?.features
+                    .filter((f) => f.level <= cls.level)
+                    .map((f) => (
+                      <li
+                        key={`${cls.subclassId}-${f.level}-${f.name}`}
+                        className="mb-2 break-inside-avoid"
+                      >
+                        <strong>
+                          {subclass.name} {f.level} — {f.name}:
+                        </strong>{" "}
+                        {f.description}
+                      </li>
+                    )) ?? [];
+                return [...core, ...optional, ...subFeats];
               })}
             </ul>
+          </Panel>
+
+          <Panel title="Talentos" className="lg:col-span-3">
+            {state.feats.length === 0 ? (
+              <p className="text-sm text-ink-muted">Nenhum talento selecionado.</p>
+            ) : (
+              <ul className="space-y-3 text-sm">
+                {state.feats.map((id) => {
+                  const feat = getFeat(id);
+                  if (!feat) return <li key={id}>{id}</li>;
+                  return (
+                    <li key={id} className="rounded-sm border border-frame p-3">
+                      <p className="font-display text-crimson">{feat.name}</p>
+                      {feat.prerequisites && (
+                        <p className="text-xs text-ink-muted">Pré-requisito: {feat.prerequisites}</p>
+                      )}
+                      <p className="mt-1 text-ink-muted">{feat.description}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </Panel>
         </div>
       )}

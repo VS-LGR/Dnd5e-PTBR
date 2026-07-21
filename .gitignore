@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Rulebooks / study PDFs (not part of the app runtime)
+*.pdf
+_pdf_extract/

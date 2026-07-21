@@ -95,7 +95,6 @@ export interface Appearance {
 }
 
 export interface SpellSlotsState {
-  /** Index 0 unused; 1-9 = slots used at that level */
   used: number[];
   pactUsed: number;
 }
@@ -114,19 +113,44 @@ export interface CharacterHp {
   hitDiceRemaining: number;
 }
 
+export interface OriginCustomization {
+  remappedAbilityBonuses: Partial<AbilityScores>;
+  swappedLanguages?: string[];
+  swappedSkillProficiencies?: SkillKey[];
+}
+
+export interface AsiChoice {
+  level: number;
+  mode: "asi" | "feat";
+  abilityBonuses?: Partial<AbilityScores>;
+  featId?: string;
+  featAbilityChoices?: Partial<AbilityScores>;
+}
+
 export interface CharacterState {
-  schemaVersion: 1;
+  schemaVersion: 2;
   name: string;
   playerName: string;
   raceId: string;
   subraceId: string | null;
+  /** MotM / lineage choice keys → option ids */
+  raceChoices: Record<string, string>;
+  /** Floating MotM ASI (+2/+1 or +1/+1/+1) */
+  motmAbilityBonuses: Partial<AbilityScores>;
+  /** Chosen size when race has sizeOptions */
+  chosenSize: SizeCategory | null;
+  originCustomization: OriginCustomization | null;
+  customLineage: boolean;
+  optionalFeatureIds: string[];
+  startingLevel: number;
+  /** ASI/feat picks recorded at creation or level-up */
+  asiChoices: AsiChoice[];
   classes: ClassLevel[];
   backgroundId: string;
   alignment: Alignment;
   experiencePoints: number;
   abilityMethod: AbilityMethod;
   baseAbilities: AbilityScores;
-  /** ASI / feat permanent bonuses applied after race */
   abilityOverrides: Partial<AbilityScores>;
   skillProficiencies: SkillKey[];
   skillExpertise: SkillKey[];
@@ -134,6 +158,8 @@ export interface CharacterState {
   toolProficiencies: string[];
   languages: string[];
   feats: string[];
+  /** Feat id → ability bonuses chosen for that feat */
+  featAbilityPicks: Record<string, Partial<AbilityScores>>;
   personality: Personality;
   appearance: Appearance;
   backstory: string;
@@ -150,7 +176,7 @@ export interface CharacterState {
   notes: string;
 }
 
-export const SCHEMA_VERSION = 1 as const;
+export const SCHEMA_VERSION = 2 as const;
 
 export function createEmptyCharacterState(partial?: Partial<CharacterState>): CharacterState {
   return {
@@ -159,6 +185,14 @@ export function createEmptyCharacterState(partial?: Partial<CharacterState>): Ch
     playerName: "",
     raceId: "human",
     subraceId: null,
+    raceChoices: {},
+    motmAbilityBonuses: {},
+    chosenSize: null,
+    originCustomization: null,
+    customLineage: false,
+    optionalFeatureIds: [],
+    startingLevel: 1,
+    asiChoices: [],
     classes: [{ classId: "fighter", subclassId: null, level: 1, hitDiceRolled: [] }],
     backgroundId: "folk-hero",
     alignment: "n",
@@ -179,6 +213,7 @@ export function createEmptyCharacterState(partial?: Partial<CharacterState>): Ch
     toolProficiencies: [],
     languages: ["Comum"],
     feats: [],
+    featAbilityPicks: {},
     personality: { traits: [], ideals: [], bonds: [], flaws: [] },
     appearance: {
       age: "",
@@ -208,4 +243,25 @@ export function createEmptyCharacterState(partial?: Partial<CharacterState>): Ch
     notes: "",
     ...partial,
   };
+}
+
+/** Migrate persisted v1 sheets to v2 */
+export function migrateCharacterState(raw: unknown): CharacterState {
+  const data = raw as Partial<CharacterState> & { schemaVersion?: number };
+  if (data.schemaVersion === 2) {
+    return { ...createEmptyCharacterState(), ...data, schemaVersion: 2 };
+  }
+  return createEmptyCharacterState({
+    ...data,
+    schemaVersion: 2,
+    raceChoices: data.raceChoices ?? {},
+    motmAbilityBonuses: data.motmAbilityBonuses ?? {},
+    chosenSize: data.chosenSize ?? null,
+    originCustomization: data.originCustomization ?? null,
+    customLineage: data.customLineage ?? false,
+    optionalFeatureIds: data.optionalFeatureIds ?? [],
+    startingLevel: data.startingLevel ?? data.classes?.[0]?.level ?? 1,
+    asiChoices: data.asiChoices ?? [],
+    featAbilityPicks: data.featAbilityPicks ?? {},
+  });
 }

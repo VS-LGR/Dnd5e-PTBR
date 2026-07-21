@@ -1,4 +1,5 @@
 import type { CharacterState } from "@/lib/character/types";
+import { migrateCharacterState } from "@/lib/character/types";
 import { characterLevel } from "@/lib/rules";
 import { hasSupabaseConfig, createClient } from "@/lib/supabase/client";
 
@@ -18,7 +19,12 @@ function readLocal(): CharacterRecord[] {
   if (typeof window === "undefined") return [];
   try {
     const raw = localStorage.getItem(LOCAL_KEY);
-    return raw ? (JSON.parse(raw) as CharacterRecord[]) : [];
+    if (!raw) return [];
+    const parsed = JSON.parse(raw) as CharacterRecord[];
+    return parsed.map((r) => ({
+      ...r,
+      data: migrateCharacterState(r.data),
+    }));
   } catch {
     return [];
   }
@@ -48,7 +54,7 @@ export async function listCharacters(): Promise<CharacterRecord[]> {
     id: row.id,
     userId: row.user_id,
     name: row.name,
-    data: row.data as CharacterState,
+    data: migrateCharacterState(row.data),
     level: row.level,
     updatedAt: row.updated_at,
     createdAt: row.created_at,
@@ -71,7 +77,7 @@ export async function getCharacter(id: string): Promise<CharacterRecord | null> 
     id: data.id,
     userId: data.user_id,
     name: data.name,
-    data: data.data as CharacterState,
+    data: migrateCharacterState(data.data),
     level: data.level,
     updatedAt: data.updated_at,
     createdAt: data.created_at,
