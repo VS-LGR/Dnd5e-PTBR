@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import { getSpell } from "@/config";
 import type { CharacterState } from "@/lib/character/types";
@@ -12,7 +12,9 @@ import {
   characterOwnsSpell,
   isPreparedCaster,
   maxPreparedSpells,
+  canChooseSpellAtLevel,
 } from "@/lib/spells";
+import { maxSpellLevelAvailable } from "@/lib/rules";
 import { Button } from "@/components/ui/Button";
 import { Input, Select } from "@/components/ui/Input";
 import { Panel, Badge } from "@/components/ui/Panel";
@@ -43,6 +45,8 @@ export function SpellManagerPanel({
   const casterIds = castingClassIds(state);
   const prepared = isPreparedCaster(state);
   const prepMax = maxPreparedSpells(state);
+  const maxSpellLevel = maxSpellLevelAvailable(state);
+  const isArtificer = casterIds.includes("artificer");
 
   const catalog = useMemo(
     () =>
@@ -50,23 +54,59 @@ export function SpellManagerPanel({
         query,
         levelFilter,
         hideOwned,
-        onlyCastable: false,
+        onlyCastable: true,
       }),
     [state, query, levelFilter, hideOwned],
   );
+
+  const levelFilterOptions = useMemo(() => {
+    const opts: { value: string; label: string }[] = [
+      { value: "all", label: "Disponíveis no nível" },
+    ];
+    // Truques (exceto paladino/patrulheiro)
+    if (!casterIds.every((id) => id === "paladin" || id === "ranger")) {
+      opts.push({ value: "0", label: "Truques" });
+    }
+    for (let i = 1; i <= Math.max(0, maxSpellLevel); i++) {
+      opts.push({ value: String(i), label: `${i}º círculo` });
+    }
+    return opts;
+  }, [casterIds, maxSpellLevel]);
+
+  useEffect(() => {
+    if (levelFilter === "all") return;
+    const allowed = new Set(levelFilterOptions.map((o) => o.value));
+    if (!allowed.has(String(levelFilter))) {
+      setLevelFilter("all");
+    }
+  }, [levelFilter, levelFilterOptions]);
 
   const ownedCantrips = state.spells.cantrips;
   const ownedLeveled = [...new Set([...state.spells.known, ...state.spells.prepared])];
 
   function addSpell(spellId: string) {
-    const next = addSpellToCharacter(state, spellId);
-    if (next === state || characterOwnsSpell(state, spellId)) {
+    const spell = getSpell(spellId);
+    if (!spell) return;
+    if (characterOwnsSpell(state, spellId)) {
       setFeedback("Esta magia já está na ficha.");
+      return;
+    }
+    if (!canChooseSpellAtLevel(state, spell)) {
+      setFeedback(
+        spell.level === 0
+          ? "Esta classe não aprende truques."
+          : `Só é possível escolher magias de até ${maxSpellLevel}º círculo no nível atual.`,
+      );
+      return;
+    }
+    const next = addSpellToCharacter(state, spellId);
+    if (next === state) {
+      setFeedback("Não foi possível adicionar esta magia.");
       return;
     }
     onChange(next);
     setSelectedSpell(spellId);
-    setFeedback(`Adicionada: ${getSpell(spellId)?.name ?? spellId}`);
+    setFeedback(`Adicionada: ${spell.name}`);
   }
 
   function removeSpell(spellId: string) {
@@ -104,10 +144,22 @@ export function SpellManagerPanel({
         </p>
         {prepared && prepMax != null && (
           <p className="mt-1 text-sm text-ink-muted">
-            Preparadas: {state.spells.prepared.length} / ~{prepMax} (nível + mod. de
-            conjuração)
+            Preparadas: {state.spells.prepared.length} / ~{prepMax}{" "}
+            {isArtificer
+              ? "(mod. de INT + metade do nível de artífice)"
+              : "(nível + mod. de conjuração)"}
           </p>
         )}
+        <p className="mt-1 text-sm text-ink-muted">
+          Círculo máximo disponível:{" "}
+          <strong>
+            {maxSpellLevel > 0
+              ? `${maxSpellLevel}º`
+              : casterIds.some((id) => id !== "paladin" && id !== "ranger")
+                ? "apenas truques"
+                : "nenhum (nível 1)"}
+          </strong>
+        </p>
 
         <div className="mt-3">
           <p className="font-display text-xs uppercase text-crimson">Espaços de magia</p>
@@ -252,13 +304,7 @@ export function SpellManagerPanel({
             onChange={(e) =>
               setLevelFilter(e.target.value === "all" ? "all" : Number(e.target.value))
             }
-            options={[
-              { value: "all", label: "Todos" },
-              ...Array.from({ length: 6 }, (_, i) => ({
-                value: String(i),
-                label: i === 0 ? "Truques" : `${i}º nível`,
-              })),
-            ]}
+            options={levelFilterOptions}
           />
           <label className="flex items-end gap-2 pb-2 text-sm">
             <input
@@ -278,7 +324,8 @@ export function SpellManagerPanel({
 
         {catalog.length === 0 ? (
           <p className="mt-4 text-sm text-ink-muted">
-            Nenhuma magia encontrada. Confira o filtro ou a lista da classe.
+            Nenhuma magia disponível neste nível. Suba de nível para liberar círculos
+            maiores, ou ajuste a busca.
           </p>
         ) : (
           <ul className="mt-3 max-h-96 space-y-1 overflow-y-auto text-sm">

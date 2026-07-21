@@ -1,8 +1,11 @@
 ﻿import type { SpellDefinition } from "@/config/types";
-import { SPELLS } from "./catalog";
+import { SPELLS as BASE_SPELLS } from "./catalog";
+import { ARTIFICER_EXTRA_SPELLS } from "./artificerExtras";
 import { CLASS_SPELL_LISTS } from "./classLists";
 
-export { SPELLS } from "./catalog";
+/** Catálogo completo: SRD/PHB base + magias extras do Artífice (Tasha). */
+export const SPELLS: SpellDefinition[] = [...BASE_SPELLS, ...ARTIFICER_EXTRA_SPELLS];
+
 export { CLASS_SPELL_LISTS } from "./classLists";
 
 export function getSpell(id: string): SpellDefinition | undefined {

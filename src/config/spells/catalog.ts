@@ -164,7 +164,7 @@ export const SPELLS: SpellDefinition[] = [{
     description: "Você cria uma mão espectral que manipula objetos à distância, mas não pode atacar nem carregar mais que 5 quilos. A conjuração exige 1 ação e seu alcance é 18 metros. O efeito dura 1 minuto, salvo se a própria magia indicar outra condição de término."
   }, {
     id: "message",
-    name: "Conselho",
+    name: "Mensagem",
     level: 0,
     school: "transmutation",
     ritual: false,
@@ -758,7 +758,7 @@ export const SPELLS: SpellDefinition[] = [{
     description: "Você cria bagas mágicas que restauram um ponto de vida e alimentam uma criatura por um dia. A conjuração exige 1 ação e seu alcance é 18 metros. A duração é instantânea."
   }, {
     id: "grease",
-    name: "Gordura",
+    name: "Graxa",
     level: 1,
     school: "conjuration",
     ritual: false,

@@ -31,12 +31,32 @@ export function availableSpellsForCharacter(state: CharacterState): SpellDefinit
     .filter((s): s is SpellDefinition => Boolean(s));
 }
 
+/** Classes that learn/know cantrips (not half-casters like Paladin/Ranger). */
+export function characterCanLearnCantrips(state: CharacterState): boolean {
+  return state.classes.some((c) => {
+    const d = getClass(c.classId);
+    if (!d || d.spellcasting.type === "none") return false;
+    if (d.spellcasting.type === "half") return false;
+    return true;
+  });
+}
+
+/** Whether the spell may be chosen for this character at current level. */
+export function canChooseSpellAtLevel(
+  state: CharacterState,
+  spell: SpellDefinition,
+): boolean {
+  if (spell.level === 0) return characterCanLearnCantrips(state);
+  return spell.level <= maxSpellLevelAvailable(state);
+}
+
 export function filterSpellsForSheet(
   state: CharacterState,
   options: {
     query?: string;
     levelFilter?: "all" | number;
     hideOwned?: boolean;
+    /** When true (default for sheet UI), only spells choosable at current level. */
     onlyCastable?: boolean;
   } = {},
 ): SpellDefinition[] {
@@ -44,25 +64,16 @@ export function filterSpellsForSheet(
     query = "",
     levelFilter = "all",
     hideOwned = false,
-    onlyCastable = false,
+    onlyCastable = true,
   } = options;
 
-  const maxLevel = maxSpellLevelAvailable(state);
   const q = query.trim().toLocaleLowerCase("pt-BR");
 
   return availableSpellsForCharacter(state)
     .filter((spell) => {
       if (hideOwned && characterOwnsSpell(state, spell.id)) return false;
       if (levelFilter !== "all" && spell.level !== levelFilter) return false;
-      // Cantrips always castable for casters; leveled spells need slots
-      if (onlyCastable) {
-        const isCaster = state.classes.some((c) => {
-          const d = getClass(c.classId);
-          return d && d.spellcasting.type !== "none";
-        });
-        if (!isCaster) return false;
-        if (spell.level > 0 && spell.level > maxLevel) return false;
-      }
+      if (onlyCastable && !canChooseSpellAtLevel(state, spell)) return false;
       if (!q) return true;
       return (
         spell.name.toLocaleLowerCase("pt-BR").includes(q) ||
@@ -80,6 +91,7 @@ export function addSpellToCharacter(
   const spell = getSpell(spellId);
   if (!spell) return state;
   if (characterOwnsSpell(state, spellId)) return state;
+  if (!canChooseSpellAtLevel(state, spell)) return state;
 
   if (spell.level === 0) {
     return {
@@ -144,5 +156,9 @@ export function maxPreparedSpells(state: CharacterState): number | null {
   const ability = preparedClass.def.spellcasting.ability;
   const scores = finalAbilityScores(state);
   const mod = abilityModifier(scores[ability]);
+  // Artífice (Tasha): INT mod + metade do nível de artífice (arredondado para baixo)
+  if (preparedClass.c.classId === "artificer") {
+    return Math.max(1, Math.floor(preparedClass.c.level / 2) + mod);
+  }
   return Math.max(1, preparedClass.c.level + mod);
 }

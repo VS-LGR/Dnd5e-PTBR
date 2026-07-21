@@ -239,15 +239,9 @@ export function maxSpellLevelAvailable(state: CharacterState): number {
   for (let i = 0; i < slots.length; i++) {
     if ((slots[i] ?? 0) > 0) max = i + 1;
   }
-  // Artificer / casters still get cantrips at level 1 even before reading slots
-  const hasCaster = state.classes.some((c) => {
-    const def = getClass(c.classId);
-    return def && def.spellcasting.type !== "none";
-  });
-  if (hasCaster && max === 0) {
-    // cantrips always; half-casters like paladin L1 have no slots yet
-    return 0;
-  }
+  // Pact Magic slots are separate from the shared slot table
+  const pact = pactMagic(state);
+  if (pact.slotLevel > max) max = pact.slotLevel;
   return max;
 }
 
