@@ -3,6 +3,7 @@ import { SKILL_META } from "@/config/tables/labels";
 import {
   FULL_CASTER_SLOTS,
   HALF_CASTER_SLOTS,
+  ARTIFICER_SLOTS,
   MULTICLASS_SLOT_TABLE,
   PACT_MAGIC_BY_LEVEL,
   PROFICIENCY_BONUS_BY_LEVEL,
@@ -208,7 +209,17 @@ export function spellSlots(state: CharacterState): number[] {
   if (onlyPact) {
     return [0, 0, 0, 0, 0, 0, 0, 0, 0];
   }
-  // Single half-caster (no multiclass mix)
+
+  // Single-class Artificer uses Tasha slot table (slots from level 1)
+  if (
+    state.classes.length === 1 &&
+    state.classes[0]?.classId === "artificer"
+  ) {
+    const row = ARTIFICER_SLOTS[state.classes[0].level] ?? [0, 0, 0, 0, 0];
+    return [...row, 0, 0, 0, 0].slice(0, 9);
+  }
+
+  // Single half-caster (Paladin/Ranger)
   if (c.half > 0 && c.full === 0 && c.third === 0 && state.classes.length === 1) {
     const row = HALF_CASTER_SLOTS[c.half] ?? [0, 0, 0, 0, 0];
     return [...row, 0, 0, 0, 0].slice(0, 9);
@@ -219,6 +230,25 @@ export function spellSlots(state: CharacterState): number[] {
   }
   const mcl = multiclassSpellcasterLevel(state);
   return [...(MULTICLASS_SLOT_TABLE[mcl] ?? [0, 0, 0, 0, 0, 0, 0, 0, 0])];
+}
+
+/** Highest spell level the character can cast (0 = cantrips only / none) */
+export function maxSpellLevelAvailable(state: CharacterState): number {
+  const slots = spellSlots(state);
+  let max = 0;
+  for (let i = 0; i < slots.length; i++) {
+    if ((slots[i] ?? 0) > 0) max = i + 1;
+  }
+  // Artificer / casters still get cantrips at level 1 even before reading slots
+  const hasCaster = state.classes.some((c) => {
+    const def = getClass(c.classId);
+    return def && def.spellcasting.type !== "none";
+  });
+  if (hasCaster && max === 0) {
+    // cantrips always; half-casters like paladin L1 have no slots yet
+    return 0;
+  }
+  return max;
 }
 
 export function pactMagic(state: CharacterState): { slotLevel: number; slotCount: number } {

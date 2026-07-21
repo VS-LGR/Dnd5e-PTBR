@@ -11,7 +11,6 @@ import {
   getRace,
   getSubrace,
   getBackground,
-  ARMORS,
   FEATS,
 } from "@/config";
 import { STANDARD_ARRAY } from "@/config/tables/progression";
@@ -33,6 +32,7 @@ import { Input, Select, Textarea } from "@/components/ui/Input";
 import { Panel, Badge } from "@/components/ui/Panel";
 import { PointBuyPanel, isPointBuyValid } from "@/components/ui/PointBuyPanel";
 import { MotmAsiPicker, isMotmAsiValid, type MotmAsiMode } from "@/components/ui/MotmAsiPicker";
+import { EquipmentStepPanel } from "@/components/sections/EquipmentStepPanel";
 import { FeatPicker } from "@/components/ui/FeatPicker";
 
 const STEPS = [
@@ -735,39 +735,16 @@ export function CharacterWizardSection() {
       )}
 
       {step === 6 && (
-        <Panel title="Equipamento">
-          <Select
-            label="Armadura"
-            value={state.armorId ?? ""}
-            onChange={(e) => update({ armorId: e.target.value || null })}
-            options={[
-              { value: "", label: "Sem armadura" },
-              ...ARMORS.filter((a) => a.category !== "shield").map((a) => ({
-                value: a.id,
-                label: a.name,
-              })),
-            ]}
-          />
-          <label className="mt-3 flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={state.shieldEquipped}
-              onChange={(e) => update({ shieldEquipped: e.target.checked })}
-            />
-            Escudo (+2 CA)
-          </label>
-          <Input
-            className="mt-3"
-            label="Ouro inicial (PO)"
-            type="number"
-            value={state.currency.gp}
-            onChange={(e) => update({ currency: { ...state.currency, gp: Number(e.target.value) } })}
-          />
-          <Textarea
-            className="mt-3"
-            label="História / aparência (opcional)"
-            value={state.backstory}
-            onChange={(e) => update({ backstory: e.target.value })}
+        <Panel title="Equipamento e riqueza">
+          <EquipmentStepPanel
+            state={state}
+            onChange={(partial) => {
+              if ("schemaVersion" in partial && partial.schemaVersion) {
+                setState(partial as CharacterState);
+              } else {
+                update(partial as Partial<CharacterState>);
+              }
+            }}
           />
         </Panel>
       )}
@@ -799,7 +776,28 @@ export function CharacterWizardSection() {
               <dt className="text-crimson">Antecedente</dt>
               <dd>{getBackground(state.backgroundId)?.name}</dd>
             </div>
+            <div>
+              <dt className="text-crimson">Riqueza</dt>
+              <dd>
+                {state.currency.pp} platina · {state.currency.gp} PO · {state.currency.ep} PE ·{" "}
+                {state.currency.sp} prata · {state.currency.cp} cobre
+              </dd>
+            </div>
+            <div className="sm:col-span-2">
+              <dt className="text-crimson">Inventário</dt>
+              <dd>
+                {state.inventory.length === 0
+                  ? "—"
+                  : state.inventory.map((i) => i.name).join("; ")}
+              </dd>
+            </div>
           </dl>
+          <Textarea
+            className="mt-4"
+            label="História / aparência (opcional)"
+            value={state.backstory}
+            onChange={(e) => update({ backstory: e.target.value })}
+          />
           {error && <p className="mt-3 text-sm text-crimson">{error}</p>}
           <Button type="button" className="mt-4" disabled={saving} onClick={finish}>
             {saving ? "Salvando…" : "Salvar personagem"}

@@ -59,6 +59,31 @@ export const HALF_CASTER_SLOTS: readonly (readonly number[])[] = [
   [4, 3, 3, 3, 2],
 ] as const;
 
+/** Artificer (Tasha): half-caster that gains slots at level 1 */
+export const ARTIFICER_SLOTS: readonly (readonly number[])[] = [
+  [],
+  [2, 0, 0, 0, 0],
+  [2, 0, 0, 0, 0],
+  [3, 0, 0, 0, 0],
+  [3, 0, 0, 0, 0],
+  [4, 2, 0, 0, 0],
+  [4, 2, 0, 0, 0],
+  [4, 3, 0, 0, 0],
+  [4, 3, 0, 0, 0],
+  [4, 3, 2, 0, 0],
+  [4, 3, 2, 0, 0],
+  [4, 3, 3, 0, 0],
+  [4, 3, 3, 0, 0],
+  [4, 3, 3, 1, 0],
+  [4, 3, 3, 1, 0],
+  [4, 3, 3, 2, 0],
+  [4, 3, 3, 2, 0],
+  [4, 3, 3, 3, 1],
+  [4, 3, 3, 3, 1],
+  [4, 3, 3, 3, 2],
+  [4, 3, 3, 3, 2],
+] as const;
+
 /** Warlock pact slots: [slotLevel, slotCount] by warlock level */
 export const PACT_MAGIC_BY_LEVEL: readonly { slotLevel: number; slotCount: number }[] = [
   { slotLevel: 0, slotCount: 0 },
