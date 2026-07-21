@@ -1,16 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CLASSES, FEATS, getClass } from "@/config";
+import { CLASSES, FEATS, getClass, getSubclass } from "@/config";
 import { ABILITY_LABELS } from "@/config/tables/labels";
 import type { AbilityKey, CharacterState } from "@/lib/character/types";
 import { getCharacter, saveCharacter } from "@/lib/character/repository";
-import { applyLevelUp } from "@/lib/character/levelUp";
+import {
+  applyLevelUp,
+  isAsiLevel,
+  isSubclassChoiceRequired,
+  shouldOfferSubclassChoice,
+} from "@/lib/character/levelUp";
 import { characterLevel } from "@/lib/rules";
 import { Button } from "@/components/ui/Button";
 import { Input, Select } from "@/components/ui/Input";
-import { Panel } from "@/components/ui/Panel";
+import { Panel, Badge } from "@/components/ui/Panel";
 import { FeatPicker } from "@/components/ui/FeatPicker";
 
 export interface LevelUpSectionProps {
@@ -30,33 +35,73 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
   const [featAbilityPicks, setFeatAbilityPicks] = useState<
     Partial<Record<AbilityKey, number>>
   >({});
+  const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     void getCharacter(characterId).then((r) => {
       if (!r) return;
       setState(r.data);
-      setClassId(r.data.classes[0]?.classId ?? "fighter");
+      const primary = r.data.classes[0]?.classId ?? "fighter";
+      setClassId(primary);
+      const def = getClass(primary);
+      setHitDieRoll(def ? Math.floor(def.hitDie / 2) + 1 : 5);
     });
   }, [characterId]);
 
   const classDef = getClass(classId);
-  const nextClassLevel = (state?.classes.find((c) => c.classId === classId)?.level ?? 0) + 1;
-  const nextLevel = state ? characterLevel(state) + 1 : 1;
-  const isAsiLevel = [4, 8, 12, 16, 19].includes(nextClassLevel);
+  const existing = state?.classes.find((c) => c.classId === classId);
+  const currentClassLevel = existing?.level ?? 0;
+  const existingSubclassId = existing?.subclassId ?? null;
+  const nextClassLevel = currentClassLevel + 1;
+  const nextCharacterLevel = state ? characterLevel(state) + 1 : 1;
+
+  const offerSubclass = shouldOfferSubclassChoice(
+    classId,
+    currentClassLevel,
+    existingSubclassId,
+  );
+  const requireSubclass = isSubclassChoiceRequired(
+    classId,
+    currentClassLevel,
+    existingSubclassId,
+  );
+  const asiThisLevel = isAsiLevel(classId, nextClassLevel);
+
+  const existingSubclassName = useMemo(() => {
+    if (!existingSubclassId) return null;
+    return getSubclass(classId, existingSubclassId)?.name ?? existingSubclassId;
+  }, [classId, existingSubclassId]);
+
+  useEffect(() => {
+    setSubclassId("");
+    setMode("asi");
+    if (classDef) {
+      setHitDieRoll(Math.floor(classDef.hitDie / 2) + 1);
+    }
+  }, [classId, classDef]);
 
   async function confirm() {
     if (!state) return;
+    setError(null);
+
+    if (requireSubclass && !subclassId) {
+      setError(
+        `Ao alcançar o nível ${classDef?.subclassLevel} de ${classDef?.name}, a escolha de subclasse é obrigatória.`,
+      );
+      return;
+    }
+
     setSaving(true);
     try {
       let next = applyLevelUp(state, {
         classId,
         hitDieRoll,
-        subclassId: subclassId || null,
-        asi: mode === "asi" && isAsiLevel ? { [asiAbility]: asiAmount } : undefined,
-        featId: mode === "feat" && isAsiLevel ? featId : undefined,
+        subclassId: offerSubclass ? subclassId || null : null,
+        asi: mode === "asi" && asiThisLevel ? { [asiAbility]: asiAmount } : undefined,
+        featId: mode === "feat" && asiThisLevel ? featId : undefined,
       });
-      if (mode === "feat" && isAsiLevel && featId) {
+      if (mode === "feat" && asiThisLevel && featId) {
         next = {
           ...next,
           featAbilityPicks: {
@@ -67,7 +112,8 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
       }
       await saveCharacter(next, characterId);
       router.push(`/characters/${characterId}`);
-    } finally {
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Erro ao subir de nível");
       setSaving(false);
     }
   }
@@ -79,7 +125,18 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
       <div>
         <h1 className="font-display text-3xl text-crimson">Subir de nível</h1>
         <p className="text-ink-muted">
-          {state.name} — nível atual {characterLevel(state)} → {nextLevel}
+          {state.name} — personagem {characterLevel(state)} → {nextCharacterLevel}
+          {existing ? (
+            <>
+              {" "}
+              · {classDef?.name} {currentClassLevel} → {nextClassLevel}
+            </>
+          ) : (
+            <>
+              {" "}
+              · nova classe {classDef?.name} 1
+            </>
+          )}
         </p>
       </div>
 
@@ -88,23 +145,49 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
           <Select
             label="Classe a avançar (ou multiclasse)"
             value={classId}
-            onChange={(e) => {
-              setClassId(e.target.value);
-              setSubclassId("");
-            }}
+            onChange={(e) => setClassId(e.target.value)}
             options={CLASSES.map((c) => ({ value: c.id, label: c.name }))}
           />
-          {classDef && (
+
+          {existingSubclassName && (
+            <div className="flex flex-col gap-1 text-sm">
+              <span className="font-display text-xs uppercase tracking-widest text-crimson">
+                Subclasse atual
+              </span>
+              <p className="rounded-sm border-2 border-frame bg-parchment px-3 py-2">
+                {existingSubclassName}{" "}
+                <Badge tone="gold">já escolhida</Badge>
+              </p>
+            </div>
+          )}
+
+          {offerSubclass && classDef && (
             <Select
-              label="Subclasse"
+              label={`Subclasse (nível ${classDef.subclassLevel}${requireSubclass ? " — obrigatória" : ""})`}
               value={subclassId}
               onChange={(e) => setSubclassId(e.target.value)}
               options={[
-                { value: "", label: "Manter / escolher depois" },
-                ...classDef.subclasses.map((s) => ({ value: s.id, label: s.name })),
+                { value: "", label: "Escolher subclasse…" },
+                ...classDef.subclasses.map((s) => ({
+                  value: s.id,
+                  label: `${s.name}${s.source === "tcoe" ? " (Tasha)" : ""}`,
+                })),
               ]}
             />
           )}
+
+          {!offerSubclass && !existingSubclassName && classDef && (
+            <div className="flex flex-col gap-1 text-sm text-ink-muted">
+              <span className="font-display text-xs uppercase tracking-widest text-crimson">
+                Subclasse
+              </span>
+              <p className="rounded-sm border border-frame/60 px-3 py-2">
+                Disponível no nível {classDef.subclassLevel} de {classDef.name} (você
+                chegará a {nextClassLevel}).
+              </p>
+            </div>
+          )}
+
           <Input
             label={`Rolagem do dado de vida (média ${classDef ? Math.floor(classDef.hitDie / 2) + 1 : 5})`}
             type="number"
@@ -115,10 +198,11 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
           />
         </div>
 
-        {isAsiLevel && (
+        {asiThisLevel && (
           <div className="mt-4 space-y-3 rounded-sm border border-gold/50 p-3">
             <p className="font-display text-sm text-gold">
-              Este nível concede Melhoria de Atributo ou Talento
+              Nível {nextClassLevel} de {classDef?.name} concede Melhoria de Atributo ou
+              Talento
             </p>
             <Select
               label="Opção"
@@ -163,7 +247,14 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
           </div>
         )}
 
-        <Button type="button" className="mt-4" disabled={saving} onClick={confirm}>
+        {error && <p className="mt-3 text-sm text-crimson">{error}</p>}
+
+        <Button
+          type="button"
+          className="mt-4"
+          disabled={saving || (requireSubclass && !subclassId)}
+          onClick={confirm}
+        >
           {saving ? "Aplicando…" : "Confirmar nível"}
         </Button>
       </Panel>

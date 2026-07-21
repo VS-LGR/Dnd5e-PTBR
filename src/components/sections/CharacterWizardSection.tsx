@@ -25,7 +25,7 @@ import {
   type CharacterState,
   type SkillKey,
 } from "@/lib/character/types";
-import { syncDerivedHp } from "@/lib/character/levelUp";
+import { syncDerivedHp, asiLevelsForClass } from "@/lib/character/levelUp";
 import { saveCharacter } from "@/lib/character/repository";
 import { finalAbilityScores, abilityModifier } from "@/lib/rules";
 import { Button } from "@/components/ui/Button";
@@ -55,16 +55,14 @@ const ABILITY_KEYS: AbilityKey[] = [
   "charisma",
 ];
 
-const ASI_LEVELS = [4, 8, 12, 16, 19];
-
 function roll4d6DropLowest(): number {
   const rolls = [1, 2, 3, 4].map(() => 1 + Math.floor(Math.random() * 6));
   rolls.sort((a, b) => a - b);
   return rolls[1] + rolls[2] + rolls[3];
 }
 
-function asiLevelsFor(level: number): number[] {
-  return ASI_LEVELS.filter((l) => l <= level);
+function asiLevelsUpTo(classId: string, level: number): number[] {
+  return asiLevelsForClass(classId).filter((l) => l <= level);
 }
 
 export function CharacterWizardSection() {
@@ -91,14 +89,15 @@ export function CharacterWizardSection() {
   }, [classDef]);
 
   useEffect(() => {
-    const levels = asiLevelsFor(startingLevel);
+    const classId = state.classes[0]?.classId ?? "fighter";
+    const levels = asiLevelsUpTo(classId, startingLevel);
     setAsiDraft((prev) =>
       levels.map((level) => {
         const existing = prev.find((a) => a.level === level);
         return existing ?? { level, mode: "asi", abilityBonuses: { strength: 2 } };
       }),
     );
-  }, [startingLevel]);
+  }, [startingLevel, state.classes[0]?.classId]);
 
   function update(partial: Partial<CharacterState>) {
     setState((prev) => ({ ...prev, ...partial }));
@@ -374,7 +373,7 @@ export function CharacterWizardSection() {
                 label: `${c.name}${c.source === "tcoe" ? " (Tasha)" : ""}`,
               }))}
             />
-            {(startingLevel >= classDef.subclassLevel || classDef.subclassLevel === 1) && (
+            {startingLevel >= classDef.subclassLevel && (
               <Select
                 label={`Subclasse${startingLevel >= classDef.subclassLevel ? " (obrigatória)" : ""}`}
                 value={state.classes[0].subclassId ?? ""}

@@ -18,8 +18,7 @@ export function HomeHeroSection() {
           Grimório do Aventureiro
         </h1>
         <p className="mt-4 text-lg text-ink-muted">
-          Crie fichas de D&D 5e em português, evolua personagens, gerencie magias e consulte regras —
-          no estilo visual do Livro do Jogador.
+          Crie fichas de D&D 5e em português, evolua personagens, gerencie magias e consulte regras.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/characters/new">
