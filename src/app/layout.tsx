@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, Libre_Baskerville } from "next/font/google";
+import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import { ADSENSE_CLIENT } from "@/config/ads";
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
@@ -36,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${cinzel.variable} ${libre.variable} antialiased`}>
+        <AdSenseScript />
         <AppShell>{children}</AppShell>
       </body>
     </html>

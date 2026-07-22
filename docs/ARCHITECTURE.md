@@ -96,8 +96,8 @@ Vercel + env Supabase; SQL em `supabase/migrations/001_init.sql`.
 
 ## Monetização (AdSense)
 
-- Conta vinculada por meta tag no `layout.tsx`:
-  `<meta name="google-adsense-account" content="ca-pub-2183854536970513">`
-- Cliente: `src/config/ads.ts` (`ADSENSE_CLIENT`)
-- Espaços reservados: `AdSlot` no rodapé, home e catálogos — **não** em ficha/wizard/forja
+- Meta tag de conta no `layout.tsx`: `google-adsense-account`
+- Script único: `AdSenseScript` (produção, ou `NEXT_PUBLIC_ADSENSE_ENABLED=true`)
+- Unidades: rodapé `6339416281`, home `3014534934`, catálogo `7644759099` (`src/config/ads.ts` + `AdSlot`)
+- Espaços: rodapé, home, magias/itens/regras — **não** em ficha/wizard/forja
 - `public/ads.txt` para verificação do Google
