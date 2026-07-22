@@ -7,7 +7,7 @@ export default function HomePage() {
       <HomeHeroSection />
       <HomeFeaturesSection />
       <div className="mt-10">
-        <AdSlot slotKey="home" format="horizontal" minHeight={100} />
+        <AdSlot slotKey="home" minHeight={100} />
       </div>
     </>
   );

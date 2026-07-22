@@ -45,7 +45,7 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t-2 border-frame bg-parchment-dark/80">
       <div className="border-b border-frame/30 px-4 py-4">
-        <AdSlot slotKey="footer" format="horizontal" minHeight={90} />
+        <AdSlot slotKey="footer" minHeight={90} />
       </div>
       <div className="mx-auto max-w-6xl px-4 py-6 text-sm text-ink-muted">
         <p className="font-display text-crimson">Grimório do Aventureiro</p>

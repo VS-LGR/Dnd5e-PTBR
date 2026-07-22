@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, Libre_Baskerville } from "next/font/google";
-import { AdSenseScript } from "@/components/ads/AdSenseScript";
+import { ADSENSE_CLIENT } from "@/config/ads";
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
 
@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   },
   description:
     "Ferramenta de RPG compatível com DnD 5e: criação e gestão de fichas de personagem em português.",
+  other: {
+    "google-adsense-account": ADSENSE_CLIENT,
+  },
 };
 
 export default function RootLayout({
@@ -33,7 +36,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${cinzel.variable} ${libre.variable} antialiased`}>
-        <AdSenseScript />
         <AppShell>{children}</AppShell>
       </body>
     </html>

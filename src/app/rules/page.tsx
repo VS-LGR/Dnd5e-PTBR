@@ -11,7 +11,7 @@ export default function RulesPage() {
     <>
       <RulesIndexSection />
       <div className="mt-10">
-        <AdSlot slotKey="catalog" format="horizontal" minHeight={90} />
+        <AdSlot slotKey="catalog" minHeight={90} />
       </div>
     </>
   );
