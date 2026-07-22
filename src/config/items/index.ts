@@ -6,6 +6,7 @@ import {
 } from "@/lib/items/forgeRepository";
 import { ADVENTURING_GEAR } from "./gear";
 import magicRaw from "./magicItemsData.json";
+import xgteCommonRaw from "./xgteCommonData.json";
 
 type MagicRaw = {
   id: string;
@@ -106,33 +107,35 @@ function mundaneFromEquipment(): ItemDefinition[] {
 }
 
 function magicFromJson(): ItemDefinition[] {
-  return (magicRaw as MagicRaw[]).map((m) => {
-    let category = asCategory(m.category);
-    if (category === "armor" && /escudo|shield/i.test(m.name + (m.typeLine ?? ""))) {
-      category = "shield";
-    }
-    return {
-      id: m.id,
-      name: m.name,
-      nameEn: m.nameEn,
-      kind: "magic" as const,
-      category,
-      rarity: asRarity(m.rarity),
-      requiresAttunement: m.requiresAttunement,
-      description: m.description,
-      typeLine: m.typeLine,
-      source: m.source ?? "basic-rules",
-      variants: m.variants?.map((v) => ({
-        idSuffix: v.idSuffix,
-        magicBonus: v.magicBonus,
-        rarity: asRarity(v.rarity),
-      })),
-      magicBonus:
-        m.variants?.length === 1
-          ? m.variants[0]?.magicBonus
-          : undefined,
-    };
-  });
+  const fromBasic = (magicRaw as MagicRaw[]).map((m) => mapMagicRow(m));
+  const fromXgte = (xgteCommonRaw as MagicRaw[]).map((m) => mapMagicRow(m));
+  return [...fromBasic, ...fromXgte];
+}
+
+function mapMagicRow(m: MagicRaw): ItemDefinition {
+  let category = asCategory(m.category);
+  if (category === "armor" && /escudo|shield/i.test(m.name + (m.typeLine ?? ""))) {
+    category = "shield";
+  }
+  return {
+    id: m.id,
+    name: m.name,
+    nameEn: m.nameEn,
+    kind: "magic" as const,
+    category,
+    rarity: asRarity(m.rarity),
+    requiresAttunement: m.requiresAttunement,
+    description: m.description,
+    typeLine: m.typeLine,
+    source: m.source ?? "basic-rules",
+    variants: m.variants?.map((v) => ({
+      idSuffix: v.idSuffix,
+      magicBonus: v.magicBonus,
+      rarity: asRarity(v.rarity),
+    })),
+    magicBonus:
+      m.variants?.length === 1 ? m.variants[0]?.magicBonus : undefined,
+  };
 }
 
 export const ITEMS: ItemDefinition[] = [
@@ -176,7 +179,8 @@ export type ItemFilterPreset =
   | "weapons"
   | "armor"
   | "gear"
-  | "created";
+  | "created"
+  | "xgte";
 
 export function filterItems(
   options: {
@@ -215,6 +219,8 @@ export function filterItems(
     list = list.filter((i) => i.category === "gear" || i.category === "tool");
   } else if (preset === "created") {
     list = list.filter((i) => i.source === "forja" || i.id.startsWith("forge-"));
+  } else if (preset === "xgte") {
+    list = list.filter((i) => i.source === "xgte");
   }
 
   if (rarity !== "all") {

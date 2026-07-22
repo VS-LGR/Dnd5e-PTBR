@@ -34,6 +34,10 @@ import { PointBuyPanel, isPointBuyValid } from "@/components/ui/PointBuyPanel";
 import { MotmAsiPicker, isMotmAsiValid, type MotmAsiMode } from "@/components/ui/MotmAsiPicker";
 import { EquipmentStepPanel } from "@/components/sections/EquipmentStepPanel";
 import { FeatPicker } from "@/components/ui/FeatPicker";
+import { ClassFlavorPanel } from "@/components/ui/ClassFlavorPanel";
+import { LifePathPanel } from "@/components/ui/LifePathPanel";
+import { NameGeneratorPanel } from "@/components/ui/NameGeneratorPanel";
+import { ToolProficienciesPanel } from "@/components/ui/ToolProficienciesPanel";
 
 const STEPS = [
   "Identidade",
@@ -220,6 +224,11 @@ export function CharacterWizardSection() {
               onChange={(e) => setStartingLevel(Number(e.target.value))}
             />
           </div>
+          <NameGeneratorPanel
+            raceId={state.raceId}
+            value={state.name}
+            onPick={(name) => update({ name })}
+          />
           <p className="mt-3 text-sm text-ink-muted">
             PV acima do 1º nível usam a média do dado de vida. ASI/talentos dos níveis alcançados
             são escolhidos no passo Progressão.
@@ -354,6 +363,7 @@ export function CharacterWizardSection() {
               onChange={(e) => {
                 const classId = e.target.value;
                 const def = getClass(classId);
+                const bg = getBackground(state.backgroundId);
                 update({
                   classes: [
                     {
@@ -366,6 +376,12 @@ export function CharacterWizardSection() {
                   saveProficiencies: def?.savingThrows ?? [],
                   skillProficiencies: [],
                   optionalFeatureIds: [],
+                  toolProficiencies: [
+                    ...new Set([
+                      ...(def?.toolProficiencies ?? []),
+                      ...(bg?.toolProficiencies ?? []),
+                    ]),
+                  ],
                 });
               }}
               options={CLASSES.map((c) => ({
@@ -386,12 +402,26 @@ export function CharacterWizardSection() {
                   { value: "", label: "Escolher…" },
                   ...classDef.subclasses.map((s) => ({
                     value: s.id,
-                    label: `${s.name}${s.source === "tcoe" ? " (Tasha)" : ""}`,
+                    label: `${s.name}${
+                      s.source === "tcoe"
+                        ? " (Tasha)"
+                        : s.source === "xgte"
+                          ? " (Xanathar)"
+                          : ""
+                    }`,
                   })),
                 ]}
               />
             )}
           </div>
+          {(() => {
+            const sub = classDef.subclasses.find(
+              (s) => s.id === state.classes[0].subclassId,
+            );
+            return sub?.description ? (
+              <p className="mt-2 text-sm text-ink-muted">{sub.description}</p>
+            ) : null;
+          })()}
           <p className="mt-3 text-sm text-ink-muted">
             d{classDef.hitDie} · Nível {startingLevel} · Salvaguardas:{" "}
             {classDef.savingThrows.map((s) => ABILITY_LABELS[s]).join(", ")}.
@@ -464,6 +494,11 @@ export function CharacterWizardSection() {
               </div>
             </div>
           )}
+          <ClassFlavorPanel
+            classId={classDef.id}
+            backstory={state.backstory}
+            onAppend={(text) => update({ backstory: text })}
+          />
         </Panel>
       )}
 
@@ -582,12 +617,18 @@ export function CharacterWizardSection() {
             value={state.backgroundId}
             onChange={(e) => {
               const bg = getBackground(e.target.value);
+              const cls = getClass(state.classes[0]?.classId ?? "");
               update({
                 backgroundId: e.target.value,
                 skillProficiencies: [
                   ...new Set([...state.skillProficiencies, ...(bg?.skillProficiencies ?? [])]),
                 ] as SkillKey[],
-                toolProficiencies: bg?.toolProficiencies ?? [],
+                toolProficiencies: [
+                  ...new Set([
+                    ...(cls?.toolProficiencies ?? []),
+                    ...(bg?.toolProficiencies ?? []),
+                  ]),
+                ],
               });
             }}
             options={BACKGROUNDS.map((b) => ({ value: b.id, label: b.name }))}
@@ -624,6 +665,24 @@ export function CharacterWizardSection() {
                     ]}
                   />
                 ))}
+                <LifePathPanel
+                  raceId={state.raceId}
+                  backgroundId={state.backgroundId}
+                  classId={state.classes[0]?.classId}
+                  chaMod={abilityModifier(scores.charisma)}
+                  backstory={state.backstory}
+                  onAppend={(text) => update({ backstory: text })}
+                />
+                <div className="mt-4">
+                  <p className="font-display text-xs uppercase tracking-widest text-crimson">
+                    Ferramentas
+                  </p>
+                  <ToolProficienciesPanel
+                    className="mt-2"
+                    tools={state.toolProficiencies}
+                    extraHints={classDef?.toolProficiencies}
+                  />
+                </div>
               </div>
             );
           })()}
@@ -724,6 +783,8 @@ export function CharacterWizardSection() {
                             ),
                           );
                         }}
+                        raceId={state.raceId}
+                        subraceId={state.subraceId}
                       />
                     </div>
                   )}
@@ -797,6 +858,14 @@ export function CharacterWizardSection() {
             label="História / aparência (opcional)"
             value={state.backstory}
             onChange={(e) => update({ backstory: e.target.value })}
+          />
+          <LifePathPanel
+            raceId={state.raceId}
+            backgroundId={state.backgroundId}
+            classId={state.classes[0]?.classId}
+            chaMod={abilityModifier(scores.charisma)}
+            backstory={state.backstory}
+            onAppend={(text) => update({ backstory: text })}
           />
           {error && <p className="mt-3 text-sm text-crimson">{error}</p>}
           <Button type="button" className="mt-4" disabled={saving} onClick={finish}>

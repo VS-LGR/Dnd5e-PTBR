@@ -9,6 +9,10 @@ Ferramenta de fichas D&D 5e PT-BR (Next.js App Router + TypeScript + Tailwind + 
 | `phb` | Livro do Jogador | Raças core, 12 classes, talentos PHB |
 | `motm` | Monstros do Multiverso (OCR BR) | 33 raças com ASI flutuante |
 | `tcoe` | Caldeirão de Tasha | Artífice, subclasses, opcionais, 15 talentos, linhagem customizada |
+| `xgte` | Guia de Xanathar | 31 subclasses, ~95 magias, 15 talentos raciais, invocações; biomas Forma Selvagem; “Essa é Sua Vida”; sabor de classe; ferramentas expandidas; ~48 itens mágicos comuns; gerador de nomes (Apênd. B) |
+
+Módulos: `src/config/classes/xgteExtras.ts`, `src/config/spells/xanatharExtras.ts`, `src/config/lifePath/`, `src/config/classes/xgteFlavor.ts`, `src/config/wildShape/biomes.ts`, `src/config/tools/`, `src/config/items/xgteCommonData.json`, `src/config/names/`.
+
 | `basic-rules` | Magic Items A–Z (D&D Beyond Basic Rules) | Itens mágicos traduzidos PT-BR |
 
 PDFs de estudo ficam fora do Git (`*.pdf` no `.gitignore`).
@@ -29,7 +33,8 @@ PDFs de estudo ficam fora do Git (`*.pdf` no `.gitignore`).
 
 - Mundanos: armas e armaduras PHB (com bloco de combate) + equipamento de aventureiro
 - Mágicos: Basic Rules A–Z (~248), glossário PT-BR
-- Filtros: Poções, Itens mágicos, Armas, Armaduras, Gear, **Criados (Forja)**
+- Comuns XGtE: ~48 itens (`source: "xgte"`, filtro “Comuns (Xanathar)”)
+- Filtros: Poções, Itens mágicos, Armas, Armaduras, Gear, **Comuns (Xanathar)**, **Criados (Forja)**
 - Ficha: adicionar do catálogo, equipar arma → `Ataque +N · Dano XdY+M tipo` (`src/lib/items/combat.ts`)
 
 ## Forja de Itens (`/items/forja`)
@@ -59,7 +64,7 @@ Painel na ficha (aba Combate) para druidas nível ≥ 2.
 | UI | `src/components/sections/WildShapePanel.tsx` |
 | Estado | `CharacterState.wildShape` (`usesRemaining`, `activeFormId`) |
 
-Híbrido: formas do PDF filtradas por nível/subclasse; ficha completa se existir no SRD; senão resumo (HP, tags, movimento). Usos 2/descanso (ilimitado no 20º); elementais Lua custam 2.
+Híbrido: formas do PDF filtradas por nível/subclasse; ficha completa se existir no SRD; senão resumo (HP, tags, movimento). Usos 2/descanso (ilimitado no 20º); elementais Lua custam 2. Filtro opcional por **bioma** (tabelas XGtE Learning Beast Shapes).
 
 ## MotM
 

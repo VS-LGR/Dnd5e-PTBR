@@ -1,6 +1,6 @@
 "use client";
 
-import { FEATS, getFeat } from "@/config";
+import { FEATS, getFeat, featMatchesRace } from "@/config";
 import type { AbilityKey } from "@/lib/character/types";
 import { ABILITY_LABELS } from "@/config/tables/labels";
 import { Select } from "@/components/ui/Input";
@@ -13,6 +13,15 @@ export interface FeatPickerProps {
   onAbilityPicksChange?: (picks: Partial<Record<AbilityKey, number>>) => void;
   label?: string;
   excludeIds?: string[];
+  /** Filtra talentos raciais XGtE pela raça atual. */
+  raceId?: string;
+  subraceId?: string | null;
+}
+
+function sourceLabel(source?: string): string {
+  if (source === "tcoe") return " (Tasha)";
+  if (source === "xgte") return " (Xanathar)";
+  return "";
 }
 
 export function FeatPicker({
@@ -22,11 +31,19 @@ export function FeatPicker({
   onAbilityPicksChange,
   label = "Talento",
   excludeIds = [],
+  raceId,
+  subraceId = null,
 }: FeatPickerProps) {
   const feat = getFeat(value);
-  const options = FEATS.filter((f) => !excludeIds.includes(f.id) || f.id === value).map((f) => ({
+  const options = FEATS.filter((f) => {
+    if (excludeIds.includes(f.id) && f.id !== value) return false;
+    if (raceId && f.source === "xgte" && f.prerequisites) {
+      return featMatchesRace(f.id, raceId, subraceId) || f.id === value;
+    }
+    return true;
+  }).map((f) => ({
     value: f.id,
-    label: `${f.name}${f.source === "tcoe" ? " (Tasha)" : ""}`,
+    label: `${f.name}${sourceLabel(f.source)}`,
   }));
 
   const choiceKeys = feat?.abilityBonusChoices ?? [];

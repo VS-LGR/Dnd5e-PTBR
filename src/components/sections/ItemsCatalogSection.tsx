@@ -73,8 +73,8 @@ export function ItemsCatalogSection() {
         <div>
           <h1 className="font-display text-3xl text-crimson">Itens</h1>
           <p className="text-ink-muted">
-            Catálogo de itens mundanos (PHB) e mágicos (Basic Rules), em português.
-            Filtre por poções, armas, armaduras e mais.
+            Catálogo de itens mundanos (PHB), mágicos (Basic Rules) e comuns do
+            Guia de Xanathar, em português.
           </p>
         </div>
         <Link
@@ -104,6 +104,7 @@ export function ItemsCatalogSection() {
               { value: "weapons", label: "Armas / munição" },
               { value: "armor", label: "Armaduras / escudos" },
               { value: "gear", label: "Equipamento / ferramentas" },
+              { value: "xgte", label: "Comuns (Xanathar)" },
               { value: "created", label: "Criados (Forja)" },
             ]}
           />
@@ -164,6 +165,7 @@ export function ItemsCatalogSection() {
                 {(item.source === "forja" || item.id.startsWith("forge-")) && (
                   <Badge tone="gold">Criado</Badge>
                 )}
+                {item.source === "xgte" && <Badge tone="gold">Xanathar</Badge>}
                 {descriptionHasTable(item.description) && (
                   <Badge tone="crimson">Tabela</Badge>
                 )}

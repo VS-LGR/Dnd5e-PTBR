@@ -444,8 +444,202 @@ export const FEATS: FeatDefinition[] = [
       "Aumente Inteligência, Sabedoria ou Carisma em 1. Você aprende a magia invisibilidade e uma magia de 1º nível à sua escolha das escolas de ilusão ou necromancia. Pode conjurar cada uma dessas magias sem gastar espaço uma vez por descanso longo; a habilidade de conjuração é o atributo aumentado. Também pode conjurá-las usando espaços de magia que possua.",
     abilityBonusChoices: ["intelligence", "wisdom", "charisma"],
   },
+  // —— Guia de Xanathar: talentos raciais ——
+  {
+    id: "elven-accuracy",
+    name: "Precisão Élfica",
+    source: "xgte",
+    prerequisites: "Elfo ou meio-elfo",
+    description:
+      "Aumente Destreza, Inteligência, Sabedoria ou Carisma em 1. Sempre que tiver vantagem em um ataque que use Destreza, Inteligência, Sabedoria ou Carisma, pode rerrolar um dos dados e usar qualquer resultado.",
+    abilityBonusChoices: ["dexterity", "intelligence", "wisdom", "charisma"],
+  },
+  {
+    id: "dragon-fear",
+    name: "Temor Dracônico",
+    source: "xgte",
+    prerequisites: "Draconato",
+    description:
+      "Aumente Força, Constituição ou Carisma em 1. Como ação, rugir: criaturas à escolha a até 9 m fazem Sabedoria (CD 8 + PB + o atributo aumentado) ou ficam amedrontadas por 1 minuto. PB usos por descanso longo.",
+    abilityBonusChoices: ["strength", "constitution", "charisma"],
+  },
+  {
+    id: "dragon-hide",
+    name: "Couro de Dragão",
+    source: "xgte",
+    prerequisites: "Draconato",
+    description:
+      "Aumente Força, Constituição ou Carisma em 1. Sua CA é 13 + modificador de Destreza quando não usa armadura. Garras naturais (1d4 + Força, cortante).",
+    abilityBonusChoices: ["strength", "constitution", "charisma"],
+  },
+  {
+    id: "dwarven-fortitude",
+    name: "Fortitude Anã",
+    source: "xgte",
+    prerequisites: "Anão",
+    description:
+      "Aumente Constituição em 1. Quando usa a ação Esquivar, pode gastar um Dado de Vida para recuperar PV (como em descanso curto).",
+    abilityBonus: { constitution: 1 },
+  },
+  {
+    id: "squat-nimbleness",
+    name: "Agachamento Ágil",
+    source: "xgte",
+    prerequisites: "Anão ou raça de tamanho Pequeno",
+    description:
+      "Aumente Força ou Destreza em 1. Deslocamento +1,5 m. Proficiência em Acrobacia ou Atletismo; se já tiver, expertise nessa perícia.",
+    abilityBonusChoices: ["strength", "dexterity"],
+  },
+  {
+    id: "fey-teleportation",
+    name: "Teleporte das Fadas",
+    source: "xgte",
+    prerequisites: "Elfo (alto)",
+    description:
+      "Aumente Inteligência ou Carisma em 1. Aprende o idioma Silvestre. Conjura passo nebuloso uma vez por descanso curto ou longo sem gastar espaço (atributo = o aumentado).",
+    abilityBonusChoices: ["intelligence", "charisma"],
+  },
+  {
+    id: "drow-high-magic",
+    name: "Alta Magia Drow",
+    source: "xgte",
+    prerequisites: "Elfo (drow)",
+    description:
+      "Aprende detectar magia à vontade. Conjura levitação e dissolver magia cada uma uma vez por descanso longo sem gastar espaço (atributo = Carisma).",
+  },
+  {
+    id: "wood-elf-magic",
+    name: "Magia do Elfo da Floresta",
+    source: "xgte",
+    prerequisites: "Elfo (floresta)",
+    description:
+      "Aprende um truque de druida à escolha. Conjura passo longo e passar sem rastros cada uma uma vez por descanso longo sem gastar espaço (atributo = Sabedoria).",
+  },
+  {
+    id: "fade-away",
+    name: "Desvanecer",
+    source: "xgte",
+    prerequisites: "Gnomo",
+    description:
+      "Aumente Destreza ou Inteligência em 1. Como reação quando sofre dano, fica invisível até o início do seu próximo turno ou até atacar/conjurar. Uma vez por descanso curto ou longo.",
+    abilityBonusChoices: ["dexterity", "intelligence"],
+  },
+  {
+    id: "bountiful-luck",
+    name: "Boa Sorte",
+    source: "xgte",
+    prerequisites: "Halfling",
+    description:
+      "Quando um aliado a até 9 m rola 1 em d20 para ataque, teste ou salvaguarda, você pode usar reação para fazer o aliado rerrolar o dado.",
+  },
+  {
+    id: "second-chance",
+    name: "Segunda Chance",
+    source: "xgte",
+    prerequisites: "Halfling",
+    description:
+      "Aumente Destreza, Constituição ou Carisma em 1. Quando uma criatura o acerta com um ataque, reação para forçar rerrolar. Uma vez por descanso curto ou longo.",
+    abilityBonusChoices: ["dexterity", "constitution", "charisma"],
+  },
+  {
+    id: "prodigy",
+    name: "Prodígio",
+    source: "xgte",
+    prerequisites: "Humano, meio-elfo ou meio-orc",
+    description:
+      "Você ganha uma perícia, um idioma e expertise em uma perícia com a qual seja proficiente.",
+  },
+  {
+    id: "orcish-fury",
+    name: "Fúria Orc",
+    source: "xgte",
+    prerequisites: "Meio-orc",
+    description:
+      "Aumente Força ou Constituição em 1. Quando acerta com ataque de arma, pode causar um dado de dano extra da arma (uma vez por descanso curto/longo). Quando usa Resistência Implacável, pode fazer um ataque como parte da mesma reação.",
+    abilityBonusChoices: ["strength", "constitution"],
+  },
+  {
+    id: "flames-of-phlegethos",
+    name: "Chamas de Phlegethos",
+    source: "xgte",
+    prerequisites: "Tiefling",
+    description:
+      "Aumente Inteligência ou Carisma em 1. Quando rolar fogo em magia, pode rerrolar qualquer 1. Quando conjurar magia de fogo, pode envolver-se em chamas até o fim do próximo turno (+CA reação, dano de fogo a quem o acertar corpo a corpo).",
+    abilityBonusChoices: ["intelligence", "charisma"],
+  },
+  {
+    id: "infernal-constitution",
+    name: "Constituição Infernal",
+    source: "xgte",
+    prerequisites: "Tiefling",
+    description:
+      "Aumente Constituição em 1. Resistência a frio e veneno; vantagem em salvaguardas contra veneno.",
+    abilityBonus: { constitution: 1 },
+  },
 ];
 
 export function getFeat(id: string): FeatDefinition | undefined {
   return FEATS.find((f) => f.id === id);
+}
+
+/** Raças/subraças que satisfazem o pré-requisito textual do talento XGtE. */
+export function featMatchesRace(
+  featId: string,
+  raceId: string,
+  subraceId: string | null,
+): boolean {
+  const feat = getFeat(featId);
+  if (!feat?.prerequisites || feat.source !== "xgte") return true;
+  const pr = feat.prerequisites.toLocaleLowerCase("pt-BR");
+  const race = raceId.toLocaleLowerCase("pt-BR");
+  const sub = (subraceId ?? "").toLocaleLowerCase("pt-BR");
+
+  if (featId === "elven-accuracy") {
+    return race === "elf" || race === "half-elf" || race.includes("elf");
+  }
+  if (featId === "dragon-fear" || featId === "dragon-hide") {
+    return race === "dragonborn";
+  }
+  if (featId === "dwarven-fortitude") return race === "dwarf" || race === "duergar";
+  if (featId === "squat-nimbleness") {
+    return (
+      race === "dwarf" ||
+      race === "duergar" ||
+      race === "halfling" ||
+      race === "gnome" ||
+      race === "deep-gnome" ||
+      race === "goblin" ||
+      race === "kobold" ||
+      race === "kenku" ||
+      race === "harengon"
+    );
+  }
+  if (featId === "fey-teleportation") {
+    return race === "elf" && (sub.includes("high") || sub.includes("alto") || sub === "high-elf");
+  }
+  if (featId === "drow-high-magic") {
+    return race === "elf" && (sub.includes("drow") || sub.includes("dark"));
+  }
+  if (featId === "wood-elf-magic") {
+    return race === "elf" && (sub.includes("wood") || sub.includes("floresta"));
+  }
+  if (featId === "fade-away") {
+    return race === "gnome" || race === "deep-gnome";
+  }
+  if (featId === "bountiful-luck" || featId === "second-chance") {
+    return race === "halfling";
+  }
+  if (featId === "prodigy") {
+    return race === "human" || race === "half-elf" || race === "half-orc" || race === "custom-lineage";
+  }
+  if (featId === "orcish-fury") {
+    return race === "half-orc" || race === "orc";
+  }
+  if (featId === "flames-of-phlegethos" || featId === "infernal-constitution") {
+    return race === "tiefling";
+  }
+  // fallback: substring match on race name keywords in prerequisites
+  if (pr.includes("anão") && (race === "dwarf" || race === "duergar")) return true;
+  if (pr.includes("elfo") && race.includes("elf")) return true;
+  return true;
 }

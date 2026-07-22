@@ -1,5 +1,6 @@
 import type { ClassDefinition, SubclassDefinition } from "@/config/types";
 import { enrichClassesWithTasha } from "@/config/classes/tashaExtras";
+import { enrichClassesWithXgte } from "@/config/classes/xgteExtras";
 
 const noSpellcasting = {
   type: "none" as const,
@@ -1020,8 +1021,8 @@ const PHB_CLASSES: Omit<ClassDefinition, "source">[] = [
   },
 ];
 
-export const CLASSES: ClassDefinition[] = enrichClassesWithTasha(
-  PHB_CLASSES.map((c) => ({ ...c, source: "phb" as const })),
+export const CLASSES: ClassDefinition[] = enrichClassesWithXgte(
+  enrichClassesWithTasha(PHB_CLASSES.map((c) => ({ ...c, source: "phb" as const }))),
 );
 
 export function getClass(id: string): ClassDefinition | undefined {

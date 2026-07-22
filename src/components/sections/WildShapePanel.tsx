@@ -2,8 +2,13 @@
 
 import { useMemo, useState } from "react";
 import type { CharacterState } from "@/lib/character/types";
-import { formatCr, getWildShapeStatBlock } from "@/config/wildShape";
-import type { WildShapeForm, WildShapeStatBlock } from "@/config/wildShape";
+import {
+  formatCr,
+  getWildShapeStatBlock,
+  WILD_SHAPE_BIOMES,
+  WILD_SHAPE_BIOME_LABELS,
+} from "@/config/wildShape";
+import type { WildShapeBiome, WildShapeForm, WildShapeStatBlock } from "@/config/wildShape";
 import {
   canAffordWildShape,
   druidLevel,
@@ -132,6 +137,12 @@ function SummaryView({ form }: { form: WildShapeForm }) {
           <strong>Traços-chave:</strong> {form.traitTags.join(", ")}
         </p>
       )}
+      {form.biomes.length > 0 && (
+        <p>
+          <strong>Biomas (Xanathar):</strong>{" "}
+          {form.biomes.map((b) => WILD_SHAPE_BIOME_LABELS[b]).join(", ")}
+        </p>
+      )}
       <p className="text-xs text-ink-muted">EN: {form.nameEn}</p>
     </div>
   );
@@ -146,6 +157,7 @@ export function WildShapePanel({ state, updateState }: WildShapePanelProps) {
   const lvl = druidLevel(state);
   const [query, setQuery] = useState("");
   const [onlyUsable, setOnlyUsable] = useState(true);
+  const [biome, setBiome] = useState<WildShapeBiome | "">("");
   const [selectedId, setSelectedId] = useState<string | null>(
     state.wildShape?.activeFormId ?? null,
   );
@@ -158,6 +170,7 @@ export function WildShapePanel({ state, updateState }: WildShapePanelProps) {
     const q = query.trim().toLocaleLowerCase("pt-BR");
     return list.filter(({ form, usable }) => {
       if (onlyUsable && !usable) return false;
+      if (biome && !form.biomes.includes(biome)) return false;
       if (!q) return true;
       return (
         form.name.toLocaleLowerCase("pt-BR").includes(q) ||
@@ -165,7 +178,7 @@ export function WildShapePanel({ state, updateState }: WildShapePanelProps) {
         formatCr(form.cr).includes(q)
       );
     });
-  }, [list, query, onlyUsable]);
+  }, [list, query, onlyUsable, biome]);
 
   const selected = list.find((x) => x.form.id === selectedId)?.form;
   const activeForm = ws.activeFormId
@@ -315,7 +328,7 @@ export function WildShapePanel({ state, updateState }: WildShapePanelProps) {
 
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="space-y-2">
-          <div className="grid gap-2 sm:grid-cols-2">
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             <Input
               label="Buscar forma"
               value={query}
@@ -331,7 +344,26 @@ export function WildShapePanel({ state, updateState }: WildShapePanelProps) {
                 { value: "all", label: "Todas (com bloqueio)" },
               ]}
             />
+            <Select
+              label="Bioma (Xanathar)"
+              value={biome}
+              onChange={(e) => setBiome(e.target.value as WildShapeBiome | "")}
+              options={[
+                { value: "", label: "Todos os biomas" },
+                ...WILD_SHAPE_BIOMES.map((b) => ({
+                  value: b,
+                  label: WILD_SHAPE_BIOME_LABELS[b],
+                })),
+              ]}
+            />
           </div>
+          {biome && (
+            <p className="text-xs text-ink-muted">
+              Mostrando bestas comuns em {WILD_SHAPE_BIOME_LABELS[biome]} segundo
+              as tabelas do Guia de Xanathar (formas que o druida provavelmente
+              já viu se cresceu nesse ambiente).
+            </p>
+          )}
           <ul className="max-h-80 space-y-1 overflow-y-auto text-sm">
             {filtered.length === 0 && (
               <li className="text-ink-muted">Nenhuma forma neste filtro.</li>

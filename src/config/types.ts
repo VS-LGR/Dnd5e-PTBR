@@ -1,6 +1,6 @@
 import type { AbilityKey, AbilityScores, CastingType, SizeCategory, SkillKey } from "@/lib/character/types";
 
-export type ContentSource = "phb" | "motm" | "tcoe";
+export type ContentSource = "phb" | "motm" | "tcoe" | "xgte";
 
 export type AbilityScoreModel = "fixed" | "motm-floating";
 
@@ -267,4 +267,5 @@ export interface SpellDefinition {
   concentration: boolean;
   description: string;
   higherLevels?: string;
+  source?: ContentSource;
 }

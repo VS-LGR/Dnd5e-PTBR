@@ -41,6 +41,7 @@ import {
   WildShapePanel,
   characterHasWildShape,
 } from "@/components/sections/WildShapePanel";
+import { ToolProficienciesPanel } from "@/components/ui/ToolProficienciesPanel";
 import { useRouter } from "next/navigation";
 
 const SKILLS = Object.keys(SKILL_META) as SkillKey[];
@@ -322,6 +323,15 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
             <p className="mt-2 text-sm">
               Percepção passiva: <strong>{derived.passivePerception}</strong>
             </p>
+          </Panel>
+
+          <Panel title="Ferramentas" className="lg:col-span-1">
+            <ToolProficienciesPanel
+              tools={state.toolProficiencies}
+              extraHints={
+                getClass(state.classes[0]?.classId ?? "")?.toolProficiencies
+              }
+            />
           </Panel>
 
           <Panel title="Riqueza e inventário" className="lg:col-span-3">

@@ -1,6 +1,10 @@
+import type { WildShapeBiome } from "./biomes";
+
 export type WildShapeMovement = "climb" | "burrow" | "swim" | "fly";
 
 export type WildShapeCreatureType = "beast" | "elemental";
+
+export type { WildShapeBiome };
 
 export interface WildShapeGates {
   /** Nível mínimo para qualquer círculo (tabelas All Circles do PDF). */
@@ -20,6 +24,8 @@ export interface WildShapeForm {
   traitTags: string[];
   gates: WildShapeGates;
   wildShapeCost: 1 | 2;
+  /** Biomas XGtE em que a besta é comum (Learning Beast Shapes). */
+  biomes: WildShapeBiome[];
   /** Id em WILD_SHAPE_STAT_BLOCKS se houver ficha SRD. */
   statBlockId?: string;
 }

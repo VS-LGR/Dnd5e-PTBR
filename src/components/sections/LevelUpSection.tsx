@@ -242,6 +242,8 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
                 onChange={setFeatId}
                 abilityPicks={featAbilityPicks}
                 onAbilityPicksChange={setFeatAbilityPicks}
+                raceId={state.raceId}
+                subraceId={state.subraceId}
               />
             )}
           </div>

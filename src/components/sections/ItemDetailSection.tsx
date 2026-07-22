@@ -119,6 +119,7 @@ export function ItemDetailSection({ itemId }: { itemId: string }) {
           {(item.source === "forja" || item.id.startsWith("forge-")) && (
             <Badge tone="gold">Criado</Badge>
           )}
+          {item.source === "xgte" && <Badge tone="gold">Xanathar</Badge>}
           {hasTable && <Badge tone="crimson">Tabela</Badge>}
           {dice.length > 0 && <Badge>Rolagens</Badge>}
         </div>
@@ -244,7 +245,15 @@ export function ItemDetailSection({ itemId }: { itemId: string }) {
           {item.source && (
             <div>
               <dt className="text-ink-muted">Fonte</dt>
-              <dd>{item.source === "forja" ? "Forja" : item.source}</dd>
+              <dd>
+                {item.source === "forja"
+                  ? "Forja"
+                  : item.source === "xgte"
+                    ? "Guia de Xanathar"
+                    : item.source === "basic-rules"
+                      ? "Basic Rules"
+                      : item.source}
+              </dd>
             </div>
           )}
         </dl>

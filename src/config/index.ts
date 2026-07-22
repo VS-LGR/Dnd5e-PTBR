@@ -20,6 +20,7 @@ export {
 export {
   FEATS,
   getFeat,
+  featMatchesRace,
 } from "@/config/feats";
 
 export {

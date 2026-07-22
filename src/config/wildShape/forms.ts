@@ -1,3 +1,4 @@
+import { biomesForForm } from "./biomes";
 import type { WildShapeForm, WildShapeMovement } from "./types";
 
 type GateKey = "ac2" | "ac4" | "ac8" | "moon2" | "moon4" | "moon6" | "moon8" | "moon9" | "moon10" | "moon12" | "moon15" | "moon18";
@@ -49,6 +50,7 @@ function form(
     traitTags,
     gates,
     wildShapeCost: opts?.cost ?? 1,
+    biomes: biomesForForm(id),
     statBlockId: opts?.srd === false ? undefined : id,
   };
 }
