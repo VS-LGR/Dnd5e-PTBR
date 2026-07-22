@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdSlot } from "@/components/ads/AdSlot";
 import { SpellsCatalogSection } from "@/components/sections/SpellsCatalogSection";
 
 export const metadata: Metadata = {
@@ -6,5 +7,12 @@ export const metadata: Metadata = {
 };
 
 export default function SpellsPage() {
-  return <SpellsCatalogSection />;
+  return (
+    <>
+      <SpellsCatalogSection />
+      <div className="mt-10">
+        <AdSlot slotKey="catalog" format="horizontal" minHeight={90} />
+      </div>
+    </>
+  );
 }

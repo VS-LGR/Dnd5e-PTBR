@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel, Libre_Baskerville } from "next/font/google";
+import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
 
@@ -17,11 +18,11 @@ const libre = Libre_Baskerville({
 
 export const metadata: Metadata = {
   title: {
-    default: "Grimório do Aventureiro | D&D 5e PT-BR",
+    default: "Grimório do Aventureiro | Ferramenta de RPG compatível com DnD 5e",
     template: "%s | Grimório do Aventureiro",
   },
   description:
-    "Ferramenta de criação e gestão de fichas de personagem Dungeons & Dragons 5ª Edição em português.",
+    "Ferramenta de RPG compatível com DnD 5e: criação e gestão de fichas de personagem em português.",
 };
 
 export default function RootLayout({
@@ -32,6 +33,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${cinzel.variable} ${libre.variable} antialiased`}>
+        <AdSenseScript />
         <AppShell>{children}</AppShell>
       </body>
     </html>

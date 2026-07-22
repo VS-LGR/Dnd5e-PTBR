@@ -1,11 +1,12 @@
 # Grimório do Aventureiro
 
-Ferramenta de criação e gestão de fichas **D&D 5e PT-BR**.
+Ferramenta de RPG **compatível com DnD 5e** — criação e gestão de fichas em português.
 
 ## Stack
 
 - Next.js (App Router) + TypeScript + TailwindCSS
 - Supabase (Auth + Postgres) — opcional em modo local
+- Google AdSense (espaços reservados; slots via env)
 - Deploy: Vercel
 
 ## Desenvolvimento

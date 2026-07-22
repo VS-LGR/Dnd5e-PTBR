@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { AdSlot } from "@/components/ads/AdSlot";
 
 const nav = [
   { href: "/", label: "Início" },
@@ -17,7 +18,9 @@ export function Header() {
     <header className="border-b-4 border-crimson bg-[linear-gradient(180deg,#2a1a12_0%,#1a1208_100%)] text-parchment">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
         <Link href="/" className="group">
-          <p className="font-display text-xs uppercase tracking-[0.35em] text-gold">D&D 5e PT-BR</p>
+          <p className="font-display text-[10px] uppercase tracking-[0.2em] text-gold sm:text-xs sm:tracking-[0.25em]">
+            Ferramenta de RPG compatível com DnD 5e
+          </p>
           <p className="font-display text-2xl tracking-wide text-parchment group-hover:text-gold">
             Grimório do Aventureiro
           </p>
@@ -41,11 +44,15 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="mt-auto border-t-2 border-frame bg-parchment-dark/80">
+      <div className="border-b border-frame/30 px-4 py-4">
+        <AdSlot slotKey="footer" format="horizontal" minHeight={90} />
+      </div>
       <div className="mx-auto max-w-6xl px-4 py-6 text-sm text-ink-muted">
         <p className="font-display text-crimson">Grimório do Aventureiro</p>
         <p className="mt-1">
-          Ferramenta de fichas para Dungeons &amp; Dragons 5ª Edição em português. Conteúdo de regras
-          inspirado no Livro do Jogador — use apenas material autorizado em produção pública.
+          Ferramenta de RPG compatível com DnD 5e. Não afiliado à Wizards of the Coast.
+          Conteúdo de regras baseado no SRD sob Creative Commons — use apenas material
+          autorizado em produção pública.
         </p>
       </div>
     </footer>

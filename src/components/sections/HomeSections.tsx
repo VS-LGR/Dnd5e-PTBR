@@ -13,12 +13,15 @@ export function HomeHeroSection() {
         }}
       />
       <div className="relative max-w-2xl">
-        <p className="font-display text-xs uppercase tracking-[0.3em] text-gold">Ferramenta de mesa</p>
+        <p className="font-display text-xs uppercase tracking-[0.3em] text-gold">
+          Ferramenta de RPG compatível com DnD 5e
+        </p>
         <h1 className="mt-2 font-display text-4xl leading-tight text-crimson sm:text-5xl">
           Grimório do Aventureiro
         </h1>
         <p className="mt-4 text-lg text-ink-muted">
-          Crie fichas de D&D 5e em português, evolua personagens, gerencie magias e consulte regras.
+          Crie fichas em português, evolua personagens, gerencie magias e consulte regras —
+          compatível com DnD 5e.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/characters/new">

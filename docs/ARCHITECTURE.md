@@ -1,6 +1,7 @@
 # Grimório do Aventureiro — Arquitetura
 
-Ferramenta de fichas D&D 5e PT-BR (Next.js App Router + TypeScript + Tailwind + Supabase).
+Ferramenta de RPG compatível com DnD 5e (Next.js App Router + TypeScript + Tailwind + Supabase).
+
 
 ## Fontes de conteúdo
 
@@ -92,3 +93,11 @@ Híbrido: formas do PDF filtradas por nível/subclasse; ficha completa se existi
 ## Deploy
 
 Vercel + env Supabase; SQL em `supabase/migrations/001_init.sql`.
+
+## Monetização (AdSense)
+
+- Script: `AdSenseScript` no `layout.tsx` (só em produção, ou `NEXT_PUBLIC_ADSENSE_ENABLED=true`)
+- Cliente: `ca-pub-2183854536970513` (`src/config/ads.ts`)
+- Espaços: `AdSlot` no rodapé, home (após features) e catálogos (magias/itens/regras) — **não** em ficha/wizard/forja
+- `public/ads.txt` para verificação do Google
+- Slots reais: `NEXT_PUBLIC_ADSENSE_SLOT_FOOTER` / `_HOME` / `_CATALOG` após criar unidades no painel
