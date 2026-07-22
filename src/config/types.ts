@@ -165,6 +165,83 @@ export interface WeaponDefinition {
   weight: number;
   finesse?: boolean;
   versatile?: string;
+  /** Alcance normal em metros (munição / arremesso) */
+  normalRangeM?: number;
+  /** Alcance longo em metros */
+  longRangeM?: number;
+  ammunition?: boolean;
+  loading?: boolean;
+  heavy?: boolean;
+  light?: boolean;
+  reach?: boolean;
+  thrown?: boolean;
+  twoHanded?: boolean;
+}
+
+export type ItemKind = "mundane" | "magic";
+
+export type ItemCategory =
+  | "weapon"
+  | "armor"
+  | "shield"
+  | "potion"
+  | "ring"
+  | "rod"
+  | "staff"
+  | "wand"
+  | "wondrous"
+  | "scroll"
+  | "ammunition"
+  | "gear"
+  | "tool"
+  | "other";
+
+export type ItemRarity =
+  | "mundane"
+  | "common"
+  | "uncommon"
+  | "rare"
+  | "very-rare"
+  | "legendary"
+  | "artifact"
+  | "varies";
+
+export interface ItemDefinition {
+  id: string;
+  name: string;
+  nameEn?: string;
+  kind: ItemKind;
+  category: ItemCategory;
+  rarity: ItemRarity;
+  requiresAttunement?: boolean;
+  description: string;
+  typeLine?: string;
+  costGp?: number;
+  weight?: number;
+  source?: string;
+  /** Link to ARMORS / WEAPONS id for combat/AC stats */
+  equipmentId?: string;
+  magicBonus?: number;
+  baseWeaponId?: string;
+  variants?: Array<{ idSuffix: string; magicBonus: number; rarity: ItemRarity }>;
+  /** Weapon combat snapshot for catalog display */
+  weaponStats?: Pick<
+    WeaponDefinition,
+    | "damage"
+    | "damageType"
+    | "properties"
+    | "category"
+    | "range"
+    | "finesse"
+    | "versatile"
+    | "normalRangeM"
+    | "longRangeM"
+  >;
+  /** Armor combat snapshot */
+  armorStats?: Pick<
+    ArmorDefinition,
+    "category" | "baseAc" | "dexCap" | "stealthDisadvantage" | "strengthRequirement"
+  >;
 }
 
 export type SpellSchool =

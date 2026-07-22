@@ -1,4 +1,7 @@
 import type { ArmorDefinition, WeaponDefinition } from "@/config/types";
+import { enrichWeapon } from "./weaponUtils";
+
+export { enrichWeapon, parseRangeFromProperties } from "./weaponUtils";
 
 export const ARMORS: ArmorDefinition[] = [
   {
@@ -136,7 +139,7 @@ export const ARMORS: ArmorDefinition[] = [
   },
 ];
 
-export const WEAPONS: WeaponDefinition[] = [
+const WEAPONS_RAW: WeaponDefinition[] = [
   // Simple Melee
   {
     id: "club",
@@ -561,6 +564,9 @@ export const WEAPONS: WeaponDefinition[] = [
     weight: 3,
   },
 ];
+
+/** Armas PHB com flags de propriedade e alcances derivados. */
+export const WEAPONS: WeaponDefinition[] = WEAPONS_RAW.map(enrichWeapon);
 
 export function getArmor(id: string): ArmorDefinition | undefined {
   return ARMORS.find((a) => a.id === id);

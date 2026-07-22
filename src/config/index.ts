@@ -37,3 +37,10 @@ export {
   getSpellsByLevel,
   searchSpells,
 } from "@/config/spells";
+
+export {
+  ITEMS,
+  getItem,
+  searchItems,
+  filterItems,
+} from "@/config/items";

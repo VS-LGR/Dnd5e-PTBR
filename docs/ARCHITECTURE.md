@@ -9,6 +9,7 @@ Ferramenta de fichas D&D 5e PT-BR (Next.js App Router + TypeScript + Tailwind + 
 | `phb` | Livro do Jogador | Raças core, 12 classes, talentos PHB |
 | `motm` | Monstros do Multiverso (OCR BR) | 33 raças com ASI flutuante |
 | `tcoe` | Caldeirão de Tasha | Artífice, subclasses, opcionais, 15 talentos, linhagem customizada |
+| `basic-rules` | Magic Items A–Z (D&D Beyond Basic Rules) | Itens mágicos traduzidos PT-BR |
 
 PDFs de estudo ficam fora do Git (`*.pdf` no `.gitignore`).
 
@@ -18,9 +19,18 @@ PDFs de estudo ficam fora do Git (`*.pdf` no `.gitignore`).
 /src
   /app
   /components/layout|sections|ui
-  /lib/rules|spells|character|supabase
-  /config/races (phb + motm) | classes (+ tashaExtras) | feats | spells | …
+  /lib/rules|spells|items|character|supabase
+  /config/races|classes|feats|spells|equipment|items|…
+/content/items
+  magic-items-basic-rules.en.json / .pt.json
 ```
+
+## Itens (`/items`)
+
+- Mundanos: armas e armaduras PHB (com bloco de combate) + equipamento de aventureiro
+- Mágicos: Basic Rules A–Z (~248), glossário PT-BR
+- Filtros: Poções, Itens mágicos, Armas, Armaduras, Gear
+- Ficha: adicionar do catálogo, equipar arma → `Ataque +N · Dano XdY+M tipo` (`src/lib/items/combat.ts`)
 
 ## MotM
 

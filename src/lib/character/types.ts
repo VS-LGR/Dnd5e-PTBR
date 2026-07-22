@@ -73,7 +73,11 @@ export interface InventoryItem {
   name: string;
   quantity: number;
   equipped?: boolean;
+  /** Legacy link to armor/weapon equipment id */
   equipmentId?: string;
+  /** Catalog item id from /items */
+  itemId?: string;
+  magicBonus?: number;
   notes?: string;
 }
 

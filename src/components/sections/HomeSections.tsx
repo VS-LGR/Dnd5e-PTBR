@@ -52,9 +52,14 @@ export function HomeFeaturesSection() {
       body: "Catálogo pesquisável e artigos claros para iniciantes e veteranos.",
       href: "/spells",
     },
+    {
+      title: "Itens e combate",
+      body: "Armas, armaduras, poções e itens mágicos com dano e bônus de ataque.",
+      href: "/items",
+    },
   ];
   return (
-    <section className="mt-8 grid gap-4 sm:grid-cols-3">
+    <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((item) => (
         <Panel key={item.title} title={item.title}>
           <p className="text-ink-muted">{item.body}</p>

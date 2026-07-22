@@ -12,12 +12,27 @@ import {
   characterOwnsSpell,
   isPreparedCaster,
   maxPreparedSpells,
-  canChooseSpellAtLevel,
+  maxCantripsKnown,
+  maxLeveledSpellsKnown,
+  characterCanLearnCantrips,
+  reasonCannotAddSpell,
+  spellLimitLabels,
+  togglePreparedSpell,
+  ownedLeveledSpellIds,
 } from "@/lib/spells";
 import { maxSpellLevelAvailable } from "@/lib/rules";
 import { Button } from "@/components/ui/Button";
 import { Input, Select } from "@/components/ui/Input";
 import { Panel, Badge } from "@/components/ui/Panel";
+
+const ADD_BLOCK_MESSAGES: Record<string, string> = {
+  missing: "Magia não encontrada.",
+  owned: "Esta magia já está na ficha.",
+  level: "Círculo acima do permitido no nível atual.",
+  cantrips: "Limite de truques conhecidos atingido.",
+  known: "Limite de magias conhecidas atingido.",
+  prepared: "Limite de magias preparadas atingido.",
+};
 
 export interface SpellManagerPanelProps {
   state: CharacterState;
@@ -45,8 +60,16 @@ export function SpellManagerPanel({
   const casterIds = castingClassIds(state);
   const prepared = isPreparedCaster(state);
   const prepMax = maxPreparedSpells(state);
+  const cantripMax = maxCantripsKnown(state);
+  const knownMax = maxLeveledSpellsKnown(state);
   const maxSpellLevel = maxSpellLevelAvailable(state);
   const isArtificer = casterIds.includes("artificer");
+  const isPaladin = casterIds.includes("paladin");
+  const limitLabels = spellLimitLabels(state);
+  const atCantripCap =
+    cantripMax > 0 && state.spells.cantrips.length >= cantripMax;
+  const atLeveledCap =
+    knownMax != null && ownedLeveledSpellIds(state).length >= knownMax;
 
   const catalog = useMemo(
     () =>
@@ -59,19 +82,20 @@ export function SpellManagerPanel({
     [state, query, levelFilter, hideOwned],
   );
 
+  const canLearnCantrips = characterCanLearnCantrips(state);
+
   const levelFilterOptions = useMemo(() => {
     const opts: { value: string; label: string }[] = [
       { value: "all", label: "Disponíveis no nível" },
     ];
-    // Truques (exceto paladino/patrulheiro)
-    if (!casterIds.every((id) => id === "paladin" || id === "ranger")) {
+    if (canLearnCantrips) {
       opts.push({ value: "0", label: "Truques" });
     }
     for (let i = 1; i <= Math.max(0, maxSpellLevel); i++) {
       opts.push({ value: String(i), label: `${i}º círculo` });
     }
     return opts;
-  }, [casterIds, maxSpellLevel]);
+  }, [canLearnCantrips, maxSpellLevel]);
 
   useEffect(() => {
     if (levelFilter === "all") return;
@@ -82,21 +106,22 @@ export function SpellManagerPanel({
   }, [levelFilter, levelFilterOptions]);
 
   const ownedCantrips = state.spells.cantrips;
-  const ownedLeveled = [...new Set([...state.spells.known, ...state.spells.prepared])];
+  const ownedLeveled = ownedLeveledSpellIds(state);
 
   function addSpell(spellId: string) {
     const spell = getSpell(spellId);
     if (!spell) return;
-    if (characterOwnsSpell(state, spellId)) {
-      setFeedback("Esta magia já está na ficha.");
-      return;
-    }
-    if (!canChooseSpellAtLevel(state, spell)) {
-      setFeedback(
-        spell.level === 0
-          ? "Esta classe não aprende truques."
-          : `Só é possível escolher magias de até ${maxSpellLevel}º círculo no nível atual.`,
-      );
+    const reason = reasonCannotAddSpell(state, spellId);
+    if (reason) {
+      if (reason === "level") {
+        setFeedback(
+          spell.level === 0
+            ? "Esta classe não aprende truques."
+            : `Só é possível escolher magias de até ${maxSpellLevel}º círculo no nível atual.`,
+        );
+      } else {
+        setFeedback(ADD_BLOCK_MESSAGES[reason] ?? "Não foi possível adicionar.");
+      }
       return;
     }
     const next = addSpellToCharacter(state, spellId);
@@ -144,18 +169,31 @@ export function SpellManagerPanel({
         </p>
         {prepared && prepMax != null && (
           <p className="mt-1 text-sm text-ink-muted">
-            Preparadas: {state.spells.prepared.length} / ~{prepMax}{" "}
-            {isArtificer
-              ? "(mod. de INT + metade do nível de artífice)"
-              : "(nível + mod. de conjuração)"}
+            {limitLabels.leveled}
+            {(isArtificer || isPaladin) && (
+              <> (mod. de conjuração + metade do nível)</>
+            )}
+            {!isArtificer && !isPaladin && casterIds.includes("wizard") && (
+              <> (livro: 6 + 2/nível · prep.: nível + INT)</>
+            )}
+            {!isArtificer &&
+              !isPaladin &&
+              !casterIds.includes("wizard") &&
+              prepared && <> (nível + mod. de conjuração)</>}
           </p>
+        )}
+        {!prepared && knownMax != null && (
+          <p className="mt-1 text-sm text-ink-muted">{limitLabels.leveled}</p>
+        )}
+        {cantripMax > 0 && (
+          <p className="mt-1 text-sm text-ink-muted">{limitLabels.cantrips}</p>
         )}
         <p className="mt-1 text-sm text-ink-muted">
           Círculo máximo disponível:{" "}
           <strong>
             {maxSpellLevel > 0
               ? `${maxSpellLevel}º`
-              : casterIds.some((id) => id !== "paladin" && id !== "ranger")
+              : canLearnCantrips
                 ? "apenas truques"
                 : "nenhum (nível 1)"}
           </strong>
@@ -207,7 +245,8 @@ export function SpellManagerPanel({
 
         <div className="mt-4">
           <p className="font-display text-xs uppercase text-crimson">
-            Truques ({ownedCantrips.length})
+            Truques ({ownedCantrips.length}
+            {cantripMax > 0 ? ` / ${cantripMax}` : ""})
           </p>
           {ownedCantrips.length === 0 ? (
             <p className="text-xs text-ink-muted">Nenhum truque ainda.</p>
@@ -237,7 +276,14 @@ export function SpellManagerPanel({
 
         <div className="mt-4">
           <p className="font-display text-xs uppercase text-crimson">
-            {prepared ? "Preparadas / conhecidas" : "Conhecidas"} ({ownedLeveled.length})
+            {prepared ? "Preparadas / conhecidas" : "Conhecidas"} ({ownedLeveled.length}
+            {knownMax != null ? ` / ${knownMax}` : ""}
+            {prepared && prepMax != null && knownMax !== prepMax
+              ? ` · prep. ${state.spells.prepared.length}/${prepMax}`
+              : prepared && prepMax != null
+                ? ` · prep. ${state.spells.prepared.length}/${prepMax}`
+                : ""}
+            )
           </p>
           {ownedLeveled.length === 0 ? (
             <p className="text-xs text-ink-muted">Nenhuma magia de nível ainda.</p>
@@ -252,17 +298,14 @@ export function SpellManagerPanel({
                         type="checkbox"
                         title="Preparada"
                         checked={state.spells.prepared.includes(id)}
-                        onChange={() =>
-                          onChange({
-                            ...state,
-                            spells: {
-                              ...state.spells,
-                              prepared: state.spells.prepared.includes(id)
-                                ? state.spells.prepared.filter((x) => x !== id)
-                                : [...state.spells.prepared, id],
-                            },
-                          })
-                        }
+                        onChange={() => {
+                          const result = togglePreparedSpell(state, id);
+                          if (result.blocked === "prepared") {
+                            setFeedback(ADD_BLOCK_MESSAGES.prepared);
+                            return;
+                          }
+                          onChange(result.state);
+                        }}
                       />
                     )}
                     <button
@@ -322,6 +365,16 @@ export function SpellManagerPanel({
           </p>
         )}
 
+        {(atCantripCap || atLeveledCap) && (
+          <p className="mt-2 text-sm text-ink-muted">
+            {atCantripCap && atLeveledCap
+              ? "Limites de truques e magias atingidos — remova uma para adicionar outra."
+              : atCantripCap
+                ? "Limite de truques atingido — remova um para aprender outro."
+                : "Limite de magias atingido — remova uma para aprender/preparar outra."}
+          </p>
+        )}
+
         {catalog.length === 0 ? (
           <p className="mt-4 text-sm text-ink-muted">
             Nenhuma magia disponível neste nível. Suba de nível para liberar círculos
@@ -331,6 +384,8 @@ export function SpellManagerPanel({
           <ul className="mt-3 max-h-96 space-y-1 overflow-y-auto text-sm">
             {catalog.map((spell) => {
               const owned = characterOwnsSpell(state, spell.id);
+              const block = owned ? "owned" : reasonCannotAddSpell(state, spell.id);
+              const disabled = Boolean(block);
               return (
                 <li
                   key={spell.id}
@@ -351,10 +406,15 @@ export function SpellManagerPanel({
                     type="button"
                     variant={owned ? "ghost" : "secondary"}
                     className="!px-2 !py-1 text-xs"
-                    disabled={owned}
+                    disabled={disabled}
+                    title={
+                      block && block !== "owned"
+                        ? ADD_BLOCK_MESSAGES[block]
+                        : undefined
+                    }
                     onClick={() => addSpell(spell.id)}
                   >
-                    {owned ? "Adicionada" : "Adicionar"}
+                    {owned ? "Adicionada" : disabled ? "Limite" : "Adicionar"}
                   </Button>
                 </li>
               );
@@ -391,8 +451,14 @@ export function SpellManagerPanel({
                   )}
                   <div className="mt-3 flex flex-wrap gap-2">
                     {!characterOwnsSpell(state, spell.id) && (
-                      <Button type="button" onClick={() => addSpell(spell.id)}>
-                        Adicionar à ficha
+                      <Button
+                        type="button"
+                        disabled={Boolean(reasonCannotAddSpell(state, spell.id))}
+                        onClick={() => addSpell(spell.id)}
+                      >
+                        {reasonCannotAddSpell(state, spell.id)
+                          ? "Limite atingido"
+                          : "Adicionar à ficha"}
                       </Button>
                     )}
                     <Link

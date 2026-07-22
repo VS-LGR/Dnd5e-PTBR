@@ -129,3 +129,34 @@ export const POINT_BUY_COST: Record<number, number> = {
 export const STANDARD_ARRAY = [15, 14, 13, 12, 10, 8] as const;
 
 export const POINT_BUY_BUDGET = 27;
+
+/**
+ * Truques conhecidos por nível de classe (índice 0 = unused; 1–20).
+ * Fonte: PHB / Tasha (Artífice).
+ */
+export const CANTRIPS_KNOWN_BY_CLASS: Record<string, readonly number[]> = {
+  artificer: [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4],
+  bard: [0, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+  cleric: [0, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+  druid: [0, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+  sorcerer: [0, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+  warlock: [0, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+  wizard: [0, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+};
+
+/**
+ * Magias de 1º+ conhecidas (classes "known"). Índice 0 unused; 1–20.
+ * Patrulheiro começa em 0 no 1º nível.
+ */
+export const SPELLS_KNOWN_BY_CLASS: Record<string, readonly number[]> = {
+  bard: [0, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 15, 16, 18, 19, 19, 20, 22, 22, 22],
+  sorcerer: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15],
+  warlock: [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15],
+  ranger: [0, 0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11],
+};
+
+/** Livro de magias do mago: 6 no 1º nível + 2 por nível seguinte. */
+export function wizardSpellbookCapacity(wizardLevel: number): number {
+  if (wizardLevel < 1) return 0;
+  return 6 + 2 * (wizardLevel - 1);
+}

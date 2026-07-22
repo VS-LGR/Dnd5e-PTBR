@@ -1,0 +1,42 @@
+# Glossário de tradução (itens mágicos)
+
+- `Requires Attunement by a` → `Requer sintonização por um(a)`
+- `Requires Attunement` → `Requer sintonização`
+- `requires attunement` → `requer sintonização`
+- `Bonus Action` → `Ação Bônus`
+- `bonus action` → `ação bônus`
+- `Critical Hit` → `Acerto Crítico`
+- `critical hit` → `acerto crítico`
+- `Ability Check` → `Teste de Atributo`
+- `ability check` → `teste de atributo`
+- `Saving Throw` → `Teste de Resistência`
+- `saving throw` → `teste de resistência`
+- `Attack roll` → `Rolagem de ataque`
+- `attack roll` → `rolagem de ataque`
+- `damage rolls` → `rolagens de dano`
+- `damage roll` → `rolagem de dano`
+- `Hit Points` → `Pontos de Vida`
+- `hit points` → `pontos de vida`
+- `Hit Point` → `Ponto de Vida`
+- `Armor Class` → `Classe de Armadura`
+- `armor class` → `classe de armadura`
+- `Challenge Rating` → `Nível de Desafio`
+- `Wondrous Item` → `Item Maravilhoso`
+- `Very Rare` → `muito rara`
+- `Long Rest` → `Descanso Longo`
+- `long rest` → `descanso longo`
+- `Short Rest` → `Descanso Curto`
+- `short rest` → `descanso curto`
+- `Spell Attack` → `Ataque Mágico`
+- `spell attack` → `ataque mágico`
+- `spell save DC` → `CD de resistência da magia`
+- `Spellcasting Ability` → `Atributo de Conjuração`
+- `while wearing` → `enquanto vestir`
+- `While wearing` → `Enquanto vestir`
+- `while you wear` → `enquanto você vestir`
+- `While you wear` → `Enquanto você vestir`
+- `while holding` → `enquanto segurar`
+- `While holding` → `Enquanto segurar`
+- `you can use an action` → `você pode usar uma ação`
+- `You can use an action` → `Você pode usar uma ação`
+- `you can use a bonus action` → `você pode usar uma ação bônus`

@@ -9,7 +9,9 @@ import {
   getBackground,
   getFeat,
   ARMORS,
+  WEAPONS,
 } from "@/config";
+import { filterItems } from "@/config/items";
 import { ABILITY_LABELS, SKILL_META, ALIGNMENT_LABELS } from "@/config/tables/labels";
 import type { AbilityKey, CharacterState, SkillKey } from "@/lib/character/types";
 import { classSummary } from "@/lib/character/levelUp";
@@ -20,6 +22,7 @@ import {
   type CharacterRecord,
 } from "@/lib/character/repository";
 import { derivedSheet, skillBonus, saveBonus } from "@/lib/rules";
+import { summarizeWeaponAttack } from "@/lib/items";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import { Panel, Tabs, Badge } from "@/components/ui/Panel";
@@ -336,38 +339,131 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                 />
               ))}
             </div>
-            <ul className="mt-3 max-h-40 space-y-1 overflow-y-auto text-sm">
+            <ul className="mt-3 max-h-48 space-y-2 overflow-y-auto text-sm">
               {state.inventory.length === 0 ? (
                 <li className="text-ink-muted">Inventário vazio.</li>
               ) : (
-                state.inventory.map((item) => (
-                  <li
-                    key={item.id}
-                    className="flex justify-between gap-2 border-b border-frame/30 py-1"
-                  >
-                    <span>
-                      {item.name}
-                      {item.quantity > 1 ? ` ×${item.quantity}` : ""}
-                    </span>
-                    <button
-                      type="button"
-                      className="text-xs text-crimson"
-                      onClick={() =>
-                        updateState((s) => ({
-                          ...s,
-                          inventory: s.inventory.filter((i) => i.id !== item.id),
-                        }))
-                      }
+                state.inventory.map((item) => {
+                  const attack =
+                    item.equipmentId &&
+                    WEAPONS.some((w) => w.id === item.equipmentId)
+                      ? summarizeWeaponAttack(state, {
+                          weaponEquipmentId: item.equipmentId,
+                          magicBonus: item.magicBonus ?? 0,
+                          itemName: item.name,
+                        })
+                      : null;
+                  return (
+                    <li
+                      key={item.id}
+                      className="border-b border-frame/30 py-1"
                     >
-                      Remover
-                    </button>
-                  </li>
-                ))
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <span>
+                          {item.equipped ? "⚔ " : ""}
+                          {item.name}
+                          {item.quantity > 1 ? ` ×${item.quantity}` : ""}
+                          {item.magicBonus ? ` (+${item.magicBonus})` : ""}
+                        </span>
+                        <span className="flex gap-2">
+                          {item.equipmentId &&
+                            WEAPONS.some((w) => w.id === item.equipmentId) && (
+                              <button
+                                type="button"
+                                className="text-xs text-gold"
+                                onClick={() =>
+                                  updateState((s) => ({
+                                    ...s,
+                                    inventory: s.inventory.map((i) =>
+                                      i.id === item.id
+                                        ? { ...i, equipped: !i.equipped }
+                                        : i,
+                                    ),
+                                  }))
+                                }
+                              >
+                                {item.equipped ? "Desequipar" : "Equipar"}
+                              </button>
+                            )}
+                          <button
+                            type="button"
+                            className="text-xs text-crimson"
+                            onClick={() =>
+                              updateState((s) => ({
+                                ...s,
+                                inventory: s.inventory.filter((i) => i.id !== item.id),
+                              }))
+                            }
+                          >
+                            Remover
+                          </button>
+                        </span>
+                      </div>
+                      {attack && item.equipped && (
+                        <p className="text-xs text-ink-muted">{attack.label}</p>
+                      )}
+                    </li>
+                  );
+                })
               )}
             </ul>
-            <div className="mt-3">
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              <Select
+                label="Adicionar do catálogo"
+                value=""
+                onChange={(e) => {
+                  const catalogId = e.target.value;
+                  if (!catalogId) return;
+                  const catalog = filterItems({ preset: "all" }).find(
+                    (i) => i.id === catalogId,
+                  );
+                  if (!catalog) return;
+                  updateState((s) => ({
+                    ...s,
+                    inventory: [
+                      ...s.inventory,
+                      {
+                        id: crypto.randomUUID(),
+                        name: catalog.name,
+                        quantity: 1,
+                        itemId: catalog.id,
+                        equipmentId: catalog.equipmentId,
+                        magicBonus: catalog.magicBonus,
+                        equipped: false,
+                      },
+                    ],
+                  }));
+                }}
+                options={[
+                  { value: "", label: "Escolher item…" },
+                  ...filterItems({ preset: "weapons" })
+                    .slice(0, 80)
+                    .map((i) => ({
+                      value: i.id,
+                      label: `${i.name}${i.kind === "magic" ? " ★" : ""}`,
+                    })),
+                  ...filterItems({ preset: "armor" })
+                    .filter((i) => i.kind === "mundane")
+                    .map((i) => ({
+                      value: i.id,
+                      label: i.name,
+                    })),
+                  ...filterItems({ preset: "potions" })
+                    .slice(0, 40)
+                    .map((i) => ({
+                      value: i.id,
+                      label: i.name,
+                    })),
+                  ...filterItems({ preset: "gear" })
+                    .slice(0, 40)
+                    .map((i) => ({
+                      value: i.id,
+                      label: i.name,
+                    })),
+                ]}
+              />
               <Input
-                label="Adicionar item (Enter)"
+                label="Adicionar item livre (Enter)"
                 name="new-item"
                 placeholder="Nome do item"
                 onKeyDown={(e) => {
@@ -387,6 +483,13 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                 }}
               />
             </div>
+            <p className="mt-2 text-xs text-ink-muted">
+              Catálogo completo em{" "}
+              <Link href="/items" className="text-crimson underline">
+                /items
+              </Link>
+              . Equipe armas para ver ataque e dano.
+            </p>
           </Panel>
 
           <Panel title="Características" className="lg:col-span-3">
