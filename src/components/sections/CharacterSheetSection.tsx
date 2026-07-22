@@ -37,6 +37,10 @@ import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import { Panel, Tabs, Badge } from "@/components/ui/Panel";
 import { SpellManagerPanel } from "@/components/sections/SpellManagerPanel";
+import {
+  WildShapePanel,
+  characterHasWildShape,
+} from "@/components/sections/WildShapePanel";
 import { useRouter } from "next/navigation";
 
 const SKILLS = Object.keys(SKILL_META) as SkillKey[];
@@ -704,6 +708,10 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                 })}
               </ul>
             </Panel>
+          )}
+
+          {characterHasWildShape(state) && (
+            <WildShapePanel state={state} updateState={updateState} />
           )}
 
           <Panel title="Características" className="lg:col-span-3">

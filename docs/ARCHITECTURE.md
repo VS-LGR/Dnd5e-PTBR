@@ -47,6 +47,20 @@ Assistente próprio (4 passos: Identidade → Base → Poderes → Revisão) par
 
 Na ficha (`InventoryItem`): `attuned`, `chargesUsed`; poderes de atributo/perícia/CA/combate via `forgeModifiers`; painel **Magias de itens** separado das preparadas.
 
+## Forma Selvagem (`WildShapePanel`)
+
+Painel na ficha (aba Combate) para druidas nível ≥ 2.
+
+| Peça | Arquivo |
+|------|---------|
+| Catálogo (PDF → PT-BR, gates) | `src/config/wildShape/forms.ts` |
+| Fichas SRD 5.1 PT-BR | `src/config/wildShape/statBlocksData.json` + `statBlocks.ts` |
+| Motor CR / usos / Lua | `src/lib/wildShape/rules.ts` |
+| UI | `src/components/sections/WildShapePanel.tsx` |
+| Estado | `CharacterState.wildShape` (`usesRemaining`, `activeFormId`) |
+
+Híbrido: formas do PDF filtradas por nível/subclasse; ficha completa se existir no SRD; senão resumo (HP, tags, movimento). Usos 2/descanso (ilimitado no 20º); elementais Lua custam 2.
+
 ## MotM
 
 - `abilityScoreModel: "motm-floating"` → picker +2/+1 ou +1/+1/+1 em `motmAbilityBonuses`

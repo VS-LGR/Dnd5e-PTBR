@@ -182,6 +182,10 @@ export interface CharacterState {
   spells: CharacterSpells;
   deathSaves: { successes: number; failures: number };
   notes: string;
+  wildShape: {
+    usesRemaining: number;
+    activeFormId: string | null;
+  };
 }
 
 export const SCHEMA_VERSION = 2 as const;
@@ -249,6 +253,7 @@ export function createEmptyCharacterState(partial?: Partial<CharacterState>): Ch
     },
     deathSaves: { successes: 0, failures: 0 },
     notes: "",
+    wildShape: { usesRemaining: 2, activeFormId: null },
     ...partial,
   };
 }
@@ -257,7 +262,15 @@ export function createEmptyCharacterState(partial?: Partial<CharacterState>): Ch
 export function migrateCharacterState(raw: unknown): CharacterState {
   const data = raw as Partial<CharacterState> & { schemaVersion?: number };
   if (data.schemaVersion === 2) {
-    return { ...createEmptyCharacterState(), ...data, schemaVersion: 2 };
+    const merged = {
+      ...createEmptyCharacterState(),
+      ...data,
+      schemaVersion: 2 as const,
+    };
+    if (!merged.wildShape) {
+      merged.wildShape = { usesRemaining: 2, activeFormId: null };
+    }
+    return merged;
   }
   return createEmptyCharacterState({
     ...data,
@@ -271,5 +284,6 @@ export function migrateCharacterState(raw: unknown): CharacterState {
     startingLevel: data.startingLevel ?? data.classes?.[0]?.level ?? 1,
     asiChoices: data.asiChoices ?? [],
     featAbilityPicks: data.featAbilityPicks ?? {},
+    wildShape: data.wildShape ?? { usesRemaining: 2, activeFormId: null },
   });
 }

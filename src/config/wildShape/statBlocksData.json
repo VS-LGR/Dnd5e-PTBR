@@ -1,0 +1,3031 @@
+[
+  {
+    "id": "baboon",
+    "name": "Babuíno",
+    "size": "Pequeno",
+    "typeLine": "Pequeno fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "3 (1d6)",
+    "speed": "9 m, escalada 9 m",
+    "abilities": {
+      "strength": 8,
+      "dexterity": 14,
+      "constitution": 11,
+      "intelligence": 4,
+      "wisdom": 12,
+      "charisma": 6
+    },
+    "skills": "Acrobacia +4, Furtividade +4",
+    "senses": "passiva 11",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Táticas de Bando",
+        "description": "O babuíno tem vantagem nas jogadas de ataque contra uma criatura se pelo menos um aliado estiver a até 1,5 m dela e não estiver incapacitado."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +1 para acertar, alcance 1,5 m, um alvo. Acerto: 1 (1d4 − 1) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "badger",
+    "name": "Texugo",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "3 (1d4 + 1)",
+    "speed": "6 m, escavação 1,5 m",
+    "abilities": {
+      "strength": 4,
+      "dexterity": 11,
+      "constitution": 12,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 5
+    },
+    "senses": "sentido sísmico 3 m, passiva 11",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "O texugo tem vantagem em testes de Sabedoria (Percepção) que dependam do olfato."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +2 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "cat",
+    "name": "Gato",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "2 (1d4)",
+    "speed": "12 m, escalada 9 m",
+    "abilities": {
+      "strength": 3,
+      "dexterity": 15,
+      "constitution": 10,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 7
+    },
+    "skills": "Percepção +3, Furtividade +4",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "O gato tem vantagem em testes de Sabedoria (Percepção) que dependam do olfato."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +0 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "deer",
+    "name": "Cervo",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 13,
+    "hitPoints": "4 (1d8)",
+    "speed": "15 m",
+    "abilities": {
+      "strength": 11,
+      "dexterity": 16,
+      "constitution": 11,
+      "intelligence": 2,
+      "wisdom": 14,
+      "charisma": 5
+    },
+    "senses": "passiva 12",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +2 para acertar, alcance 1,5 m, um alvo. Acerto: 2 (1d4) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "giant-fire-beetle",
+    "name": "Besouro-de-Fogo Gigante",
+    "size": "Pequeno",
+    "typeLine": "Pequeno fera, sem tendência",
+    "armorClass": 13,
+    "armorNotes": "armadura natural",
+    "hitPoints": "4 (1d6 + 1)",
+    "speed": "9 m",
+    "abilities": {
+      "strength": 8,
+      "dexterity": 10,
+      "constitution": 12,
+      "intelligence": 1,
+      "wisdom": 7,
+      "charisma": 3
+    },
+    "senses": "visão no escuro 9 m, passiva 8",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Iluminação",
+        "description": "O besouro derrama luz intensa num raio de 3 m e luz fraca por mais 3 m."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +1 para acertar, alcance 1,5 m, um alvo. Acerto: 2 (1d6 − 1) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "goat",
+    "name": "Cabra",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "3 (1d8 − 1)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 12,
+      "dexterity": 10,
+      "constitution": 11,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 5
+    },
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Carga",
+        "description": "Se a cabra se mover pelo menos 6 m em linha reta até um alvo e o acertar com chifre no mesmo turno, o alvo sofre +3 (1d6) de dano perfurante. Se for uma criatura, deve passar em Força CD 10 ou cair no chão."
+      },
+      {
+        "name": "Passo Firme",
+        "description": "Vantagem em testes de Força e Destreza contra efeitos que a derrubariam."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Chifre",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 3 (1d4 + 1) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "hyena",
+    "name": "Hiena",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 11,
+    "hitPoints": "5 (1d8 + 1)",
+    "speed": "15 m",
+    "abilities": {
+      "strength": 11,
+      "dexterity": 13,
+      "constitution": 12,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 5
+    },
+    "skills": "Percepção +3",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Táticas de Bando",
+        "description": "Vantagem no ataque se um aliado estiver a 1,5 m do alvo e não incapacitado."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +2 para acertar, alcance 1,5 m, um alvo. Acerto: 3 (1d6) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "jackal",
+    "name": "Chacal",
+    "size": "Pequeno",
+    "typeLine": "Pequeno fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "3 (1d6)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 8,
+      "dexterity": 15,
+      "constitution": 11,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 6
+    },
+    "skills": "Percepção +3",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por audição ou olfato."
+      },
+      {
+        "name": "Táticas de Bando",
+        "description": "Vantagem no ataque se um aliado estiver a 1,5 m do alvo e não incapacitado."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +1 para acertar, alcance 1,5 m, um alvo. Acerto: 1 (1d4 − 1) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "lizard",
+    "name": "Lagarto",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "2 (1d4)",
+    "speed": "6 m, escalada 6 m",
+    "abilities": {
+      "strength": 2,
+      "dexterity": 11,
+      "constitution": 10,
+      "intelligence": 1,
+      "wisdom": 8,
+      "charisma": 3
+    },
+    "senses": "visão no escuro 9 m, passiva 9",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +0 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "rat",
+    "name": "Rato",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "6 m",
+    "abilities": {
+      "strength": 2,
+      "dexterity": 11,
+      "constitution": 9,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 4
+    },
+    "senses": "visão no escuro 9 m, passiva 10",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por olfato."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +0 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "scorpion",
+    "name": "Escorpião",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 11,
+    "armorNotes": "armadura natural",
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "3 m",
+    "abilities": {
+      "strength": 2,
+      "dexterity": 11,
+      "constitution": 8,
+      "intelligence": 1,
+      "wisdom": 8,
+      "charisma": 2
+    },
+    "senses": "visão no escuro 9 m, passiva 9",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Ferrão",
+        "description": "Ataque corpo a corpo com arma: +2 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante + veneno (Constituição CD 9; 4 (1d8) de dano de veneno na falha, metade no sucesso)."
+      }
+    ]
+  },
+  {
+    "id": "spider",
+    "name": "Aranha",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "6 m, escalada 6 m",
+    "abilities": {
+      "strength": 2,
+      "dexterity": 14,
+      "constitution": 8,
+      "intelligence": 1,
+      "wisdom": 10,
+      "charisma": 2
+    },
+    "skills": "Furtividade +4",
+    "senses": "visão no escuro 9 m, passiva 10",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Escalada de Aranha",
+        "description": "Pode escalar superfícies difíceis, inclusive de cabeça para baixo, sem teste."
+      },
+      {
+        "name": "Andar na Teia",
+        "description": "Ignora restrições de movimento causadas por teias."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante; o alvo deve passar em Constituição CD 9 ou sofrer 2 (1d4) de dano de veneno."
+      }
+    ]
+  },
+  {
+    "id": "weasel",
+    "name": "Doninha",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 13,
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "9 m",
+    "abilities": {
+      "strength": 3,
+      "dexterity": 16,
+      "constitution": 8,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 3
+    },
+    "skills": "Percepção +3, Furtividade +5",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por audição ou olfato."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "camel",
+    "name": "Camelo",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 9,
+    "hitPoints": "15 (2d10 + 4)",
+    "speed": "15 m",
+    "abilities": {
+      "strength": 16,
+      "dexterity": 8,
+      "constitution": 14,
+      "intelligence": 2,
+      "wisdom": 8,
+      "charisma": 5
+    },
+    "senses": "passiva 9",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 2 (1d4) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "giant-rat",
+    "name": "Rato Gigante",
+    "size": "Pequeno",
+    "typeLine": "Pequeno fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "7 (2d6)",
+    "speed": "9 m",
+    "abilities": {
+      "strength": 7,
+      "dexterity": 15,
+      "constitution": 11,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 4
+    },
+    "senses": "visão no escuro 18 m, passiva 10",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por olfato."
+      },
+      {
+        "name": "Táticas de Bando",
+        "description": "Vantagem no ataque se um aliado estiver a 1,5 m do alvo e não incapacitado."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d4 + 2) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "giant-weasel",
+    "name": "Doninha Gigante",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 13,
+    "hitPoints": "9 (2d8)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 11,
+      "dexterity": 16,
+      "constitution": 10,
+      "intelligence": 4,
+      "wisdom": 12,
+      "charisma": 5
+    },
+    "skills": "Percepção +3, Furtividade +5",
+    "senses": "visão no escuro 18 m, passiva 13",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por audição ou olfato."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 5 (1d4 + 3) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "mastiff",
+    "name": "Mastim",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "5 (1d8 + 1)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 13,
+      "dexterity": 14,
+      "constitution": 12,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 7
+    },
+    "skills": "Percepção +3",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por audição ou olfato."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d6 + 1) de dano perfurante. Se o alvo for criatura, deve passar em Força CD 11 ou cair no chão."
+      }
+    ]
+  },
+  {
+    "id": "mule",
+    "name": "Mula",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "11 (2d8 + 2)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 14,
+      "dexterity": 10,
+      "constitution": 13,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 5
+    },
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [
+      {
+        "name": "Passo Firme",
+        "description": "Vantagem contra efeitos que a derrubariam."
+      },
+      {
+        "name": "Corpo de Besta de Carga",
+        "description": "A mula é considerada Grande para determinar capacidade de carga."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Cascos",
+        "description": "Ataque corpo a corpo com arma: +2 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d4 + 2) de dano concussivo."
+      }
+    ]
+  },
+  {
+    "id": "pony",
+    "name": "Pônei",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "11 (2d8 + 2)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 15,
+      "dexterity": 10,
+      "constitution": 13,
+      "intelligence": 2,
+      "wisdom": 11,
+      "charisma": 7
+    },
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Cascos",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano concussivo."
+      }
+    ]
+  },
+  {
+    "id": "boar",
+    "name": "Javali",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 11,
+    "armorNotes": "armadura natural",
+    "hitPoints": "11 (2d8 + 2)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 13,
+      "dexterity": 11,
+      "constitution": 12,
+      "intelligence": 2,
+      "wisdom": 9,
+      "charisma": 5
+    },
+    "senses": "passiva 9",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [
+      {
+        "name": "Carga",
+        "description": "Se se mover 6 m em linha reta e acertar com presa no mesmo turno, +3 (1d6) de dano cortante; alvo deve passar em Força CD 11 ou cair."
+      },
+      {
+        "name": "Fúria Relutante",
+        "description": "Se o javali cair a 0 PV, faz um teste de Constituição CD 5 + dano sofrido no ataque. Em sucesso, cai a 1 PV. Só funciona uma vez por dia."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Presa",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d6 + 1) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "draft-horse",
+    "name": "Cavalo de Tração",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "19 (3d10 + 3)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 18,
+      "dexterity": 10,
+      "constitution": 12,
+      "intelligence": 2,
+      "wisdom": 11,
+      "charisma": 7
+    },
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Cascos",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 1,5 m, um alvo. Acerto: 9 (2d4 + 4) de dano concussivo."
+      }
+    ]
+  },
+  {
+    "id": "elk",
+    "name": "Alce",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "13 (2d10 + 2)",
+    "speed": "15 m",
+    "abilities": {
+      "strength": 16,
+      "dexterity": 10,
+      "constitution": 12,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 6
+    },
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [
+      {
+        "name": "Carga",
+        "description": "Se se mover 6 m em linha reta e acertar com chifre no mesmo turno, +7 (2d6) de dano perfurante; alvo deve passar em Força CD 13 ou cair."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Chifre",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 6 (1d6 + 3) de dano perfurante."
+      },
+      {
+        "name": "Cascos",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 8 (2d4 + 3) de dano concussivo."
+      }
+    ]
+  },
+  {
+    "id": "giant-badger",
+    "name": "Texugo Gigante",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "13 (2d8 + 4)",
+    "speed": "9 m, escavação 3 m",
+    "abilities": {
+      "strength": 13,
+      "dexterity": 10,
+      "constitution": 15,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 5
+    },
+    "senses": "visão no escuro 9 m, passiva 11",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por olfato."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques: um de mordida e um de garras."
+      },
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d6 + 1) de dano perfurante."
+      },
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 6 (2d4 + 1) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "giant-centipede",
+    "name": "Centopeia Gigante",
+    "size": "Pequeno",
+    "typeLine": "Pequeno fera, sem tendência",
+    "armorClass": 13,
+    "armorNotes": "armadura natural",
+    "hitPoints": "4 (1d6 + 1)",
+    "speed": "9 m, escalada 9 m",
+    "abilities": {
+      "strength": 5,
+      "dexterity": 14,
+      "constitution": 12,
+      "intelligence": 1,
+      "wisdom": 7,
+      "charisma": 3
+    },
+    "senses": "visão no escuro 9 m, passiva 8",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d4 + 2) de dano perfurante; o alvo deve passar em Constituição CD 11 ou sofrer 10 (3d6) de dano de veneno. Se o dano de veneno reduzir a 0 PV, o alvo fica estável mas envenenado por 1 hora (paralisado enquanto envenenado assim)."
+      }
+    ]
+  },
+  {
+    "id": "giant-lizard",
+    "name": "Lagarto Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "armorNotes": "armadura natural",
+    "hitPoints": "19 (3d10 + 3)",
+    "speed": "9 m, escalada 9 m",
+    "abilities": {
+      "strength": 15,
+      "dexterity": 12,
+      "constitution": 13,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 5
+    },
+    "senses": "visão no escuro 9 m, passiva 10",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 6 (1d8 + 2) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "giant-wolf-spider",
+    "name": "Aranha-lobo Gigante",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 13,
+    "hitPoints": "11 (2d8 + 2)",
+    "speed": "12 m, escalada 12 m",
+    "abilities": {
+      "strength": 12,
+      "dexterity": 16,
+      "constitution": 13,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 4
+    },
+    "skills": "Percepção +3, Furtividade +7",
+    "senses": "visão no escuro 18 m, passiva 13",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [
+      {
+        "name": "Escalada de Aranha",
+        "description": "Pode escalar superfícies difíceis, inclusive de cabeça para baixo, sem teste."
+      },
+      {
+        "name": "Sentido da Teia",
+        "description": "Enquanto em contato com uma teia, a aranha conhece a localização de qualquer outra criatura em contato com a mesma teia."
+      },
+      {
+        "name": "Andar na Teia",
+        "description": "Ignora restrições de movimento causadas por teias."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d6 + 1) de dano perfurante; o alvo deve passar em Constituição CD 11 ou sofrer 7 (2d6) de dano de veneno (metade no sucesso). Se o veneno reduzir a 0 PV, fica estável mas envenenado por 1 hora (paralisado)."
+      }
+    ]
+  },
+  {
+    "id": "panther",
+    "name": "Pantera",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "13 (3d8)",
+    "speed": "15 m, escalada 9 m",
+    "abilities": {
+      "strength": 14,
+      "dexterity": 15,
+      "constitution": 10,
+      "intelligence": 3,
+      "wisdom": 14,
+      "charisma": 7
+    },
+    "skills": "Percepção +4, Furtividade +6",
+    "senses": "passiva 14",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por olfato."
+      },
+      {
+        "name": "Pulo",
+        "description": "Com corrida, salto em distância até 7,5 m e em altura até 3,5 m (com ou sem impulso)."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 5 (1d6 + 2) de dano perfurante."
+      },
+      {
+        "name": "Garra",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d4 + 2) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "riding-horse",
+    "name": "Cavalo de Montaria",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "13 (2d10 + 2)",
+    "speed": "18 m",
+    "abilities": {
+      "strength": 16,
+      "dexterity": 10,
+      "constitution": 12,
+      "intelligence": 2,
+      "wisdom": 11,
+      "charisma": 7
+    },
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Cascos",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 8 (2d4 + 3) de dano concussivo."
+      }
+    ]
+  },
+  {
+    "id": "wolf",
+    "name": "Lobo",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 13,
+    "armorNotes": "armadura natural",
+    "hitPoints": "11 (2d8 + 2)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 12,
+      "dexterity": 15,
+      "constitution": 12,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 6
+    },
+    "skills": "Percepção +3, Furtividade +4",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por audição ou olfato."
+      },
+      {
+        "name": "Táticas de Bando",
+        "description": "Vantagem no ataque se um aliado estiver a 1,5 m do alvo e não incapacitado."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano perfurante. Se o alvo for criatura, deve passar em Força CD 11 ou cair no chão."
+      }
+    ]
+  },
+  {
+    "id": "crab",
+    "name": "Caranguejo",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 11,
+    "armorNotes": "armadura natural",
+    "hitPoints": "2 (1d4)",
+    "speed": "6 m, natação 6 m",
+    "abilities": {
+      "strength": 2,
+      "dexterity": 11,
+      "constitution": 10,
+      "intelligence": 1,
+      "wisdom": 8,
+      "charisma": 2
+    },
+    "skills": "Furtividade +2",
+    "senses": "visão no escuro 9 m, passiva 9",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Garra",
+        "description": "Ataque corpo a corpo com arma: +0 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano contundente."
+      }
+    ]
+  },
+  {
+    "id": "frog",
+    "name": "Sapo",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 11,
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "6 m, natação 6 m",
+    "abilities": {
+      "strength": 1,
+      "dexterity": 13,
+      "constitution": 8,
+      "intelligence": 1,
+      "wisdom": 8,
+      "charisma": 3
+    },
+    "skills": "Percepção +1, Furtividade +3",
+    "senses": "visão no escuro 9 m, passiva 11",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Anfíbio",
+        "description": "Pode respirar ar e água."
+      },
+      {
+        "name": "Salto",
+        "description": "Salto em distância até 3 m e em altura até 1,5 m, com ou sem impulso."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "— (sem ataque ofensivo relevante; HP 1)."
+      }
+    ]
+  },
+  {
+    "id": "octopus",
+    "name": "Polvo",
+    "size": "Pequeno",
+    "typeLine": "Pequeno fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "3 (1d6)",
+    "speed": "1,5 m, natação 9 m",
+    "abilities": {
+      "strength": 4,
+      "dexterity": 15,
+      "constitution": 11,
+      "intelligence": 3,
+      "wisdom": 10,
+      "charisma": 4
+    },
+    "skills": "Percepção +2, Furtividade +4",
+    "senses": "visão no escuro 9 m, passiva 12",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Respiração Aquática",
+        "description": "Só respira debaixo d'água."
+      },
+      {
+        "name": "Camuflagem Subaquática",
+        "description": "Vantagem em Furtividade para se esconder enquanto submerso."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Tentáculos",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano contundente; alvo é agarrado (CD 10 para escapar). Até o agarre acabar, o alvo fica contido e o polvo não pode usar tentáculos em outro alvo."
+      },
+      {
+        "name": "Nuvem de Tinta (Recarga após Descanso Curto ou Longo)",
+        "description": "Liberada sob a água num raio de 1,5 m de tinta por 1 minuto; área fortemente obscurecida."
+      }
+    ]
+  },
+  {
+    "id": "quipper",
+    "name": "Quipper",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 13,
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "0 m, natação 12 m",
+    "abilities": {
+      "strength": 2,
+      "dexterity": 16,
+      "constitution": 9,
+      "intelligence": 1,
+      "wisdom": 7,
+      "charisma": 2
+    },
+    "senses": "visão no escuro 18 m, passiva 8",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Cardume de Sangue",
+        "description": "Tem vantagem no ataque contra criatura que não tenha todos os PV."
+      },
+      {
+        "name": "Respiração Aquática",
+        "description": "Só respira debaixo d'água."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "sea-horse",
+    "name": "Cavalo-marinho",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 11,
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "0 m, natação 6 m",
+    "abilities": {
+      "strength": 1,
+      "dexterity": 12,
+      "constitution": 8,
+      "intelligence": 1,
+      "wisdom": 10,
+      "charisma": 2
+    },
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Respiração Aquática",
+        "description": "Só respira debaixo d'água."
+      }
+    ],
+    "actions": []
+  },
+  {
+    "id": "giant-crab",
+    "name": "Caranguejo Gigante",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 15,
+    "armorNotes": "armadura natural",
+    "hitPoints": "13 (3d8)",
+    "speed": "9 m, natação 9 m",
+    "abilities": {
+      "strength": 13,
+      "dexterity": 15,
+      "constitution": 11,
+      "intelligence": 1,
+      "wisdom": 9,
+      "charisma": 3
+    },
+    "skills": "Furtividade +4",
+    "senses": "visão no escuro 9 m, passiva 9",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [
+      {
+        "name": "Anfíbio",
+        "description": "Pode respirar ar e água."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Garra",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (1d8 + 3) de dano contundente; alvo é agarrado (CD 11). O caranguejo tem duas garras, cada uma pode agarrar um alvo."
+      }
+    ]
+  },
+  {
+    "id": "poisonous-snake",
+    "name": "Cobra Venenosa",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 13,
+    "hitPoints": "2 (1d4)",
+    "speed": "9 m, natação 9 m",
+    "abilities": {
+      "strength": 2,
+      "dexterity": 16,
+      "constitution": 11,
+      "intelligence": 1,
+      "wisdom": 10,
+      "charisma": 3
+    },
+    "senses": "visão no escuro 9 m, passiva 10",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante; o alvo deve passar em Constituição CD 10 ou sofrer 5 (2d4) de dano de veneno (metade no sucesso)."
+      }
+    ]
+  },
+  {
+    "id": "constrictor-snake",
+    "name": "Cobra Constritora",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "13 (2d10 + 2)",
+    "speed": "9 m, natação 9 m",
+    "abilities": {
+      "strength": 15,
+      "dexterity": 14,
+      "constitution": 12,
+      "intelligence": 1,
+      "wisdom": 10,
+      "charisma": 3
+    },
+    "senses": "visão no escuro 9 m, passiva 10",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 6 (1d6 + 3) de dano perfurante."
+      },
+      {
+        "name": "Constricção",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano contundente; alvo é agarrado (CD 14) e contido. Até o agarre acabar, a cobra não pode constranger outro alvo."
+      }
+    ]
+  },
+  {
+    "id": "giant-frog",
+    "name": "Sapo Gigante",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 11,
+    "hitPoints": "18 (4d8)",
+    "speed": "9 m, natação 9 m",
+    "abilities": {
+      "strength": 12,
+      "dexterity": 13,
+      "constitution": 11,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 3
+    },
+    "skills": "Percepção +2, Furtividade +3",
+    "senses": "visão no escuro 9 m, passiva 12",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [
+      {
+        "name": "Anfíbio",
+        "description": "Pode respirar ar e água."
+      },
+      {
+        "name": "Salto",
+        "description": "Salto em distância até 6 m e em altura até 3 m, com ou sem impulso."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d6 + 1) de dano perfurante; alvo é agarrado (CD 11). A língua só pode agarrar um alvo."
+      },
+      {
+        "name": "Engolir",
+        "description": "O sapo engole um alvo Médio ou menor que esteja agarrado. O engolido fica cego e contido, tem cobertura total, e sofre 5 (2d4) de ácido no início de cada turno do sapo. Se o sapo sofrer 10+ de dano num turno, deve passar em Constituição CD 10 ou regurgitar."
+      }
+    ]
+  },
+  {
+    "id": "giant-poisonous-snake",
+    "name": "Cobra Venenosa Gigante",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 14,
+    "hitPoints": "11 (2d8 + 2)",
+    "speed": "9 m, natação 9 m",
+    "abilities": {
+      "strength": 10,
+      "dexterity": 18,
+      "constitution": 13,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 3
+    },
+    "skills": "Percepção +2",
+    "senses": "visão no escuro 9 m, passiva 12",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 3 m, um alvo. Acerto: 6 (1d4 + 4) de dano perfurante; o alvo deve passar em Constituição CD 11 ou sofrer 10 (3d6) de dano de veneno (metade no sucesso)."
+      }
+    ]
+  },
+  {
+    "id": "ape",
+    "name": "Macaco",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "19 (3d8 + 6)",
+    "speed": "9 m, escalada 9 m",
+    "abilities": {
+      "strength": 16,
+      "dexterity": 14,
+      "constitution": 14,
+      "intelligence": 6,
+      "wisdom": 12,
+      "charisma": 7
+    },
+    "skills": "Atletismo +5, Percepção +3",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "1/2",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques de punho."
+      },
+      {
+        "name": "Punho",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 6 (1d6 + 3) de dano contundente."
+      },
+      {
+        "name": "Pedra",
+        "description": "Ataque à distância com arma: +5 para acertar, alcance 7,5/15 m, um alvo. Acerto: 6 (1d6 + 3) de dano contundente."
+      }
+    ]
+  },
+  {
+    "id": "black-bear",
+    "name": "Urso Negro",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 11,
+    "armorNotes": "armadura natural",
+    "hitPoints": "19 (3d8 + 6)",
+    "speed": "12 m, escalada 9 m",
+    "abilities": {
+      "strength": 15,
+      "dexterity": 10,
+      "constitution": 14,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 7
+    },
+    "senses": "passiva 11",
+    "languages": "—",
+    "challenge": "1/2",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por olfato."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques: um de mordida e um de garras."
+      },
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 5 (1d6 + 2) de dano perfurante."
+      },
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "crocodile",
+    "name": "Crocodilo",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "armorNotes": "armadura natural",
+    "hitPoints": "19 (3d10 + 3)",
+    "speed": "6 m, natação 9 m",
+    "abilities": {
+      "strength": 15,
+      "dexterity": 10,
+      "constitution": 13,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 5
+    },
+    "skills": "Furtividade +2",
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "1/2",
+    "traits": [
+      {
+        "name": "Segurar",
+        "description": "O crocodilo tem vantagem em testes de Atletismo para agarrar."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (1d10 + 2) de dano perfurante; alvo é agarrado (CD 12). Enquanto agarrado, o alvo fica contido e o crocodilo não pode morder outro."
+      }
+    ]
+  },
+  {
+    "id": "giant-goat",
+    "name": "Cabra Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 11,
+    "armorNotes": "armadura natural",
+    "hitPoints": "19 (3d10 + 3)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 17,
+      "dexterity": 11,
+      "constitution": 12,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 6
+    },
+    "senses": "passiva 11",
+    "languages": "—",
+    "challenge": "1/2",
+    "traits": [
+      {
+        "name": "Carga",
+        "description": "Se se mover 6 m em linha reta e acertar com chifre no mesmo turno, +5 (2d4) de dano perfurante; alvo deve passar em Força CD 13 ou cair."
+      },
+      {
+        "name": "Passo Firme",
+        "description": "Vantagem contra efeitos que a derrubariam."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Chifre",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 8 (2d4 + 3) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "giant-sea-horse",
+    "name": "Cavalo-marinho Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 13,
+    "armorNotes": "armadura natural",
+    "hitPoints": "16 (3d10)",
+    "speed": "0 m, natação 12 m",
+    "abilities": {
+      "strength": 12,
+      "dexterity": 15,
+      "constitution": 11,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 5
+    },
+    "senses": "passiva 11",
+    "languages": "—",
+    "challenge": "1/2",
+    "traits": [
+      {
+        "name": "Carga",
+        "description": "Se se mover 6 m em linha reta e acertar com ariete no mesmo turno, +7 (2d6) de dano contundente; alvo deve passar em Força CD 11 ou cair."
+      },
+      {
+        "name": "Respiração Aquática",
+        "description": "Só respira debaixo d'água."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Ariete",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d4 + 2) de dano contundente."
+      }
+    ]
+  },
+  {
+    "id": "reef-shark",
+    "name": "Tubarão de Recife",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 12,
+    "armorNotes": "armadura natural",
+    "hitPoints": "22 (4d8 + 4)",
+    "speed": "0 m, natação 12 m",
+    "abilities": {
+      "strength": 14,
+      "dexterity": 13,
+      "constitution": 13,
+      "intelligence": 1,
+      "wisdom": 10,
+      "charisma": 4
+    },
+    "skills": "Percepção +2",
+    "senses": "visão no escuro 9 m, passiva 12",
+    "languages": "—",
+    "challenge": "1/2",
+    "traits": [
+      {
+        "name": "Táticas de Bando",
+        "description": "Vantagem no ataque se um aliado estiver a 1,5 m do alvo e não incapacitado."
+      },
+      {
+        "name": "Respiração Aquática",
+        "description": "Só respira debaixo d'água."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 6 (1d8 + 2) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "warhorse",
+    "name": "Cavalo de Guerra",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 11,
+    "hitPoints": "19 (3d10 + 3)",
+    "speed": "18 m",
+    "abilities": {
+      "strength": 18,
+      "dexterity": 12,
+      "constitution": 13,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 7
+    },
+    "senses": "passiva 11",
+    "languages": "—",
+    "challenge": "1/2",
+    "traits": [
+      {
+        "name": "Atropelar",
+        "description": "Se se mover 6 m em linha reta e acertar com cascos no mesmo turno, o alvo deve passar em Força CD 14 ou cair. Se cair, o cavalo pode fazer um ataque de cascos como ação bônus."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Cascos",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 1,5 m, um alvo. Acerto: 11 (2d6 + 4) de dano contundente."
+      }
+    ]
+  },
+  {
+    "id": "bat",
+    "name": "Morcego",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "1,5 m, voo 9 m",
+    "abilities": {
+      "strength": 2,
+      "dexterity": 15,
+      "constitution": 8,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 4
+    },
+    "senses": "visão no escuro 18 m, passiva 11",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Ecolocalização",
+        "description": "Não pode usar visão no escuro se surdo."
+      },
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por audição."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +0 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "eagle",
+    "name": "Águia",
+    "size": "Pequeno",
+    "typeLine": "Pequeno fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "3 (1d6)",
+    "speed": "3 m, voo 18 m",
+    "abilities": {
+      "strength": 6,
+      "dexterity": 15,
+      "constitution": 10,
+      "intelligence": 2,
+      "wisdom": 14,
+      "charisma": 7
+    },
+    "skills": "Percepção +4",
+    "senses": "passiva 14",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Visão Aguçada",
+        "description": "Vantagem em Percepção por visão."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d4 + 2) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "hawk",
+    "name": "Falcão",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 13,
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "3 m, voo 18 m",
+    "abilities": {
+      "strength": 5,
+      "dexterity": 16,
+      "constitution": 8,
+      "intelligence": 2,
+      "wisdom": 14,
+      "charisma": 6
+    },
+    "senses": "passiva 14",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Visão Aguçada",
+        "description": "Vantagem em Percepção por visão."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "owl",
+    "name": "Coruja",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 11,
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "1,5 m, voo 18 m",
+    "abilities": {
+      "strength": 3,
+      "dexterity": 13,
+      "constitution": 8,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 7
+    },
+    "skills": "Percepção +3, Furtividade +3",
+    "senses": "visão no escuro 36 m, passiva 13",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Voo Silencioso",
+        "description": "Não provoca ataques de oportunidade ao voar para fora do alcance de um inimigo."
+      },
+      {
+        "name": "Visão Aguçada",
+        "description": "Vantagem em Percepção por audição ou visão."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "raven",
+    "name": "Corvo",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "1 (1d4 − 1)",
+    "speed": "3 m, voo 15 m",
+    "abilities": {
+      "strength": 2,
+      "dexterity": 14,
+      "constitution": 8,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 6
+    },
+    "senses": "passiva 11",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Mímica",
+        "description": "Pode imitar sons simples que ouviu, inclusive fala. Ouvintes podem reconhecer com Intuição CD 10."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bico",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "vulture",
+    "name": "Abutre",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "5 (1d8 + 1)",
+    "speed": "3 m, voo 15 m",
+    "abilities": {
+      "strength": 7,
+      "dexterity": 10,
+      "constitution": 13,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 4
+    },
+    "skills": "Percepção +3",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "0",
+    "traits": [
+      {
+        "name": "Táticas de Bando",
+        "description": "Vantagem no ataque se um aliado estiver a 1,5 m do alvo e não incapacitado."
+      },
+      {
+        "name": "Visão Aguçada",
+        "description": "Vantagem em Percepção por visão."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bico",
+        "description": "Ataque corpo a corpo com arma: +2 para acertar, alcance 1,5 m, um alvo. Acerto: 2 (1d4) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "blood-hawk",
+    "name": "Falcão-sangue",
+    "size": "Pequeno",
+    "typeLine": "Pequeno fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "7 (2d6)",
+    "speed": "3 m, voo 18 m",
+    "abilities": {
+      "strength": 6,
+      "dexterity": 14,
+      "constitution": 10,
+      "intelligence": 3,
+      "wisdom": 14,
+      "charisma": 5
+    },
+    "skills": "Percepção +4",
+    "senses": "passiva 14",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [
+      {
+        "name": "Táticas de Bando",
+        "description": "Vantagem no ataque se um aliado estiver a 1,5 m do alvo e não incapacitado."
+      },
+      {
+        "name": "Visão Aguçada",
+        "description": "Vantagem em Percepção por visão."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bico",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 4 (1d4 + 2) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "flying-snake",
+    "name": "Cobra Voadora",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 14,
+    "hitPoints": "5 (2d4)",
+    "speed": "9 m, voo 18 m, natação 9 m",
+    "abilities": {
+      "strength": 4,
+      "dexterity": 18,
+      "constitution": 11,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 5
+    },
+    "senses": "visão no escuro 18 m, passiva 11",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [
+      {
+        "name": "Voo",
+        "description": "A cobra voadora não provoca ataques de oportunidade ao voar para fora do alcance de um inimigo."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 1,5 m, um alvo. Acerto: 1 de dano perfurante + 7 (3d4) de dano de veneno."
+      }
+    ]
+  },
+  {
+    "id": "stirge",
+    "name": "Stirge",
+    "size": "Minúsculo",
+    "typeLine": "Minúsculo fera, sem tendência",
+    "armorClass": 14,
+    "armorNotes": "armadura natural",
+    "hitPoints": "2 (1d4)",
+    "speed": "3 m, voo 12 m",
+    "abilities": {
+      "strength": 4,
+      "dexterity": 16,
+      "constitution": 11,
+      "intelligence": 2,
+      "wisdom": 8,
+      "charisma": 6
+    },
+    "senses": "visão no escuro 18 m, passiva 9",
+    "languages": "—",
+    "challenge": "1/8",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Drenar Sangue",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 5 (1d4 + 3) de dano perfurante; o stirge se agarra ao alvo. Enquanto agarrado, no início de cada turno do stirge, o alvo perde 5 (1d4 + 3) PV. O stirge pode se soltar usando 1,5 m de movimento. Ele o faz após drenar 10 PV ou quando o alvo morre. Uma criatura, incluindo o alvo, pode usar a ação para desprender o stirge."
+      }
+    ]
+  },
+  {
+    "id": "giant-bat",
+    "name": "Morcego Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 13,
+    "hitPoints": "22 (4d10)",
+    "speed": "3 m, voo 18 m",
+    "abilities": {
+      "strength": 15,
+      "dexterity": 16,
+      "constitution": 11,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 6
+    },
+    "senses": "visão no escuro 18 m, passiva 11",
+    "languages": "—",
+    "challenge": "1/4",
+    "traits": [
+      {
+        "name": "Ecolocalização",
+        "description": "Não pode usar visão no escuro se surdo."
+      },
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por audição."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 5 (1d6 + 2) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "giant-owl",
+    "name": "Coruja Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "19 (3d10 + 3)",
+    "speed": "1,5 m, voo 18 m",
+    "abilities": {
+      "strength": 13,
+      "dexterity": 15,
+      "constitution": 12,
+      "intelligence": 8,
+      "wisdom": 13,
+      "charisma": 10
+    },
+    "skills": "Percepção +5, Furtividade +4",
+    "senses": "visão no escuro 36 m, passiva 15",
+    "languages": "Gigante das Corujas, Comum",
+    "challenge": "1/4",
+    "traits": [
+      {
+        "name": "Voo Silencioso",
+        "description": "Não provoca ataques de oportunidade ao voar para fora do alcance."
+      },
+      {
+        "name": "Visão Aguçada",
+        "description": "Vantagem em Percepção por audição ou visão."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +3 para acertar, alcance 1,5 m, um alvo. Acerto: 8 (2d6 + 1) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "giant-wasp",
+    "name": "Vespa Gigante",
+    "size": "Médio",
+    "typeLine": "Médio fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "13 (3d8)",
+    "speed": "3 m, voo 15 m",
+    "abilities": {
+      "strength": 10,
+      "dexterity": 14,
+      "constitution": 10,
+      "intelligence": 1,
+      "wisdom": 10,
+      "charisma": 3
+    },
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "1/2",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Ferrão",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 5 (1d6 + 2) de dano perfurante; o alvo deve passar em Constituição CD 11 ou sofrer 10 (3d6) de dano de veneno (metade no sucesso). Se o veneno reduzir a 0 PV, fica estável mas envenenado por 1 hora (paralisado)."
+      }
+    ]
+  },
+  {
+    "id": "brown-bear",
+    "name": "Urso Pardo",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 11,
+    "armorNotes": "armadura natural",
+    "hitPoints": "34 (4d10 + 12)",
+    "speed": "12 m, escalada 9 m",
+    "abilities": {
+      "strength": 19,
+      "dexterity": 10,
+      "constitution": 16,
+      "intelligence": 2,
+      "wisdom": 13,
+      "charisma": 7
+    },
+    "skills": "Percepção +3",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "1",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por olfato."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques: um de mordida e um de garras."
+      },
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 8 (1d8 + 4) de dano perfurante."
+      },
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 11 (2d6 + 4) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "dire-wolf",
+    "name": "Lobo Hediondo",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 14,
+    "armorNotes": "armadura natural",
+    "hitPoints": "37 (5d10 + 10)",
+    "speed": "15 m",
+    "abilities": {
+      "strength": 17,
+      "dexterity": 15,
+      "constitution": 15,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 7
+    },
+    "skills": "Percepção +3, Furtividade +4",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "1",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por audição ou olfato."
+      },
+      {
+        "name": "Táticas de Bando",
+        "description": "Vantagem no ataque se um aliado estiver a 1,5 m do alvo e não incapacitado."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano perfurante. Se o alvo for criatura, deve passar em Força CD 13 ou cair no chão."
+      }
+    ]
+  },
+  {
+    "id": "giant-eagle",
+    "name": "Águia Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 13,
+    "hitPoints": "26 (4d10 + 4)",
+    "speed": "3 m, voo 24 m",
+    "abilities": {
+      "strength": 16,
+      "dexterity": 17,
+      "constitution": 13,
+      "intelligence": 8,
+      "wisdom": 14,
+      "charisma": 10
+    },
+    "skills": "Percepção +4",
+    "senses": "passiva 14",
+    "languages": "Gigante das Águias, Comum",
+    "challenge": "1",
+    "traits": [
+      {
+        "name": "Visão Aguçada",
+        "description": "Vantagem em Percepção por visão."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques: um de bico e um de garras."
+      },
+      {
+        "name": "Bico",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 6 (1d6 + 3) de dano perfurante."
+      },
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "giant-hyena",
+    "name": "Hiena Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "45 (6d10 + 12)",
+    "speed": "15 m",
+    "abilities": {
+      "strength": 16,
+      "dexterity": 14,
+      "constitution": 14,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 7
+    },
+    "skills": "Percepção +3",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "1",
+    "traits": [
+      {
+        "name": "Fúria",
+        "description": "Quando reduzir uma criatura a 0 PV com um ataque corpo a corpo no seu turno, a hiena pode fazer um ataque de mordida como ação bônus."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "giant-octopus",
+    "name": "Polvo Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 11,
+    "hitPoints": "52 (8d10 + 8)",
+    "speed": "3 m, natação 18 m",
+    "abilities": {
+      "strength": 17,
+      "dexterity": 13,
+      "constitution": 13,
+      "intelligence": 4,
+      "wisdom": 10,
+      "charisma": 4
+    },
+    "skills": "Percepção +4, Furtividade +5",
+    "senses": "visão no escuro 18 m, passiva 14",
+    "languages": "—",
+    "challenge": "1",
+    "traits": [
+      {
+        "name": "Segurar",
+        "description": "Vantagem em Atletismo para agarrar."
+      },
+      {
+        "name": "Camuflagem Subaquática",
+        "description": "Vantagem em Furtividade para se esconder enquanto submerso."
+      },
+      {
+        "name": "Respiração Aquática",
+        "description": "Só respira debaixo d'água. Pode segurar a respiração fora d'água por 1 hora."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Tentáculos",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 4,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano contundente; alvo é agarrado (CD 16) e contido. Até o agarre acabar, o polvo não pode usar tentáculos em outro alvo."
+      },
+      {
+        "name": "Nuvem de Tinta (Recarga 6)",
+        "description": "Liberada sob a água numa esfera de 6 m de raio de tinta por 1 minuto; área fortemente obscurecida."
+      }
+    ]
+  },
+  {
+    "id": "giant-spider",
+    "name": "Aranha Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 14,
+    "armorNotes": "armadura natural",
+    "hitPoints": "26 (4d10 + 4)",
+    "speed": "9 m, escalada 9 m",
+    "abilities": {
+      "strength": 14,
+      "dexterity": 16,
+      "constitution": 12,
+      "intelligence": 2,
+      "wisdom": 11,
+      "charisma": 4
+    },
+    "skills": "Furtividade +7",
+    "senses": "visão no escuro 18 m, passiva 10",
+    "languages": "—",
+    "challenge": "1",
+    "traits": [
+      {
+        "name": "Escalada de Aranha",
+        "description": "Pode escalar superfícies difíceis, inclusive de cabeça para baixo, sem teste."
+      },
+      {
+        "name": "Sentido da Teia",
+        "description": "Enquanto em contato com uma teia, conhece a localização de qualquer criatura em contato com a mesma teia."
+      },
+      {
+        "name": "Andar na Teia",
+        "description": "Ignora restrições de movimento causadas por teias."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (1d8 + 3) de dano perfurante; o alvo deve passar em Constituição CD 11 ou sofrer 9 (2d8) de dano de veneno (metade no sucesso). Se o veneno reduzir a 0 PV, fica estável mas envenenado por 1 hora (paralisado)."
+      },
+      {
+        "name": "Teia (Recarga 5–6)",
+        "description": "Ataque à distância com arma: +5 para acertar, alcance 9/18 m, um alvo Grande ou menor. Acerto: o alvo é contido por teia. Como ação, o alvo ou outra criatura a 1,5 m pode fazer Força CD 12 para romper; a teia também pode ser atacada (CA 10; 5 PV; vulnerável a fogo; imune a cego, perfurante e psíquico)."
+      }
+    ]
+  },
+  {
+    "id": "giant-toad",
+    "name": "Sapo Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 11,
+    "hitPoints": "39 (6d10 + 6)",
+    "speed": "6 m, natação 9 m",
+    "abilities": {
+      "strength": 15,
+      "dexterity": 13,
+      "constitution": 13,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 3
+    },
+    "senses": "visão no escuro 9 m, passiva 10",
+    "languages": "—",
+    "challenge": "1",
+    "traits": [
+      {
+        "name": "Anfíbio",
+        "description": "Pode respirar ar e água."
+      },
+      {
+        "name": "Salto",
+        "description": "Salto em distância até 6 m e em altura até 3 m, com ou sem impulso."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (1d10 + 2) de dano perfurante; alvo é agarrado (CD 13). A língua só pode agarrar um alvo."
+      },
+      {
+        "name": "Engolir",
+        "description": "Engole um alvo Médio ou menor agarrado. O engolido fica cego e contido, tem cobertura total, e sofre 10 (3d6) de ácido no início de cada turno do sapo. Se o sapo sofrer 20+ de dano num turno, deve passar em Constituição CD 12 ou regurgitar."
+      }
+    ]
+  },
+  {
+    "id": "giant-vulture",
+    "name": "Abutre Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 10,
+    "hitPoints": "22 (3d10 + 6)",
+    "speed": "3 m, voo 18 m",
+    "abilities": {
+      "strength": 15,
+      "dexterity": 10,
+      "constitution": 15,
+      "intelligence": 6,
+      "wisdom": 12,
+      "charisma": 7
+    },
+    "skills": "Percepção +3",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "1",
+    "traits": [
+      {
+        "name": "Táticas de Bando",
+        "description": "Vantagem no ataque se um aliado estiver a 1,5 m do alvo e não incapacitado."
+      },
+      {
+        "name": "Visão Aguçada",
+        "description": "Vantagem em Percepção por visão."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques: um de bico e um de garras."
+      },
+      {
+        "name": "Bico",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (2d4 + 2) de dano perfurante."
+      },
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 9 (2d6 + 2) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "lion",
+    "name": "Leão",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "26 (4d10 + 4)",
+    "speed": "15 m",
+    "abilities": {
+      "strength": 17,
+      "dexterity": 15,
+      "constitution": 13,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 8
+    },
+    "skills": "Percepção +3, Furtividade +6",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "1",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por olfato."
+      },
+      {
+        "name": "Táticas de Bando",
+        "description": "Vantagem no ataque se um aliado estiver a 1,5 m do alvo e não incapacitado."
+      },
+      {
+        "name": "Pulo",
+        "description": "Com corrida, salto em distância até 7,5 m e em altura até 3,5 m."
+      },
+      {
+        "name": "Rugido Assustador",
+        "description": "Cada criatura à escolha do leão a até 9 m que possa ouvi-lo deve passar em Sabedoria CD 11 ou ficar amedrontada até o fim do próximo turno do leão."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (1d8 + 3) de dano perfurante."
+      },
+      {
+        "name": "Garra",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 6 (1d6 + 3) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "tiger",
+    "name": "Tigre",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "37 (5d10 + 10)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 17,
+      "dexterity": 15,
+      "constitution": 14,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 8
+    },
+    "skills": "Percepção +3, Furtividade +6",
+    "senses": "visão no escuro 18 m, passiva 13",
+    "languages": "—",
+    "challenge": "1",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por olfato."
+      },
+      {
+        "name": "Pulo",
+        "description": "Com corrida, salto em distância até 7,5 m e em altura até 3,5 m."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 8 (1d10 + 3) de dano perfurante."
+      },
+      {
+        "name": "Garra",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (1d8 + 3) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "giant-boar",
+    "name": "Javali Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "armorNotes": "armadura natural",
+    "hitPoints": "42 (5d10 + 15)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 17,
+      "dexterity": 10,
+      "constitution": 16,
+      "intelligence": 2,
+      "wisdom": 7,
+      "charisma": 5
+    },
+    "senses": "passiva 8",
+    "languages": "—",
+    "challenge": "2",
+    "traits": [
+      {
+        "name": "Carga",
+        "description": "Se se mover 6 m em linha reta e acertar com presa no mesmo turno, +7 (2d6) de dano cortante; alvo deve passar em Força CD 13 ou cair."
+      },
+      {
+        "name": "Fúria Relutante",
+        "description": "Se cair a 0 PV, faz Constituição CD 5 + dano do ataque; em sucesso, fica com 1 PV. Uma vez por dia."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Presa",
+        "description": "Ataque corpo a corpo com arma: +5 para acertar, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "giant-constrictor-snake",
+    "name": "Cobra Constritora Gigante",
+    "size": "Enorme",
+    "typeLine": "Enorme fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "60 (8d12 + 8)",
+    "speed": "9 m, natação 9 m",
+    "abilities": {
+      "strength": 19,
+      "dexterity": 14,
+      "constitution": 12,
+      "intelligence": 1,
+      "wisdom": 10,
+      "charisma": 3
+    },
+    "skills": "Percepção +2",
+    "senses": "visão no escuro 9 m, passiva 12",
+    "languages": "—",
+    "challenge": "2",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 3 m, um alvo. Acerto: 11 (2d6 + 4) de dano perfurante."
+      },
+      {
+        "name": "Constricção",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 1,5 m, um alvo. Acerto: 13 (2d8 + 4) de dano contundente; alvo é agarrado (CD 16) e contido. Até o agarre acabar, a cobra não pode constranger outro alvo."
+      }
+    ]
+  },
+  {
+    "id": "giant-elk",
+    "name": "Alce Gigante",
+    "size": "Enorme",
+    "typeLine": "Enorme fera, sem tendência",
+    "armorClass": 14,
+    "armorNotes": "armadura natural",
+    "hitPoints": "42 (5d12 + 10)",
+    "speed": "18 m",
+    "abilities": {
+      "strength": 19,
+      "dexterity": 16,
+      "constitution": 14,
+      "intelligence": 7,
+      "wisdom": 14,
+      "charisma": 10
+    },
+    "skills": "Percepção +4",
+    "senses": "passiva 14",
+    "languages": "Gigante dos Alces, Comum",
+    "challenge": "2",
+    "traits": [
+      {
+        "name": "Carga",
+        "description": "Se se mover 6 m em linha reta e acertar com chifre no mesmo turno, +7 (2d6) de dano perfurante; alvo deve passar em Força CD 14 ou cair."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Chifre",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 3 m, um alvo. Acerto: 11 (2d6 + 4) de dano perfurante."
+      },
+      {
+        "name": "Cascos",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 1,5 m, um alvo. Acerto: 22 (4d8 + 4) de dano contundente."
+      }
+    ]
+  },
+  {
+    "id": "hunter-shark",
+    "name": "Tubarão Caçador",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "armorNotes": "armadura natural",
+    "hitPoints": "45 (6d10 + 12)",
+    "speed": "0 m, natação 12 m",
+    "abilities": {
+      "strength": 18,
+      "dexterity": 13,
+      "constitution": 15,
+      "intelligence": 1,
+      "wisdom": 10,
+      "charisma": 4
+    },
+    "skills": "Percepção +2",
+    "senses": "visão no escuro 9 m, passiva 12",
+    "languages": "—",
+    "challenge": "2",
+    "traits": [
+      {
+        "name": "Frenesi de Sangue",
+        "description": "Vantagem no ataque corpo a corpo contra criatura que não tenha todos os PV."
+      },
+      {
+        "name": "Respiração Aquática",
+        "description": "Só respira debaixo d'água."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 1,5 m, um alvo. Acerto: 13 (2d8 + 4) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "polar-bear",
+    "name": "Urso Polar",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "armorNotes": "armadura natural",
+    "hitPoints": "42 (5d10 + 15)",
+    "speed": "12 m, natação 9 m",
+    "abilities": {
+      "strength": 20,
+      "dexterity": 10,
+      "constitution": 16,
+      "intelligence": 2,
+      "wisdom": 13,
+      "charisma": 7
+    },
+    "skills": "Percepção +3",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "2",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por olfato."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques: um de mordida e um de garras."
+      },
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +7 para acertar, alcance 1,5 m, um alvo. Acerto: 9 (1d8 + 5) de dano perfurante."
+      },
+      {
+        "name": "Garras",
+        "description": "Ataque corpo a corpo com arma: +7 para acertar, alcance 1,5 m, um alvo. Acerto: 12 (2d6 + 5) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "rhinoceros",
+    "name": "Rinoceronte",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 11,
+    "armorNotes": "armadura natural",
+    "hitPoints": "45 (6d10 + 12)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 21,
+      "dexterity": 8,
+      "constitution": 15,
+      "intelligence": 2,
+      "wisdom": 12,
+      "charisma": 6
+    },
+    "senses": "passiva 11",
+    "languages": "—",
+    "challenge": "2",
+    "traits": [
+      {
+        "name": "Carga",
+        "description": "Se se mover 6 m em linha reta e acertar com chifre no mesmo turno, +9 (2d8) de dano perfurante; alvo deve passar em Força CD 15 ou cair."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Chifre",
+        "description": "Ataque corpo a corpo com arma: +7 para acertar, alcance 1,5 m, um alvo. Acerto: 14 (2d8 + 5) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "saber-toothed-tiger",
+    "name": "Tigre-dentes-de-sabre",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 12,
+    "hitPoints": "52 (7d10 + 14)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 18,
+      "dexterity": 14,
+      "constitution": 15,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 8
+    },
+    "skills": "Percepção +3, Furtividade +6",
+    "senses": "passiva 13",
+    "languages": "—",
+    "challenge": "2",
+    "traits": [
+      {
+        "name": "Farofeiro",
+        "description": "Vantagem em Percepção por olfato."
+      },
+      {
+        "name": "Pulo",
+        "description": "Com corrida, salto em distância até 6 m e em altura até 3 m."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 1,5 m, um alvo. Acerto: 10 (1d10 + 5) de dano perfurante."
+      },
+      {
+        "name": "Garra",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 1,5 m, um alvo. Acerto: 12 (2d6 + 5) de dano cortante."
+      }
+    ]
+  },
+  {
+    "id": "giant-scorpion",
+    "name": "Escorpião Gigante",
+    "size": "Grande",
+    "typeLine": "Grande fera, sem tendência",
+    "armorClass": 15,
+    "armorNotes": "armadura natural",
+    "hitPoints": "52 (7d10 + 14)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 15,
+      "dexterity": 13,
+      "constitution": 15,
+      "intelligence": 1,
+      "wisdom": 9,
+      "charisma": 3
+    },
+    "senses": "visão no escuro 18 m, passiva 9",
+    "languages": "—",
+    "challenge": "3",
+    "traits": [],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Três ataques: duas garras e um ferrão."
+      },
+      {
+        "name": "Garra",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 6 (1d8 + 2) de dano contundente; alvo é agarrado (CD 12). O escorpião tem duas garras."
+      },
+      {
+        "name": "Ferrão",
+        "description": "Ataque corpo a corpo com arma: +4 para acertar, alcance 1,5 m, um alvo. Acerto: 7 (1d10 + 2) de dano perfurante; o alvo deve passar em Constituição CD 12 ou sofrer 22 (4d10) de dano de veneno (metade no sucesso)."
+      }
+    ]
+  },
+  {
+    "id": "killer-whale",
+    "name": "Orca",
+    "size": "Enorme",
+    "typeLine": "Enorme fera, sem tendência",
+    "armorClass": 12,
+    "armorNotes": "armadura natural",
+    "hitPoints": "90 (12d12 + 12)",
+    "speed": "0 m, natação 18 m",
+    "abilities": {
+      "strength": 19,
+      "dexterity": 10,
+      "constitution": 13,
+      "intelligence": 3,
+      "wisdom": 12,
+      "charisma": 7
+    },
+    "skills": "Percepção +3",
+    "senses": "visão no escuro 36 m, passiva 13",
+    "languages": "—",
+    "challenge": "3",
+    "traits": [
+      {
+        "name": "Ecolocalização",
+        "description": "Não pode usar visão no escuro se surda."
+      },
+      {
+        "name": "Segurar",
+        "description": "Vantagem em Atletismo para agarrar."
+      },
+      {
+        "name": "Respiração Aquática",
+        "description": "Só respira debaixo d'água."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 1,5 m, um alvo. Acerto: 21 (3d10 + 5) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "air-elemental",
+    "name": "Elemental do Ar",
+    "size": "Grande",
+    "typeLine": "Grande elemental, sem tendência",
+    "armorClass": 15,
+    "hitPoints": "90 (12d10 + 24)",
+    "speed": "0 m, voo 27 m (pairar)",
+    "abilities": {
+      "strength": 14,
+      "dexterity": 20,
+      "constitution": 14,
+      "intelligence": 6,
+      "wisdom": 10,
+      "charisma": 6
+    },
+    "senses": "visão no escuro 18 m, passiva 10",
+    "languages": "Auran",
+    "challenge": "5",
+    "traits": [
+      {
+        "name": "Forma de Ar",
+        "description": "Pode entrar no espaço de uma criatura hostil e parar lá. Pode se mover através de um espaço de até 2,5 cm sem se espremer."
+      },
+      {
+        "name": "Turbilhão (Recarga 4–6)",
+        "description": "Cada criatura no espaço do elemental deve fazer Força CD 13. Na falha: 15 (3d8 + 2) de dano contundente e arremessada 6 m em direção aleatória, caindo no chão. No sucesso: metade do dano e não é arremessada."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques de pancada."
+      },
+      {
+        "name": "Pancada",
+        "description": "Ataque corpo a corpo com arma: +8 para acertar, alcance 1,5 m, um alvo. Acerto: 14 (2d8 + 5) de dano contundente."
+      }
+    ]
+  },
+  {
+    "id": "earth-elemental",
+    "name": "Elemental da Terra",
+    "size": "Grande",
+    "typeLine": "Grande elemental, sem tendência",
+    "armorClass": 17,
+    "armorNotes": "armadura natural",
+    "hitPoints": "126 (12d10 + 60)",
+    "speed": "9 m, escavação 9 m",
+    "abilities": {
+      "strength": 20,
+      "dexterity": 8,
+      "constitution": 20,
+      "intelligence": 5,
+      "wisdom": 10,
+      "charisma": 5
+    },
+    "senses": "visão no escuro 18 m, sentido sísmico 18 m, passiva 10",
+    "languages": "Terran",
+    "challenge": "5",
+    "traits": [
+      {
+        "name": "Passo pela Terra",
+        "description": "Pode escavar através de terra e pedra não trabalhadas. Não deixa túnel."
+      },
+      {
+        "name": "Forma de Terra",
+        "description": "Pode se mover através de pedra e terra não trabalhadas sem se espremer. Considera terreno difícil como terreno normal se for terra ou pedra."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques de pancada."
+      },
+      {
+        "name": "Pancada",
+        "description": "Ataque corpo a corpo com arma: +8 para acertar, alcance 3 m, um alvo. Acerto: 14 (2d8 + 5) de dano contundente."
+      }
+    ]
+  },
+  {
+    "id": "fire-elemental",
+    "name": "Elemental do Fogo",
+    "size": "Grande",
+    "typeLine": "Grande elemental, sem tendência",
+    "armorClass": 13,
+    "hitPoints": "102 (12d10 + 36)",
+    "speed": "15 m",
+    "abilities": {
+      "strength": 10,
+      "dexterity": 17,
+      "constitution": 16,
+      "intelligence": 6,
+      "wisdom": 10,
+      "charisma": 7
+    },
+    "senses": "visão no escuro 18 m, passiva 10",
+    "languages": "Ignan",
+    "challenge": "5",
+    "traits": [
+      {
+        "name": "Forma de Fogo",
+        "description": "Pode se mover através de um espaço de até 2,5 cm sem se espremer. Uma criatura que toque o elemental ou o acerte com ataque corpo a corpo a 1,5 m sofre 5 (1d10) de fogo. Também pode entrar no espaço de uma criatura hostil e parar lá; a primeira vez que o faz no turno, a criatura sofre 5 (1d10) de fogo e inflamável pode pegar fogo."
+      },
+      {
+        "name": "Iluminação",
+        "description": "Luz intensa 9 m, luz fraca +9 m."
+      },
+      {
+        "name": "Imunidade a Fogo / Vulnerabilidade a Frio",
+        "description": "Imune a fogo; vulnerável a frio."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques de toque."
+      },
+      {
+        "name": "Toque",
+        "description": "Ataque corpo a corpo com arma: +6 para acertar, alcance 1,5 m, um alvo. Acerto: 10 (2d6 + 3) de dano de fogo. Se o alvo for criatura ou objeto inflamável, pode pegar fogo; até alguém usar uma ação para apagar, o alvo sofre 5 (1d10) de fogo no início de cada um de seus turnos."
+      }
+    ]
+  },
+  {
+    "id": "water-elemental",
+    "name": "Elemental da Água",
+    "size": "Grande",
+    "typeLine": "Grande elemental, sem tendência",
+    "armorClass": 14,
+    "armorNotes": "armadura natural",
+    "hitPoints": "114 (12d10 + 48)",
+    "speed": "9 m, natação 27 m",
+    "abilities": {
+      "strength": 18,
+      "dexterity": 14,
+      "constitution": 18,
+      "intelligence": 5,
+      "wisdom": 10,
+      "charisma": 8
+    },
+    "senses": "visão no escuro 18 m, passiva 10",
+    "languages": "Aquan",
+    "challenge": "5",
+    "traits": [
+      {
+        "name": "Forma de Água",
+        "description": "Pode entrar no espaço de uma criatura hostil e parar lá. Pode se mover através de um espaço de até 2,5 cm sem se espremer."
+      },
+      {
+        "name": "Congelar",
+        "description": "Se o elemental sofrer dano de frio, parcialmente congela; até o fim do seu próximo turno, seu deslocamento é reduzido em 6 m e sofre desvantagem em ataques e testes de Destreza."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques de pancada."
+      },
+      {
+        "name": "Pancada",
+        "description": "Ataque corpo a corpo com arma: +7 para acertar, alcance 1,5 m, um alvo. Acerto: 13 (2d8 + 4) de dano contundente."
+      },
+      {
+        "name": "Redemoinho (Recarga 4–6)",
+        "description": "Cada criatura no espaço do elemental deve fazer Força CD 15. Na falha: 13 (2d8 + 4) de dano contundente e é puxada 1,5 m para o espaço do elemental e contida (escapável CD 14). No sucesso: metade do dano."
+      }
+    ]
+  },
+  {
+    "id": "elephant",
+    "name": "Elefante",
+    "size": "Enorme",
+    "typeLine": "Enorme fera, sem tendência",
+    "armorClass": 12,
+    "armorNotes": "armadura natural",
+    "hitPoints": "76 (8d12 + 24)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 22,
+      "dexterity": 9,
+      "constitution": 17,
+      "intelligence": 3,
+      "wisdom": 11,
+      "charisma": 6
+    },
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "4",
+    "traits": [
+      {
+        "name": "Atropelar",
+        "description": "Se se mover 6 m em linha reta e acertar com chifre no mesmo turno, o alvo deve passar em Força CD 12 ou cair. Se cair, o elefante pode fazer um ataque de pisoteio como ação bônus."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Chifre",
+        "description": "Ataque corpo a corpo com arma: +8 para acertar, alcance 1,5 m, um alvo. Acerto: 18 (3d8 + 5) de dano perfurante."
+      },
+      {
+        "name": "Pisoteio",
+        "description": "Ataque corpo a corpo com arma: +8 para acertar, alcance 1,5 m, um alvo caído. Acerto: 21 (3d10 + 5) de dano contundente."
+      }
+    ]
+  },
+  {
+    "id": "giant-crocodile",
+    "name": "Crocodilo Gigante",
+    "size": "Enorme",
+    "typeLine": "Enorme fera, sem tendência",
+    "armorClass": 14,
+    "armorNotes": "armadura natural",
+    "hitPoints": "85 (9d12 + 27)",
+    "speed": "9 m, natação 15 m",
+    "abilities": {
+      "strength": 21,
+      "dexterity": 9,
+      "constitution": 17,
+      "intelligence": 2,
+      "wisdom": 10,
+      "charisma": 7
+    },
+    "skills": "Furtividade +5",
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "5",
+    "traits": [
+      {
+        "name": "Segurar",
+        "description": "Vantagem em Atletismo para agarrar."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiataque",
+        "description": "Dois ataques: um de mordida e um de cauda."
+      },
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +8 para acertar, alcance 1,5 m, um alvo. Acerto: 21 (3d10 + 5) de dano perfurante; alvo é agarrado (CD 16) e contido. Enquanto agarrado, o crocodilo não pode morder outro."
+      },
+      {
+        "name": "Cauda",
+        "description": "Ataque corpo a corpo com arma: +8 para acertar, alcance 3 m, um alvo não agarrado pelo crocodilo. Acerto: 14 (2d8 + 5) de dano contundente. Se o alvo for criatura, deve passar em Força CD 16 ou cair no chão."
+      }
+    ]
+  },
+  {
+    "id": "giant-shark",
+    "name": "Tubarão Gigante",
+    "size": "Enorme",
+    "typeLine": "Enorme fera, sem tendência",
+    "armorClass": 13,
+    "armorNotes": "armadura natural",
+    "hitPoints": "126 (11d12 + 55)",
+    "speed": "0 m, natação 15 m",
+    "abilities": {
+      "strength": 23,
+      "dexterity": 11,
+      "constitution": 21,
+      "intelligence": 1,
+      "wisdom": 10,
+      "charisma": 5
+    },
+    "skills": "Percepção +3",
+    "senses": "visão no escuro 18 m, passiva 13",
+    "languages": "—",
+    "challenge": "5",
+    "traits": [
+      {
+        "name": "Frenesi de Sangue",
+        "description": "Vantagem no ataque corpo a corpo contra criatura que não tenha todos os PV."
+      },
+      {
+        "name": "Respiração Aquática",
+        "description": "Só respira debaixo d'água."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mordida",
+        "description": "Ataque corpo a corpo com arma: +9 para acertar, alcance 1,5 m, um alvo. Acerto: 22 (3d10 + 6) de dano perfurante."
+      }
+    ]
+  },
+  {
+    "id": "mammoth",
+    "name": "Mamute",
+    "size": "Enorme",
+    "typeLine": "Enorme fera, sem tendência",
+    "armorClass": 13,
+    "armorNotes": "armadura natural",
+    "hitPoints": "126 (11d12 + 55)",
+    "speed": "12 m",
+    "abilities": {
+      "strength": 24,
+      "dexterity": 9,
+      "constitution": 21,
+      "intelligence": 3,
+      "wisdom": 11,
+      "charisma": 6
+    },
+    "senses": "passiva 10",
+    "languages": "—",
+    "challenge": "6",
+    "traits": [
+      {
+        "name": "Atropelar",
+        "description": "Se se mover 6 m em linha reta e acertar com chifre no mesmo turno, o alvo deve passar em Força CD 18 ou cair. Se cair, o mamute pode fazer um ataque de pisoteio como ação bônus."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Chifre",
+        "description": "Ataque corpo a corpo com arma: +10 para acertar, alcance 3 m, um alvo. Acerto: 25 (4d8 + 7) de dano perfurante."
+      },
+      {
+        "name": "Pisoteio",
+        "description": "Ataque corpo a corpo com arma: +10 para acertar, alcance 1,5 m, um alvo caído. Acerto: 29 (4d10 + 7) de dano contundente."
+      }
+    ]
+  }
+]
