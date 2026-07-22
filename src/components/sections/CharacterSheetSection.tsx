@@ -23,6 +23,16 @@ import {
 } from "@/lib/character/repository";
 import { derivedSheet, skillBonus, saveBonus } from "@/lib/rules";
 import { summarizeWeaponAttack } from "@/lib/items";
+import {
+  canAttune,
+  countAttuned,
+  forgeExtraDamageLabel,
+  inventoryMagicBonus,
+  listItemSpells,
+  resolveCustomMagic,
+} from "@/lib/items/forgeModifiers";
+import { getSpell } from "@/config/spells";
+import { getItem } from "@/config/items";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import { Panel, Tabs, Badge } from "@/components/ui/Panel";
@@ -339,20 +349,43 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                 />
               ))}
             </div>
-            <ul className="mt-3 max-h-48 space-y-2 overflow-y-auto text-sm">
+            <ul className="mt-3 max-h-64 space-y-2 overflow-y-auto text-sm">
               {state.inventory.length === 0 ? (
                 <li className="text-ink-muted">Inventário vazio.</li>
               ) : (
                 state.inventory.map((item) => {
+                  const custom = resolveCustomMagic(item);
+                  const catalog = item.itemId ? getItem(item.itemId) : undefined;
+                  const requiresAttune =
+                    custom?.requiresAttunement ??
+                    catalog?.requiresAttunement ??
+                    false;
+                  const equipmentId =
+                    item.equipmentId ??
+                    custom?.baseWeaponId ??
+                    custom?.baseArmorId ??
+                    catalog?.equipmentId;
+                  const isWeapon =
+                    Boolean(equipmentId) &&
+                    WEAPONS.some((w) => w.id === equipmentId);
+                  const isArmor =
+                    Boolean(equipmentId) &&
+                    ARMORS.some((a) => a.id === equipmentId);
+                  const magic = inventoryMagicBonus(item);
+                  const extraDmg =
+                    custom && item.equipped
+                      ? forgeExtraDamageLabel(custom.powers)
+                      : null;
                   const attack =
-                    item.equipmentId &&
-                    WEAPONS.some((w) => w.id === item.equipmentId)
+                    isWeapon && equipmentId
                       ? summarizeWeaponAttack(state, {
-                          weaponEquipmentId: item.equipmentId,
-                          magicBonus: item.magicBonus ?? 0,
+                          weaponEquipmentId: equipmentId,
+                          magicBonus: magic,
                           itemName: item.name,
+                          extraDamage: extraDmg,
                         })
                       : null;
+                  const chargesMax = custom?.charges?.max ?? 0;
                   return (
                     <li
                       key={item.id}
@@ -361,37 +394,85 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <span>
                           {item.equipped ? "⚔ " : ""}
+                          {item.attuned ? "◎ " : ""}
                           {item.name}
                           {item.quantity > 1 ? ` ×${item.quantity}` : ""}
-                          {item.magicBonus ? ` (+${item.magicBonus})` : ""}
+                          {magic ? ` (+${magic})` : ""}
+                          {custom ? " · Criado" : ""}
                         </span>
-                        <span className="flex gap-2">
-                          {item.equipmentId &&
-                            WEAPONS.some((w) => w.id === item.equipmentId) && (
-                              <button
-                                type="button"
-                                className="text-xs text-gold"
-                                onClick={() =>
-                                  updateState((s) => ({
+                        <span className="flex flex-wrap gap-2">
+                          {(isWeapon || isArmor || Boolean(custom)) && (
+                            <button
+                              type="button"
+                              className="text-xs text-gold"
+                              onClick={() =>
+                                updateState((s) => {
+                                  const nextEquipped = !item.equipped;
+                                  let armorId = s.armorId;
+                                  let shieldEquipped = s.shieldEquipped;
+                                  if (isArmor && equipmentId && nextEquipped) {
+                                    const armor = ARMORS.find(
+                                      (a) => a.id === equipmentId,
+                                    );
+                                    if (armor?.category === "shield") {
+                                      shieldEquipped = true;
+                                    } else {
+                                      armorId = equipmentId;
+                                    }
+                                  }
+                                  return {
+                                    ...s,
+                                    armorId,
+                                    shieldEquipped,
+                                    inventory: s.inventory.map((i) =>
+                                      i.id === item.id
+                                        ? { ...i, equipped: nextEquipped }
+                                        : i,
+                                    ),
+                                  };
+                                })
+                              }
+                            >
+                              {item.equipped ? "Desequipar" : "Equipar"}
+                            </button>
+                          )}
+                          {requiresAttune && (
+                            <button
+                              type="button"
+                              className="text-xs text-crimson"
+                              onClick={() =>
+                                updateState((s) => {
+                                  if (!item.attuned && !canAttune(s, item.id)) {
+                                    alert(
+                                      "Limite de 3 itens sintonizados (PHB).",
+                                    );
+                                    return s;
+                                  }
+                                  return {
                                     ...s,
                                     inventory: s.inventory.map((i) =>
                                       i.id === item.id
-                                        ? { ...i, equipped: !i.equipped }
+                                        ? { ...i, attuned: !i.attuned }
                                         : i,
                                     ),
-                                  }))
-                                }
-                              >
-                                {item.equipped ? "Desequipar" : "Equipar"}
-                              </button>
-                            )}
+                                  };
+                                })
+                              }
+                            >
+                              {item.attuned
+                                ? "Remover sintonização"
+                                : "Sintonizar"}
+                            </button>
+                          )}
                           <button
                             type="button"
                             className="text-xs text-crimson"
                             onClick={() =>
                               updateState((s) => ({
                                 ...s,
-                                inventory: s.inventory.filter((i) => i.id !== item.id),
+                                inventory: s.inventory.filter(
+                                  (i) => i.id !== item.id,
+                                ),
                               }))
                             }
                           >
@@ -399,6 +480,55 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                           </button>
                         </span>
                       </div>
+                      {chargesMax > 0 && (
+                        <div className="mt-1 flex items-center gap-2 text-xs text-ink-muted">
+                          Cargas: {(item.chargesUsed ?? 0)}/{chargesMax}
+                          <button
+                            type="button"
+                            className="text-gold"
+                            onClick={() =>
+                              updateState((s) => ({
+                                ...s,
+                                inventory: s.inventory.map((i) =>
+                                  i.id === item.id
+                                    ? {
+                                        ...i,
+                                        chargesUsed: Math.max(
+                                          0,
+                                          (i.chargesUsed ?? 0) - 1,
+                                        ),
+                                      }
+                                    : i,
+                                ),
+                              }))
+                            }
+                          >
+                            +
+                          </button>
+                          <button
+                            type="button"
+                            className="text-crimson"
+                            onClick={() =>
+                              updateState((s) => ({
+                                ...s,
+                                inventory: s.inventory.map((i) =>
+                                  i.id === item.id
+                                    ? {
+                                        ...i,
+                                        chargesUsed: Math.min(
+                                          chargesMax,
+                                          (i.chargesUsed ?? 0) + 1,
+                                        ),
+                                      }
+                                    : i,
+                                ),
+                              }))
+                            }
+                          >
+                            −
+                          </button>
+                        </div>
+                      )}
                       {attack && item.equipped && (
                         <p className="text-xs text-ink-muted">{attack.label}</p>
                       )}
@@ -407,6 +537,9 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                 })
               )}
             </ul>
+            <p className="mt-1 text-xs text-ink-muted">
+              Sintonizados: {countAttuned(state)}/3
+            </p>
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
               <Select
                 label="Adicionar do catálogo"
@@ -430,12 +563,18 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                         equipmentId: catalog.equipmentId,
                         magicBonus: catalog.magicBonus,
                         equipped: false,
+                        attuned: false,
+                        chargesUsed: 0,
                       },
                     ],
                   }));
                 }}
                 options={[
                   { value: "", label: "Escolher item…" },
+                  ...filterItems({ preset: "created" }).map((i) => ({
+                    value: i.id,
+                    label: `[Forja] ${i.name}`,
+                  })),
                   ...filterItems({ preset: "weapons" })
                     .slice(0, 80)
                     .map((i) => ({
@@ -443,7 +582,19 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                       label: `${i.name}${i.kind === "magic" ? " ★" : ""}`,
                     })),
                   ...filterItems({ preset: "armor" })
-                    .filter((i) => i.kind === "mundane")
+                    .slice(0, 60)
+                    .map((i) => ({
+                      value: i.id,
+                      label: `${i.name}${i.kind === "magic" ? " ★" : ""}`,
+                    })),
+                  ...filterItems({ preset: "magic" })
+                    .filter(
+                      (i) =>
+                        i.category !== "weapon" &&
+                        i.category !== "armor" &&
+                        i.category !== "shield",
+                    )
+                    .slice(0, 60)
                     .map((i) => ({
                       value: i.id,
                       label: i.name,
@@ -484,13 +635,76 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
               />
             </div>
             <p className="mt-2 text-xs text-ink-muted">
-              Catálogo completo em{" "}
-              <Link href="/items" className="text-crimson underline">
-                /items
+              Catálogo e{" "}
+              <Link href="/items/forja" className="text-crimson underline">
+                Forja
               </Link>
-              . Equipe armas para ver ataque e dano.
+              . Equipe e sintonize itens mágicos para aplicar poderes.
             </p>
           </Panel>
+
+          {listItemSpells(state).length > 0 && (
+            <Panel title="Magias de itens" className="lg:col-span-3">
+              <ul className="space-y-2 text-sm">
+                {listItemSpells(state).map((entry) => {
+                  const spell = getSpell(entry.spellId);
+                  return (
+                    <li
+                      key={`${entry.inventoryId}-${entry.spellId}`}
+                      className="flex flex-wrap items-center justify-between gap-2 border-b border-frame/30 py-1"
+                    >
+                      <span>
+                        <Link
+                          href={`/spells/${entry.spellId}`}
+                          className="text-crimson underline"
+                        >
+                          {spell?.name ?? entry.spellId}
+                        </Link>
+                        <span className="text-ink-muted">
+                          {" "}
+                          — {entry.itemName}
+                          {entry.mode === "a-vontade"
+                            ? " (à vontade)"
+                            : ` (${entry.chargesMin ?? 1} carga${
+                                (entry.chargesMin ?? 1) > 1 ? "s" : ""
+                              })`}
+                          {entry.castAtLevel != null
+                            ? ` · ${entry.castAtLevel}º círculo`
+                            : ""}
+                        </span>
+                      </span>
+                      {entry.mode === "cargas" &&
+                        entry.chargesMaxItem != null && (
+                          <button
+                            type="button"
+                            className="text-xs text-gold"
+                            onClick={() =>
+                              updateState((s) => ({
+                                ...s,
+                                inventory: s.inventory.map((i) =>
+                                  i.id === entry.inventoryId
+                                    ? {
+                                        ...i,
+                                        chargesUsed: Math.min(
+                                          entry.chargesMaxItem!,
+                                          (i.chargesUsed ?? 0) +
+                                            (entry.chargesMin ?? 1),
+                                        ),
+                                      }
+                                    : i,
+                                ),
+                              }))
+                            }
+                          >
+                            Gastar carga
+                          </button>
+                        )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </Panel>
+          )}
 
           <Panel title="Características" className="lg:col-span-3">
             <ul className="columns-1 gap-4 text-sm md:columns-2">

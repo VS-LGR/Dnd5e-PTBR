@@ -19,6 +19,7 @@ export interface WeaponAttackSummary {
   damageModifier: number;
   damageType: string;
   magicBonus: number;
+  extraDamage?: string | null;
   label: string;
 }
 
@@ -65,6 +66,7 @@ export function summarizeWeaponAttack(
     magicBonus?: number;
     versatileTwoHanded?: boolean;
     itemName?: string;
+    extraDamage?: string | null;
   },
 ): WeaponAttackSummary | null {
   const weapon = getWeapon(options.weaponEquipmentId);
@@ -87,7 +89,10 @@ export function summarizeWeaponAttack(
       : damageModifier > 0
         ? `+${damageModifier}`
         : `${damageModifier}`;
-  const label = `Ataque ${attackStr} · Dano ${damageDice}${dmgModStr} ${weapon.damageType}`;
+  const extra = options.extraDamage?.trim();
+  const label = `Ataque ${attackStr} · Dano ${damageDice}${dmgModStr} ${weapon.damageType}${
+    extra ? ` ${extra}` : ""
+  }`;
 
   return {
     weaponId: weapon.id,
@@ -99,6 +104,7 @@ export function summarizeWeaponAttack(
     damageModifier,
     damageType: weapon.damageType,
     magicBonus,
+    extraDamage: extra ?? null,
     label,
   };
 }

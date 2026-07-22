@@ -1,5 +1,9 @@
 import type { ItemCategory, ItemDefinition, ItemRarity } from "@/config/types";
 import { ARMORS, WEAPONS } from "@/config/equipment";
+import {
+  getForgeAsDefinition,
+  listForgeAsDefinitions,
+} from "@/lib/items/forgeRepository";
 import { ADVENTURING_GEAR } from "./gear";
 import magicRaw from "./magicItemsData.json";
 
@@ -137,14 +141,27 @@ export const ITEMS: ItemDefinition[] = [
   ...magicFromJson(),
 ];
 
+/** Merge catálogo estático + itens da Forja (localStorage, só no cliente). */
+export function listEffectiveItems(): ItemDefinition[] {
+  if (typeof window === "undefined") return [...ITEMS];
+  const forge = listForgeAsDefinitions();
+  if (!forge.length) return [...ITEMS];
+  const ids = new Set(forge.map((i) => i.id));
+  return [...ITEMS.filter((i) => !ids.has(i.id)), ...forge];
+}
+
 export function getItem(id: string): ItemDefinition | undefined {
-  return ITEMS.find((i) => i.id === id);
+  const staticItem = ITEMS.find((i) => i.id === id);
+  if (staticItem) return staticItem;
+  if (typeof window === "undefined") return undefined;
+  return getForgeAsDefinition(id);
 }
 
 export function searchItems(query: string): ItemDefinition[] {
+  const pool = listEffectiveItems();
   const q = query.trim().toLocaleLowerCase("pt-BR");
-  if (!q) return ITEMS;
-  return ITEMS.filter((item) =>
+  if (!q) return pool;
+  return pool.filter((item) =>
     [item.id, item.name, item.nameEn ?? "", item.description, item.category]
       .join(" ")
       .toLocaleLowerCase("pt-BR")
@@ -158,7 +175,8 @@ export type ItemFilterPreset =
   | "magic"
   | "weapons"
   | "armor"
-  | "gear";
+  | "gear"
+  | "created";
 
 export function filterItems(
   options: {
@@ -177,7 +195,7 @@ export function filterItems(
     kind = "all",
   } = options;
 
-  let list = query ? searchItems(query) : [...ITEMS];
+  let list = query ? searchItems(query) : listEffectiveItems();
 
   if (kind !== "all") {
     list = list.filter((i) => i.kind === kind);
@@ -195,6 +213,8 @@ export function filterItems(
     list = list.filter((i) => i.category === "armor" || i.category === "shield");
   } else if (preset === "gear") {
     list = list.filter((i) => i.category === "gear" || i.category === "tool");
+  } else if (preset === "created") {
+    list = list.filter((i) => i.source === "forja" || i.id.startsWith("forge-"));
   }
 
   if (rarity !== "all") {

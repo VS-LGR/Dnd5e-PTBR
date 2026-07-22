@@ -1839,7 +1839,7 @@
     "typeLine": "Poção, Raridade Varia",
     "rarity": "varies",
     "requiresAttunement": false,
-    "description": "Você recupera Pontos de Vida ao beber esta poção. O número de Pontos de Vida depende da raridade da poção, conforme mostrado na tabela abaixo. Seja qual for a sua potência, o líquido vermelho da poção brilha quando agitado. Poção HP recuperou raridade",
+    "description": "Você recupera Pontos de Vida ao beber esta poção. O número de Pontos de Vida depende da raridade da poção, conforme a tabela abaixo. Seja qual for a potência, o líquido vermelho brilha quando agitado.",
     "source": "basic-rules",
     "variants": []
   },

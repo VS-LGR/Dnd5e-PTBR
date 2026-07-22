@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   filterItems,
@@ -9,6 +9,11 @@ import {
 import type { ItemRarity } from "@/config/types";
 import { Input, Select } from "@/components/ui/Input";
 import { Panel, Badge } from "@/components/ui/Panel";
+import { DiceChip } from "@/components/ui/DiceChip";
+import {
+  extractDiceFormulas,
+  descriptionHasTable,
+} from "@/lib/items/parseDescription";
 
 const RARITY_LABEL: Record<string, string> = {
   mundane: "Mundano",
@@ -44,6 +49,11 @@ export function ItemsCatalogSection() {
   const [rarity, setRarity] = useState<ItemRarity | "all">("all");
   const [attunement, setAttunement] = useState<"all" | "yes" | "no">("all");
   const [kind, setKind] = useState<"all" | "mundane" | "magic">("all");
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    setTick((t) => t + 1);
+  }, []);
 
   const results = useMemo(
     () =>
@@ -54,17 +64,25 @@ export function ItemsCatalogSection() {
         attunement,
         kind,
       }),
-    [query, preset, rarity, attunement, kind],
+    [query, preset, rarity, attunement, kind, tick],
   );
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-display text-3xl text-crimson">Itens</h1>
-        <p className="text-ink-muted">
-          Catálogo de itens mundanos (PHB) e mágicos (Basic Rules), em português.
-          Filtre por poções, armas, armaduras e mais.
-        </p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="font-display text-3xl text-crimson">Itens</h1>
+          <p className="text-ink-muted">
+            Catálogo de itens mundanos (PHB) e mágicos (Basic Rules), em português.
+            Filtre por poções, armas, armaduras e mais.
+          </p>
+        </div>
+        <Link
+          href="/items/forja"
+          className="rounded-sm border-2 border-crimson bg-crimson px-4 py-2 font-display text-sm text-parchment hover:bg-crimson-deep"
+        >
+          Forja de Itens
+        </Link>
       </div>
 
       <Panel title="Filtros">
@@ -86,6 +104,7 @@ export function ItemsCatalogSection() {
               { value: "weapons", label: "Armas / munição" },
               { value: "armor", label: "Armaduras / escudos" },
               { value: "gear", label: "Equipamento / ferramentas" },
+              { value: "created", label: "Criados (Forja)" },
             ]}
           />
           <Select
@@ -142,13 +161,24 @@ export function ItemsCatalogSection() {
                 {item.requiresAttunement && (
                   <Badge tone="crimson">Sintonização</Badge>
                 )}
+                {(item.source === "forja" || item.id.startsWith("forge-")) && (
+                  <Badge tone="gold">Criado</Badge>
+                )}
+                {descriptionHasTable(item.description) && (
+                  <Badge tone="crimson">Tabela</Badge>
+                )}
               </div>
-              {item.weaponStats && (
-                <p className="mt-1 text-sm text-ink">
-                  {item.weaponStats.damage} {item.weaponStats.damageType}
-                  {item.weaponStats.properties.length > 0
-                    ? ` · ${item.weaponStats.properties.join(", ")}`
-                    : ""}
+              {(item.weaponStats || extractDiceFormulas(item.description, 3).length > 0) && (
+                <p className="mt-1 flex flex-wrap items-center gap-1.5 text-sm text-ink">
+                  {item.weaponStats && item.weaponStats.damage !== "—" && (
+                    <>
+                      <DiceChip formula={item.weaponStats.damage} />
+                      <span className="text-ink-muted">{item.weaponStats.damageType}</span>
+                    </>
+                  )}
+                  {extractDiceFormulas(item.description, 3).map((f) => (
+                    <DiceChip key={f} formula={f} />
+                  ))}
                 </p>
               )}
               {item.armorStats && (

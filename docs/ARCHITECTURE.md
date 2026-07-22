@@ -29,8 +29,23 @@ PDFs de estudo ficam fora do Git (`*.pdf` no `.gitignore`).
 
 - Mundanos: armas e armaduras PHB (com bloco de combate) + equipamento de aventureiro
 - Mágicos: Basic Rules A–Z (~248), glossário PT-BR
-- Filtros: Poções, Itens mágicos, Armas, Armaduras, Gear
+- Filtros: Poções, Itens mágicos, Armas, Armaduras, Gear, **Criados (Forja)**
 - Ficha: adicionar do catálogo, equipar arma → `Ataque +N · Dano XdY+M tipo` (`src/lib/items/combat.ts`)
+
+## Forja de Itens (`/items/forja`)
+
+Assistente próprio (4 passos: Identidade → Base → Poderes → Revisão) para montar itens mágicos customizados.
+
+| Peça | Arquivo |
+|------|---------|
+| Tipos / poderes | `src/lib/items/forgeTypes.ts` |
+| Orçamento por raridade | `src/lib/items/forgeBalance.ts` |
+| Descrição PT-BR | `src/lib/items/forgeGenerate.ts` |
+| Persistência localStorage (`dnd5e-ptbr-forge-items`) | `src/lib/items/forgeRepository.ts` |
+| Merge no catálogo | `getItem` / `filterItems` / `listEffectiveItems` |
+| UI | `src/components/sections/forge/*` |
+
+Na ficha (`InventoryItem`): `attuned`, `chargesUsed`; poderes de atributo/perícia/CA/combate via `forgeModifiers`; painel **Magias de itens** separado das preparadas.
 
 ## MotM
 

@@ -7,6 +7,7 @@ const nav = [
   { href: "/characters/new", label: "Criar" },
   { href: "/spells", label: "Magias" },
   { href: "/items", label: "Itens" },
+  { href: "/items/forja", label: "Forja" },
   { href: "/rules", label: "Regras" },
   { href: "/auth", label: "Conta" },
 ];

@@ -57,9 +57,14 @@ export function HomeFeaturesSection() {
       body: "Armas, armaduras, poções e itens mágicos com dano e bônus de ataque.",
       href: "/items",
     },
+    {
+      title: "Forja de Itens",
+      body: "Monte itens mágicos com orçamento por raridade e use na ficha.",
+      href: "/items/forja",
+    },
   ];
   return (
-    <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
         <Panel key={item.title} title={item.title}>
           <p className="text-ink-muted">{item.body}</p>

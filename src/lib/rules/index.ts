@@ -12,6 +12,11 @@ import {
 import { getArmor } from "@/config/equipment";
 import { getClass, getRace, getSubrace } from "@/config";
 import type { CastingType } from "@/lib/character/types";
+import {
+  forgeAbilityBonuses,
+  forgeSkillProficiencies,
+  inventoryArmorMagicBonus,
+} from "@/lib/items/forgeModifiers";
 
 export function abilityModifier(score: number): number {
   return Math.floor((score - 10) / 2);
@@ -47,6 +52,7 @@ export function finalAbilityScores(state: CharacterState): AbilityScores {
   ];
   const useMotm = race?.abilityScoreModel === "motm-floating";
   const useOriginRemap = Boolean(state.originCustomization?.remappedAbilityBonuses);
+  const itemBonuses = forgeAbilityBonuses(state);
   const result = { ...state.baseAbilities };
   for (const key of keys) {
     let score = state.baseAbilities[key];
@@ -62,6 +68,7 @@ export function finalAbilityScores(state: CharacterState): AbilityScores {
     for (const pick of Object.values(state.featAbilityPicks ?? {})) {
       score += pick[key] ?? 0;
     }
+    score += itemBonuses[key] ?? 0;
     result[key] = Math.min(30, Math.max(1, score));
   }
   return result;
@@ -78,7 +85,8 @@ export function skillBonus(
   const level = characterLevel(state);
   const pb = proficiencyBonus(level);
   if (state.skillExpertise.includes(skill)) return mod + pb * 2;
-  if (state.skillProficiencies.includes(skill)) return mod + pb;
+  const fromItem = forgeSkillProficiencies(state).includes(skill);
+  if (state.skillProficiencies.includes(skill) || fromItem) return mod + pb;
   return mod;
 }
 
@@ -163,6 +171,7 @@ export function computeArmorClass(state: CharacterState): number {
   if (state.shieldEquipped) {
     ac += 2;
   }
+  ac += inventoryArmorMagicBonus(state);
   return ac;
 }
 

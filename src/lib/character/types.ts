@@ -79,6 +79,10 @@ export interface InventoryItem {
   itemId?: string;
   magicBonus?: number;
   notes?: string;
+  /** Sintonizado (máx. 3 na ficha, regra PHB) */
+  attuned?: boolean;
+  /** Cargas já gastas (itens da Forja / com charges) */
+  chargesUsed?: number;
 }
 
 export interface Personality {
