@@ -42,6 +42,7 @@ import {
   characterHasWildShape,
 } from "@/components/sections/WildShapePanel";
 import { ToolProficienciesPanel } from "@/components/ui/ToolProficienciesPanel";
+import { CloudAuthBanner } from "@/components/ui/CloudAuthBanner";
 import { useRouter } from "next/navigation";
 
 const SKILLS = Object.keys(SKILL_META) as SkillKey[];
@@ -56,6 +57,7 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
   const [record, setRecord] = useState<CharacterRecord | null>(null);
   const [tab, setTab] = useState("combat");
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   useEffect(() => {
     void getCharacter(characterId).then(setRecord);
@@ -75,9 +77,12 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
   async function persist() {
     if (!record) return;
     setSaving(true);
+    setSaveError(null);
     try {
       const saved = await saveCharacter(record.data, record.id);
       setRecord(saved);
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : "Erro ao salvar");
     } finally {
       setSaving(false);
     }
@@ -98,6 +103,15 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
 
   return (
     <div className="space-y-4">
+      <CloudAuthBanner />
+      {saveError ? (
+        <p className="rounded-sm border-2 border-crimson/40 bg-crimson/10 px-3 py-2 text-sm text-crimson">
+          {saveError}{" "}
+          <Link href="/auth" className="underline underline-offset-2">
+            Ir para Conta
+          </Link>
+        </p>
+      ) : null}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="font-display text-3xl text-crimson">{state.name}</h1>

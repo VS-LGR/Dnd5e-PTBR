@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CLASSES, FEATS, getClass, getSubclass } from "@/config";
 import type { AbilityKey, CharacterState } from "@/lib/character/types";
@@ -17,6 +18,7 @@ import { syncOriginSpellsForCharacter } from "@/lib/character/originSpells";
 import { Button } from "@/components/ui/Button";
 import { NumberField, Select } from "@/components/ui/Input";
 import { Panel, Badge } from "@/components/ui/Panel";
+import { CloudAuthBanner } from "@/components/ui/CloudAuthBanner";
 import {
   AsiChoicePanel,
   asiBonusesFromPanel,
@@ -162,6 +164,8 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
         </p>
       </div>
 
+      <CloudAuthBanner />
+
       <Panel title="Escolhas do nível">
         <div className="grid grid-cols-1 gap-5">
           <Select
@@ -265,7 +269,16 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
           </p>
         )}
 
-        {error && <p className="mt-4 text-sm text-crimson">{error}</p>}
+        {error && (
+          <p className="mt-4 text-sm text-crimson">
+            {error}{" "}
+            {error.toLowerCase().includes("login") ? (
+              <Link href="/auth" className="underline underline-offset-2">
+                Ir para Conta
+              </Link>
+            ) : null}
+          </p>
+        )}
 
         <Button
           type="button"

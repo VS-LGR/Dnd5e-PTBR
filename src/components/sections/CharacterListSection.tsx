@@ -8,10 +8,13 @@ import { getRace } from "@/config";
 import { Button } from "@/components/ui/Button";
 import { Panel } from "@/components/ui/Panel";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { CloudAuthBanner } from "@/components/ui/CloudAuthBanner";
+import { hasSupabaseConfig } from "@/lib/supabase/client";
 
 export function CharacterListSection() {
   const [items, setItems] = useState<CharacterRecord[]>([]);
   const [loading, setLoading] = useState(true);
+  const cloud = hasSupabaseConfig();
 
   async function refresh() {
     setLoading(true);
@@ -30,7 +33,11 @@ export function CharacterListSection() {
     <div className="space-y-6 sm:space-y-8">
       <PageHeader
         title="Meus personagens"
-        description="Sem Supabase configurado, as fichas ficam salvas neste navegador."
+        description={
+          cloud
+            ? "Com a Conta ativa, as fichas sincronizam na nuvem. Sem login, você vê as fichas locais deste navegador."
+            : "As fichas ficam salvas neste navegador até o Supabase ser configurado."
+        }
         actions={
           <Link href="/characters/new">
             <Button type="button" className="w-full sm:w-auto">
@@ -39,6 +46,8 @@ export function CharacterListSection() {
           </Link>
         }
       />
+
+      <CloudAuthBanner />
 
       {loading ? (
         <p className="text-ink-muted">Carregando…</p>

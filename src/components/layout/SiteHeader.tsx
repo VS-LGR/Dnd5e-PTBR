@@ -12,6 +12,7 @@ const nav = [
   { href: "/items", label: "Itens" },
   { href: "/items/forja", label: "Forja" },
   { href: "/rules", label: "Regras" },
+  { href: "/auth", label: "Conta" },
 ];
 
 function linkActive(pathname: string, href: string): boolean {
@@ -26,6 +27,7 @@ function linkActive(pathname: string, href: string): boolean {
   if (href === "/items") {
     return pathname.startsWith("/items") && !pathname.startsWith("/items/forja");
   }
+  if (href === "/auth") return pathname === "/auth" || pathname.startsWith("/auth/");
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 

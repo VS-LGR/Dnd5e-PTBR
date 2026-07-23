@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
+import { AuthSection } from "@/components/sections/AuthSection";
 
-/** Conta/auth temporariamente desativada na UI. */
 export default function AuthPage() {
-  redirect("/");
+  return <AuthSection />;
 }

@@ -88,7 +88,11 @@ Híbrido: formas do PDF filtradas por nível/subclasse; ficha completa se existi
 ## Persistência
 
 - `schemaVersion: 2` + `migrateCharacterState`
-- Sem Supabase: localStorage
+- Sem env Supabase: localStorage (`dnd5e-ptbr-characters`)
+- Com env (`NEXT_PUBLIC_SUPABASE_URL` + `PUBLISHABLE_KEY` ou `ANON_KEY`): Auth + tabela `characters` (RLS)
+- Conta em `/auth`; sem login, lista/edita fichas locais; salvar na nuvem exige sessão
+- Após login: opção de enviar fichas locais para a nuvem
+- SQL: `supabase/migrations/001_init.sql`
 
 ## Deploy
 

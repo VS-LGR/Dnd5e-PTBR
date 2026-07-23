@@ -36,6 +36,7 @@ import { ClassFlavorPanel } from "@/components/ui/ClassFlavorPanel";
 import { LifePathPanel } from "@/components/ui/LifePathPanel";
 import { ToolProficienciesPanel } from "@/components/ui/ToolProficienciesPanel";
 import { InvocationPicker } from "@/components/ui/InvocationPicker";
+import { CloudAuthBanner } from "@/components/ui/CloudAuthBanner";
 import {
   AsiChoicePanel,
   asiBonusesFromPanel,
@@ -272,6 +273,8 @@ export function CharacterWizardSection() {
           Assistente Cap. 1 + MotM/Tasha. Nível inicial e point buy validados.
         </p>
       </div>
+
+      <CloudAuthBanner />
 
       <ol className="flex flex-wrap gap-2">
         {STEPS.map((label, i) => (
@@ -1024,7 +1027,16 @@ export function CharacterWizardSection() {
             backstory={state.backstory}
             onAppend={(text) => update({ backstory: text })}
           />
-          {error && <p className="mt-3 text-sm text-crimson">{error}</p>}
+          {error && (
+            <p className="mt-3 text-sm text-crimson">
+              {error}{" "}
+              {error.toLowerCase().includes("login") ? (
+                <Link href="/auth" className="underline underline-offset-2">
+                  Ir para Conta
+                </Link>
+              ) : null}
+            </p>
+          )}
           <Button type="button" className="mt-4" disabled={saving} onClick={finish}>
             {saving ? "Salvando…" : "Salvar personagem"}
           </Button>

@@ -34,15 +34,40 @@ function writeLocal(records: CharacterRecord[]) {
   localStorage.setItem(LOCAL_KEY, JSON.stringify(records));
 }
 
+function clearLocal() {
+  localStorage.removeItem(LOCAL_KEY);
+}
+
 function newId(): string {
   return crypto.randomUUID();
 }
 
+function sortByUpdated(records: CharacterRecord[]): CharacterRecord[] {
+  return [...records].sort(
+    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+  );
+}
+
+async function getAuthUser() {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  return user;
+}
+
+/** Fichas só neste navegador (independente do cloud). */
+export function peekLocalCharacters(): CharacterRecord[] {
+  return sortByUpdated(readLocal());
+}
+
 export async function listCharacters(): Promise<CharacterRecord[]> {
   if (!hasSupabaseConfig()) {
-    return readLocal().sort(
-      (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
-    );
+    return sortByUpdated(readLocal());
+  }
+  const user = await getAuthUser();
+  if (!user) {
+    return sortByUpdated(readLocal());
   }
   const supabase = createClient();
   const { data, error } = await supabase
@@ -63,6 +88,10 @@ export async function listCharacters(): Promise<CharacterRecord[]> {
 
 export async function getCharacter(id: string): Promise<CharacterRecord | null> {
   if (!hasSupabaseConfig()) {
+    return readLocal().find((c) => c.id === id) ?? null;
+  }
+  const user = await getAuthUser();
+  if (!user) {
     return readLocal().find((c) => c.id === id) ?? null;
   }
   const supabase = createClient();
@@ -122,10 +151,8 @@ export async function saveCharacter(
   }
 
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) throw new Error("Faça login para salvar personagens.");
+  const user = await getAuthUser();
+  if (!user) throw new Error("Faça login para salvar personagens na nuvem.");
 
   if (id) {
     const { data, error } = await supabase
@@ -143,7 +170,7 @@ export async function saveCharacter(
       id: data.id,
       userId: data.user_id,
       name: data.name,
-      data: data.data as CharacterState,
+      data: migrateCharacterState(data.data),
       level: data.level,
       updatedAt: data.updated_at,
       createdAt: data.created_at,
@@ -165,7 +192,7 @@ export async function saveCharacter(
     id: data.id,
     userId: data.user_id,
     name: data.name,
-    data: data.data as CharacterState,
+    data: migrateCharacterState(data.data),
     level: data.level,
     updatedAt: data.updated_at,
     createdAt: data.created_at,
@@ -177,7 +204,46 @@ export async function deleteCharacter(id: string): Promise<void> {
     writeLocal(readLocal().filter((r) => r.id !== id));
     return;
   }
+  const user = await getAuthUser();
+  if (!user) {
+    writeLocal(readLocal().filter((r) => r.id !== id));
+    return;
+  }
   const supabase = createClient();
   const { error } = await supabase.from("characters").delete().eq("id", id);
   if (error) throw error;
+}
+
+/** Envia fichas do localStorage para a nuvem e limpa o armazenamento local. */
+export async function migrateLocalCharactersToCloud(): Promise<{
+  uploaded: number;
+  failed: number;
+}> {
+  if (!hasSupabaseConfig()) {
+    throw new Error("Supabase não configurado.");
+  }
+  const user = await getAuthUser();
+  if (!user) throw new Error("Faça login para enviar fichas locais.");
+
+  const local = readLocal();
+  if (local.length === 0) return { uploaded: 0, failed: 0 };
+
+  let uploaded = 0;
+  let failed = 0;
+  const remaining: CharacterRecord[] = [];
+
+  for (const record of local) {
+    try {
+      await saveCharacter(record.data);
+      uploaded += 1;
+    } catch {
+      failed += 1;
+      remaining.push(record);
+    }
+  }
+
+  if (remaining.length === 0) clearLocal();
+  else writeLocal(remaining);
+
+  return { uploaded, failed };
 }
