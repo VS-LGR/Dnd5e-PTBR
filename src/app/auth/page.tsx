@@ -1,10 +1,6 @@
-import type { Metadata } from "next";
-import { AuthSection } from "@/components/sections/AuthSection";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Conta",
-};
-
+/** Conta/auth temporariamente desativada na UI. */
 export default function AuthPage() {
-  return <AuthSection />;
+  redirect("/");
 }

@@ -12,7 +12,6 @@ const nav = [
   { href: "/items", label: "Itens" },
   { href: "/items/forja", label: "Forja" },
   { href: "/rules", label: "Regras" },
-  { href: "/auth", label: "Conta" },
 ];
 
 function linkActive(pathname: string, href: string): boolean {
