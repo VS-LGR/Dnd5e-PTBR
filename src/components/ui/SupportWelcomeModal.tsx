@@ -160,7 +160,7 @@ export function SupportWelcomeModal() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => markDismissed()}
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-sm border-2 border-crimson-deep bg-crimson px-4 py-2.5 text-center font-display text-sm tracking-wide text-parchment shadow-sm touch-manipulation transition hover:bg-crimson-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crimson"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-sm border-2 border-crimson-deep bg-crimson px-4 py-2.5 text-center font-display text-sm tracking-wide !text-[#f4e8d0] shadow-sm touch-manipulation transition hover:bg-crimson-deep hover:!text-[#f4e8d0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crimson"
             >
               Apoiar com uma doação
             </a>
