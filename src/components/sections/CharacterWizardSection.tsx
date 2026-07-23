@@ -22,7 +22,6 @@ import {
   type Alignment,
   type AsiChoice,
   type CharacterState,
-  type SkillKey,
 } from "@/lib/character/types";
 import { syncDerivedHp, asiLevelsForClass } from "@/lib/character/levelUp";
 import { saveCharacter } from "@/lib/character/repository";
@@ -33,11 +32,50 @@ import { Panel, Badge } from "@/components/ui/Panel";
 import { PointBuyPanel, isPointBuyValid } from "@/components/ui/PointBuyPanel";
 import { MotmAsiPicker, isMotmAsiValid, type MotmAsiMode } from "@/components/ui/MotmAsiPicker";
 import { EquipmentStepPanel } from "@/components/sections/EquipmentStepPanel";
-import { FeatPicker } from "@/components/ui/FeatPicker";
 import { ClassFlavorPanel } from "@/components/ui/ClassFlavorPanel";
 import { LifePathPanel } from "@/components/ui/LifePathPanel";
-import { NameGeneratorPanel } from "@/components/ui/NameGeneratorPanel";
 import { ToolProficienciesPanel } from "@/components/ui/ToolProficienciesPanel";
+import {
+  AsiChoicePanel,
+  asiBonusesFromPanel,
+  type AsiPanelMode,
+} from "@/components/ui/AsiChoicePanel";
+import {
+  composeSkillProficiencies,
+  composeToolProficiencies,
+  extractClassSkillPicks,
+  getGrantedSkillProficiencies,
+  getRacialSkillProficiencies,
+  getBackgroundSkillProficiencies,
+} from "@/lib/character/skills";
+
+function panelModeFromChoice(choice: AsiChoice): AsiPanelMode {
+  if (choice.mode === "feat") return "feat";
+  const entries = Object.entries(choice.abilityBonuses ?? {}).filter(
+    ([, v]) => typeof v === "number" && v > 0,
+  );
+  if (entries.length >= 2) return "asi1x2";
+  if (entries.length === 1 && entries[0][1] === 1) return "asi1x2";
+  return "asi2";
+}
+
+function abilitiesFromChoice(choice: AsiChoice): {
+  primary: AbilityKey;
+  secondary: AbilityKey;
+} {
+  const entries = Object.entries(choice.abilityBonuses ?? {}).filter(
+    ([, v]) => typeof v === "number" && v > 0,
+  ) as [AbilityKey, number][];
+  if (entries.length >= 2) {
+    return { primary: entries[0][0], secondary: entries[1][0] };
+  }
+  if (entries.length === 1) {
+    const primary = entries[0][0];
+    const secondary = primary === "strength" ? "constitution" : "strength";
+    return { primary, secondary };
+  }
+  return { primary: "strength", secondary: "constitution" };
+}
 
 const STEPS = [
   "Identidade",
@@ -72,7 +110,21 @@ function asiLevelsUpTo(classId: string, level: number): number[] {
 export function CharacterWizardSection() {
   const router = useRouter();
   const [step, setStep] = useState(0);
-  const [state, setState] = useState<CharacterState>(() => createEmptyCharacterState());
+  const [state, setState] = useState<CharacterState>(() => {
+    const base = createEmptyCharacterState();
+    const classId = base.classes[0].classId;
+    return {
+      ...base,
+      skillProficiencies: composeSkillProficiencies(
+        base.raceId,
+        base.subraceId,
+        base.backgroundId,
+        [],
+      ),
+      toolProficiencies: composeToolProficiencies(classId, base.backgroundId),
+      saveProficiencies: getClass(classId)?.savingThrows ?? [],
+    };
+  });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [motmMode, setMotmMode] = useState<MotmAsiMode>("plus2plus1");
@@ -83,6 +135,29 @@ export function CharacterWizardSection() {
   const classDef = getClass(state.classes[0]?.classId ?? "fighter");
   const startingLevel = state.startingLevel;
   const scores = useMemo(() => finalAbilityScores(state), [state]);
+  const grantedSkills = useMemo(
+    () =>
+      getGrantedSkillProficiencies(state.raceId, state.subraceId, state.backgroundId),
+    [state.raceId, state.subraceId, state.backgroundId],
+  );
+  const grantedSkillSet = useMemo(() => new Set(grantedSkills), [grantedSkills]);
+  const classSkillPicks = useMemo(
+    () =>
+      extractClassSkillPicks(
+        state.skillProficiencies,
+        state.classes[0]?.classId ?? "fighter",
+        state.raceId,
+        state.subraceId,
+        state.backgroundId,
+      ),
+    [
+      state.skillProficiencies,
+      state.classes,
+      state.raceId,
+      state.subraceId,
+      state.backgroundId,
+    ],
+  );
 
   useEffect(() => {
     if (!classDef) return;
@@ -163,6 +238,21 @@ export function CharacterWizardSection() {
       }
 
       next = syncDerivedHp(next);
+      const classId = next.classes[0]?.classId ?? "fighter";
+      const classPicks = extractClassSkillPicks(
+        next.skillProficiencies,
+        classId,
+        next.raceId,
+        next.subraceId,
+        next.backgroundId,
+      );
+      next.skillProficiencies = composeSkillProficiencies(
+        next.raceId,
+        next.subraceId,
+        next.backgroundId,
+        classPicks,
+      );
+      next.toolProficiencies = composeToolProficiencies(classId, next.backgroundId);
       const record = await saveCharacter(next);
       router.push(`/characters/${record.id}`);
     } catch (e) {
@@ -224,11 +314,6 @@ export function CharacterWizardSection() {
               onChange={(e) => setStartingLevel(Number(e.target.value))}
             />
           </div>
-          <NameGeneratorPanel
-            raceId={state.raceId}
-            value={state.name}
-            onPick={(name) => update({ name })}
-          />
           <p className="mt-3 text-sm text-ink-muted">
             PV acima do 1º nível usam a média do dado de vida. ASI/talentos dos níveis alcançados
             são escolhidos no passo Progressão.
@@ -245,14 +330,29 @@ export function CharacterWizardSection() {
               onChange={(e) => {
                 const raceId = e.target.value;
                 const r = getRace(raceId);
+                const subraceId = r?.subraces[0]?.id ?? null;
+                const classId = state.classes[0]?.classId ?? "fighter";
+                const classPicks = extractClassSkillPicks(
+                  state.skillProficiencies,
+                  classId,
+                  state.raceId,
+                  state.subraceId,
+                  state.backgroundId,
+                );
                 update({
                   raceId,
-                  subraceId: r?.subraces[0]?.id ?? null,
+                  subraceId,
                   languages: r?.languages ?? ["Comum"],
                   motmAbilityBonuses: {},
                   raceChoices: {},
                   chosenSize: r?.sizeOptions?.[0] ?? null,
                   customLineage: raceId === "custom-lineage",
+                  skillProficiencies: composeSkillProficiencies(
+                    raceId,
+                    subraceId,
+                    state.backgroundId,
+                    classPicks,
+                  ),
                 });
               }}
               options={RACES.map((r) => ({
@@ -264,7 +364,26 @@ export function CharacterWizardSection() {
               <Select
                 label="Sub-raça"
                 value={state.subraceId ?? ""}
-                onChange={(e) => update({ subraceId: e.target.value || null })}
+                onChange={(e) => {
+                  const subraceId = e.target.value || null;
+                  const classId = state.classes[0]?.classId ?? "fighter";
+                  const classPicks = extractClassSkillPicks(
+                    state.skillProficiencies,
+                    classId,
+                    state.raceId,
+                    state.subraceId,
+                    state.backgroundId,
+                  );
+                  update({
+                    subraceId,
+                    skillProficiencies: composeSkillProficiencies(
+                      state.raceId,
+                      subraceId,
+                      state.backgroundId,
+                      classPicks,
+                    ),
+                  });
+                }}
                 options={race.subraces.map((s) => ({ value: s.id, label: s.name }))}
               />
             )}
@@ -363,7 +482,6 @@ export function CharacterWizardSection() {
               onChange={(e) => {
                 const classId = e.target.value;
                 const def = getClass(classId);
-                const bg = getBackground(state.backgroundId);
                 update({
                   classes: [
                     {
@@ -374,14 +492,14 @@ export function CharacterWizardSection() {
                     },
                   ],
                   saveProficiencies: def?.savingThrows ?? [],
-                  skillProficiencies: [],
+                  skillProficiencies: composeSkillProficiencies(
+                    state.raceId,
+                    state.subraceId,
+                    state.backgroundId,
+                    [],
+                  ),
                   optionalFeatureIds: [],
-                  toolProficiencies: [
-                    ...new Set([
-                      ...(def?.toolProficiencies ?? []),
-                      ...(bg?.toolProficiencies ?? []),
-                    ]),
-                  ],
+                  toolProficiencies: composeToolProficiencies(classId, state.backgroundId),
                 });
               }}
               options={CLASSES.map((c) => ({
@@ -430,27 +548,42 @@ export function CharacterWizardSection() {
             <p className="font-display text-xs uppercase tracking-widest text-crimson">
               Perícias (escolha {classDef.skillChoices.choose})
             </p>
+            {grantedSkills.length > 0 && (
+              <p className="mt-2 text-xs text-ink-muted">
+                Já concedidas por raça/antecedente:{" "}
+                {grantedSkills.map((s) => SKILL_META[s].label).join(", ")}.
+              </p>
+            )}
             <div className="mt-2 grid gap-2 sm:grid-cols-2">
               {classDef.skillChoices.from.map((skill) => {
+                const locked = grantedSkillSet.has(skill);
                 const checked = state.skillProficiencies.includes(skill);
-                const atCap =
-                  state.skillProficiencies.filter((s) => classDef.skillChoices.from.includes(s))
-                    .length >= classDef.skillChoices.choose;
+                const atCap = classSkillPicks.length >= classDef.skillChoices.choose;
                 return (
                   <label key={skill} className="flex items-center gap-2 text-sm">
                     <input
                       type="checkbox"
                       checked={checked}
-                      disabled={!checked && atCap}
+                      disabled={locked || (!checked && atCap)}
                       onChange={() => {
+                        if (locked) return;
+                        const nextPicks = checked
+                          ? classSkillPicks.filter((s) => s !== skill)
+                          : [...classSkillPicks, skill];
                         update({
-                          skillProficiencies: checked
-                            ? state.skillProficiencies.filter((s) => s !== skill)
-                            : [...state.skillProficiencies, skill],
+                          skillProficiencies: composeSkillProficiencies(
+                            state.raceId,
+                            state.subraceId,
+                            state.backgroundId,
+                            nextPicks,
+                          ),
                         });
                       }}
                     />
                     {SKILL_META[skill].label}
+                    {locked ? (
+                      <span className="text-xs text-ink-muted">(raça/antecedente)</span>
+                    ) : null}
                   </label>
                 );
               })}
@@ -616,19 +749,24 @@ export function CharacterWizardSection() {
             label="Antecedente"
             value={state.backgroundId}
             onChange={(e) => {
-              const bg = getBackground(e.target.value);
-              const cls = getClass(state.classes[0]?.classId ?? "");
+              const backgroundId = e.target.value;
+              const classId = state.classes[0]?.classId ?? "fighter";
+              const classPicks = extractClassSkillPicks(
+                state.skillProficiencies,
+                classId,
+                state.raceId,
+                state.subraceId,
+                state.backgroundId,
+              );
               update({
-                backgroundId: e.target.value,
-                skillProficiencies: [
-                  ...new Set([...state.skillProficiencies, ...(bg?.skillProficiencies ?? [])]),
-                ] as SkillKey[],
-                toolProficiencies: [
-                  ...new Set([
-                    ...(cls?.toolProficiencies ?? []),
-                    ...(bg?.toolProficiencies ?? []),
-                  ]),
-                ],
+                backgroundId,
+                skillProficiencies: composeSkillProficiencies(
+                  state.raceId,
+                  state.subraceId,
+                  backgroundId,
+                  classPicks,
+                ),
+                toolProficiencies: composeToolProficiencies(classId, backgroundId),
               });
             }}
             options={BACKGROUNDS.map((b) => ({ value: b.id, label: b.name }))}
@@ -636,9 +774,22 @@ export function CharacterWizardSection() {
           {(() => {
             const bg = getBackground(state.backgroundId);
             if (!bg) return null;
+            const racialSkills = getRacialSkillProficiencies(state.raceId, state.subraceId);
+            const bgSkills = getBackgroundSkillProficiencies(state.backgroundId);
             return (
               <div className="mt-4 space-y-3 text-sm text-ink-muted">
                 <p>{bg.description}</p>
+                <p>
+                  Perícias do antecedente:{" "}
+                  <strong>{bgSkills.map((s) => SKILL_META[s].label).join(", ") || "nenhuma"}</strong>
+                  {racialSkills.length > 0 ? (
+                    <>
+                      {" "}
+                      · Raça:{" "}
+                      <strong>{racialSkills.map((s) => SKILL_META[s].label).join(", ")}</strong>
+                    </>
+                  ) : null}
+                </p>
                 <p>
                   <strong>{bg.feature.name}:</strong> {bg.feature.description}
                 </p>
@@ -696,100 +847,102 @@ export function CharacterWizardSection() {
               Nível {startingLevel}: nenhum ASI automático neste nível. Você pode avançar.
             </p>
           ) : (
-            <div className="space-y-4">
-              {asiDraft.map((choice, idx) => (
-                <div key={choice.level} className="rounded-sm border border-frame p-3">
-                  <p className="font-display text-sm text-crimson">Nível {choice.level}</p>
-                  <Select
-                    label="Opção"
-                    value={choice.mode}
-                    onChange={(e) => {
-                      const mode = e.target.value as "asi" | "feat";
+            <div className="space-y-5">
+              <p className="text-sm leading-relaxed text-ink-muted">
+                Nos níveis em que a classe concede Aumento no Valor de Habilidade, escolha{" "}
+                <strong className="text-ink">+2 em um atributo</strong>,{" "}
+                <strong className="text-ink">+1 em dois atributos</strong>, ou um{" "}
+                <strong className="text-ink">talento</strong> no lugar disso.
+              </p>
+              {asiDraft.map((choice, idx) => {
+                const panelMode = panelModeFromChoice(choice);
+                const { primary, secondary } = abilitiesFromChoice(choice);
+                return (
+                  <AsiChoicePanel
+                    key={choice.level}
+                    heading={`Nível ${choice.level}`}
+                    helpText="Escolha exatamente uma das opções. O benefício é aplicado ao criar a ficha."
+                    mode={panelMode}
+                    onModeChange={(mode) => {
+                      setAsiDraft((prev) =>
+                        prev.map((a, i) => {
+                          if (i !== idx) return a;
+                          if (mode === "feat" || mode === "none") {
+                            return {
+                              ...a,
+                              mode: "feat",
+                              featId: a.featId ?? FEATS[0]?.id,
+                              abilityBonuses: undefined,
+                            };
+                          }
+                          let second = secondary;
+                          if (mode === "asi1x2" && second === primary) {
+                            second = primary === "strength" ? "constitution" : "strength";
+                          }
+                          const bonuses = asiBonusesFromPanel(mode, primary, second);
+                          return {
+                            ...a,
+                            mode: "asi",
+                            featId: undefined,
+                            abilityBonuses: bonuses ?? { [primary]: 2 },
+                          };
+                        }),
+                      );
+                    }}
+                    abilityPrimary={primary}
+                    onAbilityPrimaryChange={(key) => {
+                      setAsiDraft((prev) =>
+                        prev.map((a, i) => {
+                          if (i !== idx || a.mode !== "asi") return a;
+                          const mode = panelModeFromChoice(a);
+                          const { secondary: sec } = abilitiesFromChoice(a);
+                          return {
+                            ...a,
+                            abilityBonuses:
+                              asiBonusesFromPanel(mode === "asi1x2" ? "asi1x2" : "asi2", key, sec) ??
+                              { [key]: 2 },
+                          };
+                        }),
+                      );
+                    }}
+                    abilitySecondary={secondary}
+                    onAbilitySecondaryChange={(key) => {
+                      setAsiDraft((prev) =>
+                        prev.map((a, i) => {
+                          if (i !== idx || a.mode !== "asi") return a;
+                          const { primary: prim } = abilitiesFromChoice(a);
+                          return {
+                            ...a,
+                            abilityBonuses:
+                              asiBonusesFromPanel("asi1x2", prim, key) ?? {
+                                [prim]: 1,
+                                [key]: 1,
+                              },
+                          };
+                        }),
+                      );
+                    }}
+                    featId={choice.featId ?? FEATS[0]?.id ?? "alert"}
+                    onFeatIdChange={(featId) =>
+                      setAsiDraft((prev) =>
+                        prev.map((a, i) => (i === idx ? { ...a, featId } : a)),
+                      )
+                    }
+                    featAbilityPicks={featPicks[choice.featId ?? ""] ?? {}}
+                    onFeatAbilityPicksChange={(picks) => {
+                      const featId = choice.featId ?? FEATS[0]?.id ?? "alert";
+                      setFeatPicks((prev) => ({ ...prev, [featId]: picks }));
                       setAsiDraft((prev) =>
                         prev.map((a, i) =>
-                          i === idx
-                            ? {
-                                ...a,
-                                mode,
-                                featId: mode === "feat" ? FEATS[0]?.id : undefined,
-                                abilityBonuses: mode === "asi" ? { strength: 2 } : undefined,
-                              }
-                            : a,
+                          i === idx ? { ...a, featAbilityChoices: picks } : a,
                         ),
                       );
                     }}
-                    options={[
-                      { value: "asi", label: "Melhoria de atributo" },
-                      { value: "feat", label: "Talento" },
-                    ]}
+                    raceId={state.raceId}
+                    subraceId={state.subraceId}
                   />
-                  {choice.mode === "asi" ? (
-                    <div className="mt-2 grid gap-2 sm:grid-cols-2">
-                      <Select
-                        label="Atributo principal"
-                        value={
-                          (Object.entries(choice.abilityBonuses ?? {}).find(([, v]) => v)?.[0] as string) ??
-                          "strength"
-                        }
-                        onChange={(e) => {
-                          const key = e.target.value as AbilityKey;
-                          const amount = Object.values(choice.abilityBonuses ?? {})[0] ?? 2;
-                          setAsiDraft((prev) =>
-                            prev.map((a, i) =>
-                              i === idx ? { ...a, abilityBonuses: { [key]: amount } } : a,
-                            ),
-                          );
-                        }}
-                        options={ABILITY_KEYS.map((k) => ({
-                          value: k,
-                          label: ABILITY_LABELS[k],
-                        }))}
-                      />
-                      <Select
-                        label="Bônus"
-                        value={String(Object.values(choice.abilityBonuses ?? {})[0] ?? 2)}
-                        onChange={(e) => {
-                          const amount = Number(e.target.value);
-                          const key =
-                            (Object.keys(choice.abilityBonuses ?? {})[0] as AbilityKey) || "strength";
-                          setAsiDraft((prev) =>
-                            prev.map((a, i) =>
-                              i === idx ? { ...a, abilityBonuses: { [key]: amount } } : a,
-                            ),
-                          );
-                        }}
-                        options={[
-                          { value: "2", label: "+2" },
-                          { value: "1", label: "+1" },
-                        ]}
-                      />
-                    </div>
-                  ) : (
-                    <div className="mt-2">
-                      <FeatPicker
-                        value={choice.featId ?? FEATS[0]?.id ?? "alert"}
-                        onChange={(featId) =>
-                          setAsiDraft((prev) =>
-                            prev.map((a, i) => (i === idx ? { ...a, featId } : a)),
-                          )
-                        }
-                        abilityPicks={featPicks[choice.featId ?? ""] ?? {}}
-                        onAbilityPicksChange={(picks) => {
-                          const featId = choice.featId ?? FEATS[0]?.id ?? "alert";
-                          setFeatPicks((prev) => ({ ...prev, [featId]: picks }));
-                          setAsiDraft((prev) =>
-                            prev.map((a, i) =>
-                              i === idx ? { ...a, featAbilityChoices: picks } : a,
-                            ),
-                          );
-                        }}
-                        raceId={state.raceId}
-                        subraceId={state.subraceId}
-                      />
-                    </div>
-                  )}
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </Panel>
@@ -836,6 +989,14 @@ export function CharacterWizardSection() {
             <div>
               <dt className="text-crimson">Antecedente</dt>
               <dd>{getBackground(state.backgroundId)?.name}</dd>
+            </div>
+            <div className="sm:col-span-2">
+              <dt className="text-crimson">Perícias</dt>
+              <dd>
+                {state.skillProficiencies.length === 0
+                  ? "—"
+                  : state.skillProficiencies.map((s) => SKILL_META[s].label).join(", ")}
+              </dd>
             </div>
             <div>
               <dt className="text-crimson">Riqueza</dt>

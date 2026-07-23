@@ -31,6 +31,8 @@ export interface SubraceDefinition {
   name: string;
   abilityBonuses: Partial<AbilityScores>;
   traits: RacialTrait[];
+  /** Fixed skill proficiencies granted by this subrace */
+  skillProficiencies?: SkillKey[];
   extraLanguages?: string[];
   speedOverride?: number;
   source?: ContentSource;
@@ -57,6 +59,8 @@ export interface RaceDefinition {
   abilityBonuses: Partial<AbilityScores>;
   languages: string[];
   traits: RacialTrait[];
+  /** Fixed skill proficiencies granted by this race (choice-based grants omitted) */
+  skillProficiencies?: SkillKey[];
   subraces: SubraceDefinition[];
   darkvision?: number;
   countsAs?: string[];

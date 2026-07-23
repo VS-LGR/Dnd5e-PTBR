@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { SupportWelcomeModal } from "@/components/ui/SupportWelcomeModal";
+import { DONATE_URL } from "@/config/site";
 
 const nav = [
   { href: "/", label: "Início" },
@@ -54,6 +56,18 @@ export function Footer() {
           Conteúdo de regras baseado no SRD sob Creative Commons — use apenas material
           autorizado em produção pública.
         </p>
+        <p className="mt-3">
+          Gostou do projeto?{" "}
+          <a
+            href={DONATE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-display text-crimson underline decoration-crimson/40 underline-offset-2 hover:decoration-crimson"
+          >
+            Apoie com uma doação
+          </a>{" "}
+          para manter o sistema no ar — é opcional e sempre bem-vindo.
+        </p>
       </div>
     </footer>
   );
@@ -69,6 +83,7 @@ export function AppShell({ children }: AppShellProps) {
       <Header />
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">{children}</main>
       <Footer />
+      <SupportWelcomeModal />
     </div>
   );
 }

@@ -122,6 +122,7 @@ export const MOTM_RACES: RaceDefinition[] = [
     darkvision: 60,
     countsAs: ["goblinoid"],
     creatureType: "humanoid",
+    skillProficiencies: ["stealth"],
     traits: [
       {
         id: "fey-ancestry",
@@ -282,6 +283,7 @@ export const MOTM_RACES: RaceDefinition[] = [
     darkvision: 60,
     countsAs: ["elf"],
     creatureType: "humanoid",
+    skillProficiencies: ["perception"],
     traits: [
       {
         id: "fey-ancestry",
@@ -359,6 +361,7 @@ export const MOTM_RACES: RaceDefinition[] = [
     darkvision: 60,
     countsAs: ["elf"],
     creatureType: "humanoid",
+    skillProficiencies: ["perception"],
     traits: [
       {
         id: "friend-of-the-sea",
@@ -752,6 +755,7 @@ export const MOTM_RACES: RaceDefinition[] = [
     abilityBonuses: {},
     languages: ["Comum"],
     creatureType: "humanoid",
+    skillProficiencies: ["athletics"],
     traits: [
       {
         id: "stones-endurance",
@@ -914,6 +918,7 @@ export const MOTM_RACES: RaceDefinition[] = [
     abilityBonuses: {},
     languages: ["Comum"],
     creatureType: "humanoid",
+    skillProficiencies: ["perception"],
     traits: [
       {
         id: "hare-trigger",
@@ -1134,6 +1139,7 @@ export const MOTM_RACES: RaceDefinition[] = [
     abilityBonuses: {},
     languages: ["Comum"],
     creatureType: "fey",
+    skillProficiencies: ["performance", "persuasion"],
     traits: [
       {
         id: "ram",
@@ -1173,6 +1179,7 @@ export const MOTM_RACES: RaceDefinition[] = [
     darkvision: 60,
     countsAs: ["elf"],
     creatureType: "humanoid",
+    skillProficiencies: ["perception"],
     traits: [
       {
         id: "fey-ancestry",
@@ -1223,6 +1230,7 @@ export const MOTM_RACES: RaceDefinition[] = [
     languages: ["Comum"],
     darkvision: 60,
     creatureType: "humanoid",
+    skillProficiencies: ["stealth", "perception"],
     traits: [
       {
         id: "feline-agility",

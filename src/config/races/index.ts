@@ -82,6 +82,7 @@ export const PHB_RACES: RaceDefinition[] = [
     abilityBonuses: { dexterity: 2 },
     languages: ["Comum", "Élfico"],
     darkvision: 60,
+    skillProficiencies: ["perception"],
     traits: [
       {
         id: "darkvision",
@@ -411,6 +412,7 @@ export const PHB_RACES: RaceDefinition[] = [
     abilityBonuses: { strength: 2, constitution: 1 },
     languages: ["Comum", "Orc"],
     darkvision: 60,
+    skillProficiencies: ["intimidation"],
     traits: [
       {
         id: "darkvision",
