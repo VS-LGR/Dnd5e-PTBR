@@ -92,7 +92,8 @@ Híbrido: formas do PDF filtradas por nível/subclasse; ficha completa se existi
 - Com env (`NEXT_PUBLIC_SUPABASE_URL` + `PUBLISHABLE_KEY` ou `ANON_KEY`): Auth + tabela `characters` (RLS)
 - Conta em `/auth`; sem login, lista/edita fichas locais; salvar na nuvem exige sessão
 - Após login: opção de enviar fichas locais para a nuvem
-- SQL: `supabase/migrations/001_init.sql`
+- SQL: `supabase/migrations/001_init.sql` (instalação) e `002_rls_harden.sql` (endurecimento em projetos já criados)
+- RLS: só `authenticated`, `FORCE ROW LEVEL SECURITY`, `user_id` imutável, sem grants para `anon`
 
 ## Deploy
 
