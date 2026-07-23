@@ -5,6 +5,7 @@ import { hasSupabaseConfig, createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Panel } from "@/components/ui/Panel";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export function AuthSection() {
   const configured = hasSupabaseConfig();
@@ -38,8 +39,11 @@ export function AuthSection() {
   }
 
   return (
-    <div className="mx-auto max-w-md space-y-6">
-      <h1 className="font-display text-3xl text-crimson">Conta</h1>
+    <div className="mx-auto max-w-md space-y-6 sm:space-y-8">
+      <PageHeader
+        title="Conta"
+        description="Entre para sincronizar fichas na nuvem quando o Supabase estiver configurado."
+      />
       {!configured ? (
         <Panel title="Modo local">
           <p className="text-sm text-ink-muted">
@@ -68,13 +72,13 @@ export function AuthSection() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} className="w-full">
               {loading ? "Aguarde…" : mode === "login" ? "Entrar" : "Criar conta"}
             </Button>
           </form>
           <button
             type="button"
-            className="mt-3 text-sm text-crimson underline"
+            className="mt-4 min-h-10 text-sm !text-crimson underline decoration-crimson/40 underline-offset-2 hover:decoration-crimson"
             onClick={() => setMode(mode === "login" ? "register" : "login")}
           >
             {mode === "login" ? "Criar uma conta" : "Já tenho conta"}

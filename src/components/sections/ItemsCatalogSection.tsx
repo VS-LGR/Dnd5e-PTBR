@@ -9,6 +9,8 @@ import {
 import type { ItemRarity } from "@/config/types";
 import { Input, Select } from "@/components/ui/Input";
 import { Panel, Badge } from "@/components/ui/Panel";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { Button } from "@/components/ui/Button";
 import { DiceChip } from "@/components/ui/DiceChip";
 import {
   extractDiceFormulas,
@@ -68,25 +70,21 @@ export function ItemsCatalogSection() {
   );
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <h1 className="font-display text-3xl text-crimson">Itens</h1>
-          <p className="text-ink-muted">
-            Catálogo de itens mundanos (PHB), mágicos (Basic Rules) e comuns do
-            Guia de Xanathar, em português.
-          </p>
-        </div>
-        <Link
-          href="/items/forja"
-          className="rounded-sm border-2 border-crimson bg-crimson px-4 py-2 font-display text-sm text-parchment hover:bg-crimson-deep"
-        >
-          Forja de Itens
-        </Link>
-      </div>
+    <div className="space-y-6 sm:space-y-8">
+      <PageHeader
+        title="Itens"
+        description="Catálogo de itens mundanos (PHB), mágicos (Basic Rules) e comuns do Guia de Xanathar, em português."
+        actions={
+          <Link href="/items/forja">
+            <Button type="button" className="w-full sm:w-auto">
+              Forja de Itens
+            </Button>
+          </Link>
+        }
+      />
 
       <Panel title="Filtros">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           <Input
             label="Buscar"
             value={query}
@@ -141,20 +139,21 @@ export function ItemsCatalogSection() {
             ]}
           />
         </div>
-        <p className="mt-3 text-sm text-ink-muted">
-          {results.length} item(ns) encontrado(s).
+        <p className="mt-4 text-sm text-ink-muted">
+          {results.length} item{results.length === 1 ? "" : "s"} encontrado
+          {results.length === 1 ? "" : "s"}.
         </p>
       </Panel>
 
-      <ul className="grid gap-2 sm:grid-cols-2">
+      <ul className="grid gap-2 sm:grid-cols-2 sm:gap-3">
         {results.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} className="min-w-0">
             <Link
               href={`/items/${item.id}`}
-              className="block rounded-sm border-2 border-frame bg-[var(--phb-panel)] p-3 hover:border-crimson"
+              className="block h-full rounded-sm border-2 border-frame bg-[var(--phb-panel)] p-3.5 shadow-[0_1px_4px_var(--phb-shadow)] transition hover:border-crimson hover:shadow-[0_3px_10px_var(--phb-shadow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crimson sm:p-4"
             >
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-display text-lg text-crimson">{item.name}</span>
+                <span className="font-display text-base text-crimson sm:text-lg">{item.name}</span>
                 <Badge>{CATEGORY_LABEL[item.category] ?? item.category}</Badge>
                 <Badge tone={item.kind === "magic" ? "gold" : undefined}>
                   {RARITY_LABEL[item.rarity] ?? item.rarity}
@@ -171,7 +170,7 @@ export function ItemsCatalogSection() {
                 )}
               </div>
               {(item.weaponStats || extractDiceFormulas(item.description, 3).length > 0) && (
-                <p className="mt-1 flex flex-wrap items-center gap-1.5 text-sm text-ink">
+                <p className="mt-2 flex flex-wrap items-center gap-1.5 text-sm text-ink">
                   {item.weaponStats && item.weaponStats.damage !== "—" && (
                     <>
                       <DiceChip formula={item.weaponStats.damage} />
@@ -184,7 +183,7 @@ export function ItemsCatalogSection() {
                 </p>
               )}
               {item.armorStats && (
-                <p className="mt-1 text-sm text-ink">
+                <p className="mt-2 text-sm text-ink">
                   CA {item.armorStats.baseAc}
                   {item.armorStats.dexCap != null
                     ? ` (DES máx. +${item.armorStats.dexCap})`
@@ -193,7 +192,7 @@ export function ItemsCatalogSection() {
                       : ""}
                 </p>
               )}
-              <p className="mt-1 line-clamp-2 text-sm text-ink-muted">
+              <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-ink-muted">
                 {item.description}
               </p>
             </Link>

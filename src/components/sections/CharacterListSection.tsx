@@ -7,6 +7,7 @@ import { classSummary } from "@/lib/character/levelUp";
 import { getRace } from "@/config";
 import { Button } from "@/components/ui/Button";
 import { Panel } from "@/components/ui/Panel";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export function CharacterListSection() {
   const [items, setItems] = useState<CharacterRecord[]>([]);
@@ -26,41 +27,41 @@ export function CharacterListSection() {
   }, []);
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="font-display text-3xl text-crimson">Meus personagens</h1>
-          <p className="text-ink-muted">
-            Sem Supabase configurado, as fichas ficam salvas neste navegador.
-          </p>
-        </div>
-        <Link href="/characters/new">
-          <Button type="button">Novo personagem</Button>
-        </Link>
-      </div>
+    <div className="space-y-6 sm:space-y-8">
+      <PageHeader
+        title="Meus personagens"
+        description="Sem Supabase configurado, as fichas ficam salvas neste navegador."
+        actions={
+          <Link href="/characters/new">
+            <Button type="button" className="w-full sm:w-auto">
+              Novo personagem
+            </Button>
+          </Link>
+        }
+      />
 
       {loading ? (
         <p className="text-ink-muted">Carregando…</p>
       ) : items.length === 0 ? (
         <Panel title="Nenhuma ficha ainda">
           <p className="text-ink-muted">Comece pelo assistente de criação.</p>
-          <Link href="/characters/new" className="mt-3 inline-block">
+          <Link href="/characters/new" className="mt-4 inline-block">
             <Button type="button">Criar personagem</Button>
           </Link>
         </Panel>
       ) : (
-        <ul className="grid gap-3 sm:grid-cols-2">
+        <ul className="grid gap-3 sm:grid-cols-2 sm:gap-4">
           {items.map((item) => (
-            <li key={item.id}>
+            <li key={item.id} className="min-w-0">
               <Panel title={item.name}>
-                <p className="text-sm text-ink-muted">
+                <p className="text-sm leading-relaxed text-ink-muted">
                   {getRace(item.data.raceId)?.name} · {classSummary(item.data.classes)} · Nível{" "}
                   {item.level}
                 </p>
-                <p className="mt-1 text-xs text-ink-muted">
+                <p className="mt-1.5 text-xs text-ink-muted/80">
                   Atualizado {new Date(item.updatedAt).toLocaleString("pt-BR")}
                 </p>
-                <div className="mt-3 flex gap-2">
+                <div className="mt-4 flex flex-wrap gap-2">
                   <Link href={`/characters/${item.id}`}>
                     <Button type="button">Abrir</Button>
                   </Link>
