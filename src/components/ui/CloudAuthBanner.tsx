@@ -37,8 +37,8 @@ export function CloudAuthBanner() {
       <Link href="/auth" className="font-medium text-crimson underline underline-offset-2">
         Conta
       </Link>{" "}
-      para salvar e sincronizar fichas entre aparelhos. Enquanto isso, você ainda vê as fichas
-      locais deste navegador.
+      para salvar e sincronizar fichas entre aparelhos. Sem login, você ainda vê as fichas deste
+      dispositivo.
     </div>
   );
 }

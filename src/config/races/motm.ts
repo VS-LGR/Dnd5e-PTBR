@@ -18,6 +18,13 @@ export const MOTM_RACES: RaceDefinition[] = [
     abilityBonuses: {},
     languages: ["Comum"],
     creatureType: "humanoid",
+    innateSpells: [
+      {
+        spellId: "gust-of-wind",
+        minCharacterLevel: 3,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+    ],
     traits: [
       {
         id: "talons",
@@ -52,6 +59,7 @@ export const MOTM_RACES: RaceDefinition[] = [
     languages: ["Comum"],
     darkvision: 60,
     creatureType: "humanoid",
+    innateSpells: [{ spellId: "light", minCharacterLevel: 1 }],
     traits: [
       {
         id: "healing-hands",
@@ -217,6 +225,18 @@ export const MOTM_RACES: RaceDefinition[] = [
     darkvision: 120,
     countsAs: ["dwarf"],
     creatureType: "humanoid",
+    innateSpells: [
+      {
+        spellId: "enlarge-reduce",
+        minCharacterLevel: 3,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+      {
+        spellId: "invisibility",
+        minCharacterLevel: 5,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+    ],
     traits: [
       {
         id: "psionic-fortitude",
@@ -410,6 +430,19 @@ export const MOTM_RACES: RaceDefinition[] = [
     abilityBonuses: {},
     languages: ["Comum"],
     creatureType: "fey",
+    innateSpells: [
+      { spellId: "druidcraft", minCharacterLevel: 1 },
+      {
+        spellId: "faerie-fire",
+        minCharacterLevel: 3,
+        note: "Uma vez por descanso longo",
+      },
+      {
+        spellId: "enlarge-reduce",
+        minCharacterLevel: 5,
+        note: "Uma vez por descanso longo",
+      },
+    ],
     traits: [
       {
         id: "fairy-magic",
@@ -436,6 +469,18 @@ export const MOTM_RACES: RaceDefinition[] = [
     abilityBonuses: {},
     languages: ["Comum"],
     creatureType: "humanoid",
+    innateSpells: [
+      {
+        spellId: "detect-magic",
+        minCharacterLevel: 1,
+        note: "Uma vez por descanso longo",
+      },
+      {
+        spellId: "disguise-self",
+        minCharacterLevel: 1,
+        note: "Uma vez por descanso longo",
+      },
+    ],
     traits: [
       {
         id: "speech-of-beast-and-leaf",
@@ -477,6 +522,14 @@ export const MOTM_RACES: RaceDefinition[] = [
     languages: ["Comum"],
     darkvision: 60,
     creatureType: "humanoid",
+    innateSpells: [
+      { spellId: "acid-splash", minCharacterLevel: 1 },
+      {
+        spellId: "water-walk",
+        minCharacterLevel: 5,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+    ],
     traits: [
       {
         id: "amphibious",
@@ -514,6 +567,19 @@ export const MOTM_RACES: RaceDefinition[] = [
     languages: ["Comum"],
     darkvision: 60,
     creatureType: "humanoid",
+    innateSpells: [
+      { spellId: "shocking-grasp", minCharacterLevel: 1 },
+      {
+        spellId: "feather-fall",
+        minCharacterLevel: 3,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+      {
+        spellId: "levitate",
+        minCharacterLevel: 5,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+    ],
     traits: [
       {
         id: "unending-breath",
@@ -552,6 +618,18 @@ export const MOTM_RACES: RaceDefinition[] = [
     languages: ["Comum"],
     darkvision: 60,
     creatureType: "humanoid",
+    innateSpells: [
+      {
+        spellId: "burning-hands",
+        minCharacterLevel: 3,
+        note: "Uma vez por descanso longo",
+      },
+      {
+        spellId: "flaming-sphere",
+        minCharacterLevel: 5,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+    ],
     traits: [
       {
         id: "reach-to-the-blaze",
@@ -584,6 +662,14 @@ export const MOTM_RACES: RaceDefinition[] = [
     languages: ["Comum"],
     darkvision: 60,
     creatureType: "humanoid",
+    innateSpells: [
+      { spellId: "blade-ward", minCharacterLevel: 1 },
+      {
+        spellId: "pass-without-trace",
+        minCharacterLevel: 5,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+    ],
     traits: [
       {
         id: "earth-walk",
@@ -615,6 +701,19 @@ export const MOTM_RACES: RaceDefinition[] = [
     abilityBonuses: {},
     languages: ["Comum"],
     creatureType: "humanoid",
+    innateSpells: [
+      { spellId: "mage-hand", minCharacterLevel: 1 },
+      {
+        spellId: "jump",
+        minCharacterLevel: 3,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+      {
+        spellId: "misty-step",
+        minCharacterLevel: 5,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+    ],
     traits: [
       {
         id: "astral-knowledge",
@@ -646,6 +745,19 @@ export const MOTM_RACES: RaceDefinition[] = [
     abilityBonuses: {},
     languages: ["Comum"],
     creatureType: "humanoid",
+    innateSpells: [
+      { spellId: "mage-hand", minCharacterLevel: 1 },
+      {
+        spellId: "shield",
+        minCharacterLevel: 3,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+      {
+        spellId: "detect-thoughts",
+        minCharacterLevel: 5,
+        note: "Uma vez por descanso longo (sem material)",
+      },
+    ],
     traits: [
       {
         id: "mental-discipline",
@@ -679,6 +791,13 @@ export const MOTM_RACES: RaceDefinition[] = [
     darkvision: 120,
     countsAs: ["gnome"],
     creatureType: "humanoid",
+    innateSpells: [
+      {
+        spellId: "disguise-self",
+        minCharacterLevel: 3,
+        note: "Uma vez por descanso longo",
+      },
+    ],
     traits: [
       {
         id: "svirfneblin-camouflage",
@@ -901,6 +1020,15 @@ export const MOTM_RACES: RaceDefinition[] = [
             name: "Feitiçaria Dracônica",
             description:
               "Conhece um truque da lista de feiticeiro. Inteligência, Sabedoria ou Carisma é o atributo de conjuração (escolha ao selecionar a raça).",
+            innateSpellPicks: [
+              {
+                id: "kobold-sorcerer-cantrip",
+                count: 1,
+                fromClassList: "sorcerer",
+                onlyLevel: 0,
+                note: "Truque de Feitiçaria Dracônica",
+              },
+            ],
           },
         ],
       },
@@ -1313,6 +1441,23 @@ export const MOTM_RACES: RaceDefinition[] = [
     languages: ["Comum"],
     darkvision: 60,
     creatureType: "humanoid",
+    innateSpells: [
+      {
+        spellId: "fog-cloud",
+        minCharacterLevel: 1,
+        note: "Uma vez por descanso longo",
+      },
+      {
+        spellId: "gust-of-wind",
+        minCharacterLevel: 3,
+        note: "Uma vez por descanso longo",
+      },
+      {
+        spellId: "water-walk",
+        minCharacterLevel: 5,
+        note: "Uma vez por descanso longo",
+      },
+    ],
     traits: [
       {
         id: "amphibious",
@@ -1356,6 +1501,19 @@ export const MOTM_RACES: RaceDefinition[] = [
     languages: ["Comum"],
     darkvision: 60,
     creatureType: "humanoid",
+    innateSpells: [
+      { spellId: "poison-spray", minCharacterLevel: 1 },
+      {
+        spellId: "animal-friendship",
+        minCharacterLevel: 1,
+        note: "Apenas cobras; usos ilimitados",
+      },
+      {
+        spellId: "suggestion",
+        minCharacterLevel: 3,
+        note: "Uma vez por descanso longo",
+      },
+    ],
     traits: [
       {
         id: "serpentine-spellcasting",

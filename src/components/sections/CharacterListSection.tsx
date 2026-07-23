@@ -35,8 +35,8 @@ export function CharacterListSection() {
         title="Meus personagens"
         description={
           cloud
-            ? "Com a Conta ativa, as fichas sincronizam na nuvem. Sem login, você vê as fichas locais deste navegador."
-            : "As fichas ficam salvas neste navegador até o Supabase ser configurado."
+            ? "Com a Conta, suas fichas sincronizam entre aparelhos. Sem login, você vê as fichas deste dispositivo."
+            : "As fichas ficam salvas neste dispositivo."
         }
         actions={
           <Link href="/characters/new">

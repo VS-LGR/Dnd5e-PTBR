@@ -90,7 +90,7 @@ export function AuthSection() {
         if (error) throw error;
         setFeedback({
           tone: "success",
-          text: "Login realizado. Suas fichas na nuvem estão disponíveis em Personagens.",
+          text: "Login realizado. Suas fichas sincronizadas estão em Personagens.",
         });
       } else {
         const { data, error } = await supabase.auth.signUp({
@@ -134,7 +134,7 @@ export function AuthSection() {
   }
 
   async function uploadLocal() {
-    if (!confirm(`Enviar ${localCount} ficha(s) deste navegador para a nuvem?`)) return;
+    if (!confirm(`Enviar ${localCount} ficha(s) deste aparelho para a sua conta?`)) return;
     setMigrating(true);
     setFeedback(null);
     try {
@@ -143,12 +143,12 @@ export function AuthSection() {
       if (failed > 0) {
         setFeedback({
           tone: "error",
-          text: `Enviadas ${uploaded} ficha(s). ${failed} falharam e permaneceram neste navegador.`,
+          text: `Enviadas ${uploaded} ficha(s). ${failed} falharam e permaneceram neste aparelho.`,
         });
       } else if (uploaded > 0) {
         setFeedback({
           tone: "success",
-          text: `${uploaded} ficha(s) enviada(s) para a nuvem. O armazenamento local foi limpo.`,
+          text: `${uploaded} ficha(s) enviada(s) para a sua conta.`,
         });
       } else {
         setFeedback({ tone: "info", text: "Nenhuma ficha local para enviar." });
@@ -167,16 +167,13 @@ export function AuthSection() {
     <div className="mx-auto max-w-md space-y-6 sm:space-y-8">
       <PageHeader
         title="Conta"
-        description="Entre para sincronizar fichas entre aparelhos com o Supabase."
+        description="Entre para sincronizar suas fichas entre aparelhos."
       />
       {!configured ? (
-        <Panel title="Modo local">
+        <Panel title="Somente neste aparelho">
           <p className="text-sm text-ink-muted">
-            Configure <code className="text-crimson">NEXT_PUBLIC_SUPABASE_URL</code> e{" "}
-            <code className="text-crimson">NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code> (ou{" "}
-            <code className="text-crimson">ANON_KEY</code>) no <code>.env.local</code> e na Vercel.
-            Rode as migrations em <code>supabase/migrations/</code> no SQL Editor do projeto.
-            Enquanto isso, as fichas usam o navegador.
+            A sincronização entre aparelhos está indisponível no momento. Suas fichas continuam
+            salvas neste dispositivo.
           </p>
         </Panel>
       ) : !sessionReady ? (
@@ -188,7 +185,7 @@ export function AuthSection() {
               Conectado como <span className="font-medium">{user.email}</span>
             </p>
             <p className="mt-2 text-xs text-ink-muted">
-              Só você acessa suas fichas na nuvem (isolamento por conta).
+              Suas fichas ficam vinculadas à sua conta e só você pode acessá-las.
             </p>
             <Button
               type="button"
@@ -202,9 +199,9 @@ export function AuthSection() {
             {feedback ? <FeedbackBanner feedback={feedback} /> : null}
           </Panel>
           {localCount > 0 ? (
-            <Panel title="Fichas neste navegador">
+            <Panel title="Fichas neste aparelho">
               <p className="text-sm text-ink-muted">
-                Há {localCount} ficha(s) só neste aparelho. Envie para a nuvem para usá-las em
+                Há {localCount} ficha(s) só neste aparelho. Envie para a sua conta para usá-las em
                 outros dispositivos.
               </p>
               <Button
@@ -213,7 +210,7 @@ export function AuthSection() {
                 disabled={migrating}
                 onClick={() => void uploadLocal()}
               >
-                {migrating ? "Enviando…" : `Enviar ${localCount} ficha(s) para a nuvem`}
+                {migrating ? "Enviando…" : `Enviar ${localCount} ficha(s) para a conta`}
               </Button>
             </Panel>
           ) : null}
@@ -246,8 +243,8 @@ export function AuthSection() {
             />
             {mode === "register" ? (
               <p className="text-xs text-ink-muted">
-                Mínimo 6 caracteres. Se a confirmação por e-mail estiver ativa no Supabase, você
-                precisará abrir o link antes do primeiro login.
+                Mínimo 6 caracteres. Pode ser necessário confirmar o e-mail antes do primeiro
+                acesso.
               </p>
             ) : null}
             <Button type="submit" disabled={loading} className="w-full">

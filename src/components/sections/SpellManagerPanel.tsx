@@ -22,8 +22,12 @@ import {
 } from "@/lib/spells";
 import {
   addCustomOriginSpell,
+  characterHasOriginMagic,
+  maxOriginPickSlots,
+  remainingOriginPickSlots,
   removeOriginSpell,
   syncOriginSpellsForCharacter,
+  allowedOriginPickSpellIds,
 } from "@/lib/character/originSpells";
 import { maxSpellLevelAvailable } from "@/lib/rules";
 import { Button } from "@/components/ui/Button";
@@ -63,7 +67,6 @@ export function SpellManagerPanel({
   const [selectedSpell, setSelectedSpell] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
 
-  const [originMode, setOriginMode] = useState(false);
   const [originQuery, setOriginQuery] = useState("");
 
   const casterIds = castingClassIds(state);
@@ -125,28 +128,27 @@ export function SpellManagerPanel({
   const ownedCantrips = state.spells.cantrips;
   const ownedLeveled = ownedLeveledSpellIds(state);
   const originEntries = state.originSpells ?? [];
+  const hasOriginMagic = characterHasOriginMagic(state);
+  const pickSlots = maxOriginPickSlots(state);
+  const pickRemaining = remainingOriginPickSlots(state);
+  const allowedOriginIds = useMemo(
+    () => allowedOriginPickSpellIds(state),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [state.raceId, state.subraceId, JSON.stringify(state.raceChoices), state.classes, state.startingLevel, state.originSpells],
+  );
 
   const originCatalog = useMemo(() => {
+    if (pickSlots <= 0) return [];
     const q = originQuery.trim().toLowerCase();
     return SPELLS.filter((s) => {
+      if (!allowedOriginIds.has(s.id)) return false;
       if (characterOwnsSpell(state, s.id)) return false;
       if (!q) return true;
       return s.name.toLowerCase().includes(q) || s.id.includes(q);
     }).slice(0, 40);
-  }, [originQuery, state]);
+  }, [originQuery, state, allowedOriginIds, pickSlots]);
 
   function addSpell(spellId: string) {
-    if (originMode) {
-      const next = addCustomOriginSpell(state, spellId, "Origem / raça customizada");
-      if (next === state) {
-        setFeedback("Magia já está na ficha ou não encontrada.");
-        return;
-      }
-      onChange(next);
-      setSelectedSpell(spellId);
-      setFeedback(`Magia de origem: ${getSpell(spellId)?.name ?? spellId}`);
-      return;
-    }
     const spell = getSpell(spellId);
     if (!spell) return;
     const reason = reasonCannotAddSpell(state, spellId);
@@ -172,6 +174,21 @@ export function SpellManagerPanel({
     setFeedback(`Adicionada: ${spell.name}`);
   }
 
+  function addOriginPick(spellId: string) {
+    const next = addCustomOriginSpell(state, spellId);
+    if (next === state) {
+      setFeedback(
+        pickRemaining <= 0
+          ? "Você já escolheu todas as magias de origem disponíveis."
+          : "Esta magia não é permitida pela sua raça/origem, ou já está na ficha.",
+      );
+      return;
+    }
+    onChange(next);
+    setSelectedSpell(spellId);
+    setFeedback(`Magia de origem: ${getSpell(spellId)?.name ?? spellId}`);
+  }
+
   function removeSpell(spellId: string) {
     onChange(removeSpellFromCharacter(state, spellId));
     setFeedback(`Removida: ${getSpell(spellId)?.name ?? spellId}`);
@@ -182,87 +199,105 @@ export function SpellManagerPanel({
 
   const originPanel = (
     <Panel title="Magias de origem / raça">
-      <p className="text-xs text-ink-muted">
-        Magias nativas (Tiefling, linhagem customizada, etc.) não consomem vagas de
-        truques/conhecidas da classe.
-      </p>
-      {originEntries.length === 0 ? (
-        <p className="mt-2 text-sm text-ink-muted">Nenhuma magia de origem ainda.</p>
+      {!hasOriginMagic ? (
+        <p className="text-sm text-ink-muted">
+          Sua raça ou origem atual não concede magias nativas. Só raças/traços que listam magias
+          (ex.: Alto Elfo, Drow, Tiefling, Aasimar) aparecem aqui.
+        </p>
       ) : (
-        <ul className="mt-2 space-y-1 text-sm">
-          {originEntries.map((e) => {
-            const spell = getSpell(e.spellId);
-            return (
-              <li key={e.spellId} className="flex items-center justify-between gap-2">
-                <button
-                  type="button"
-                  className="text-left underline"
-                  onClick={() => setSelectedSpell(e.spellId)}
-                >
-                  {spell?.name ?? e.spellId}{" "}
-                  <Badge tone={e.source === "race" ? "gold" : "crimson"}>
-                    {e.source === "race" ? "Raça" : "Custom"}
-                  </Badge>
-                  {e.note ? (
-                    <span className="block text-xs text-ink-muted">{e.note}</span>
-                  ) : null}
-                </button>
-                {e.source === "custom" ? (
-                  <button
-                    type="button"
-                    className="text-xs text-crimson"
-                    onClick={() => {
-                      onChange(removeOriginSpell(state, e.spellId));
-                      setFeedback(`Removida da origem: ${spell?.name ?? e.spellId}`);
-                    }}
-                  >
-                    Remover
-                  </button>
-                ) : (
-                  <span className="text-[10px] text-ink-muted">automática</span>
-                )}
-              </li>
-            );
-          })}
-        </ul>
+        <>
+          <p className="text-xs text-ink-muted">
+            Magias nativas da raça/origem não consomem vagas de truques ou magias conhecidas da
+            classe.
+          </p>
+          {originEntries.length === 0 ? (
+            <p className="mt-2 text-sm text-ink-muted">
+              {pickSlots > 0
+                ? "Escolha abaixo a(s) magia(s) permitida(s) pela sua raça."
+                : "Nenhuma magia de origem liberada neste nível ainda."}
+            </p>
+          ) : (
+            <ul className="mt-2 space-y-1 text-sm">
+              {originEntries.map((e) => {
+                const spell = getSpell(e.spellId);
+                return (
+                  <li key={e.spellId} className="flex items-center justify-between gap-2">
+                    <button
+                      type="button"
+                      className="text-left underline"
+                      onClick={() => setSelectedSpell(e.spellId)}
+                    >
+                      {spell?.name ?? e.spellId}{" "}
+                      <Badge tone={e.source === "race" ? "gold" : "crimson"}>
+                        {e.source === "race" ? "Raça" : "Escolha"}
+                      </Badge>
+                      {e.note ? (
+                        <span className="block text-xs text-ink-muted">{e.note}</span>
+                      ) : null}
+                    </button>
+                    {e.source === "custom" ? (
+                      <button
+                        type="button"
+                        className="text-xs text-crimson"
+                        onClick={() => {
+                          onChange(removeOriginSpell(state, e.spellId));
+                          setFeedback(`Removida da origem: ${spell?.name ?? e.spellId}`);
+                        }}
+                      >
+                        Remover
+                      </button>
+                    ) : (
+                      <span className="text-[10px] text-ink-muted">automática</span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          {pickSlots > 0 ? (
+            <div className="mt-3 space-y-2">
+              <p className="text-xs text-ink-muted">
+                Escolhas de origem: {pickSlots - pickRemaining}/{pickSlots}
+                {pickRemaining <= 0 ? " (completo)" : ""}
+              </p>
+              {pickRemaining > 0 ? (
+                <>
+                  <Input
+                    label="Buscar magia permitida pela raça"
+                    value={originQuery}
+                    onChange={(e) => setOriginQuery(e.target.value)}
+                    placeholder="Ex.: raio de gelo…"
+                  />
+                  <ul className="max-h-40 space-y-1 overflow-y-auto text-sm">
+                    {originCatalog.length === 0 ? (
+                      <li className="text-ink-muted">Nenhuma magia disponível neste filtro.</li>
+                    ) : (
+                      originCatalog.map((spell) => (
+                        <li key={spell.id} className="flex items-center justify-between gap-2">
+                          <span>
+                            {spell.name}{" "}
+                            <span className="text-ink-muted">
+                              ({spell.level === 0 ? "Truque" : `${spell.level}º`})
+                            </span>
+                          </span>
+                          <Button
+                            type="button"
+                            variant="secondary"
+                            className="!px-2 !py-1 text-xs"
+                            onClick={() => addOriginPick(spell.id)}
+                          >
+                            + Origem
+                          </Button>
+                        </li>
+                      ))
+                    )}
+                  </ul>
+                </>
+              ) : null}
+            </div>
+          ) : null}
+        </>
       )}
-      <div className="mt-3 space-y-2">
-        <Input
-          label="Buscar magia de origem"
-          value={originQuery}
-          onChange={(e) => setOriginQuery(e.target.value)}
-          placeholder="Ex.: raio de gelo…"
-        />
-        <ul className="max-h-40 space-y-1 overflow-y-auto text-sm">
-          {originCatalog.map((spell) => (
-            <li key={spell.id} className="flex items-center justify-between gap-2">
-              <span>
-                {spell.name}{" "}
-                <span className="text-ink-muted">
-                  ({spell.level === 0 ? "Truque" : `${spell.level}º`})
-                </span>
-              </span>
-              <Button
-                type="button"
-                variant="secondary"
-                className="!px-2 !py-1 text-xs"
-                onClick={() => {
-                  setOriginMode(true);
-                  const next = addCustomOriginSpell(
-                    state,
-                    spell.id,
-                    "Adicionada manualmente (origem)",
-                  );
-                  onChange(next);
-                  setFeedback(`Origem: ${spell.name}`);
-                }}
-              >
-                + Origem
-              </Button>
-            </li>
-          ))}
-        </ul>
-      </div>
     </Panel>
   );
 

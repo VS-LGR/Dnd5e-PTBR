@@ -152,7 +152,7 @@ export async function saveCharacter(
 
   const supabase = createClient();
   const user = await getAuthUser();
-  if (!user) throw new Error("Faça login para salvar personagens na nuvem.");
+  if (!user) throw new Error("Faça login para salvar personagens na sua conta.");
 
   if (id) {
     const { data, error } = await supabase
@@ -220,7 +220,7 @@ export async function migrateLocalCharactersToCloud(): Promise<{
   failed: number;
 }> {
   if (!hasSupabaseConfig()) {
-    throw new Error("Supabase não configurado.");
+    throw new Error("Sincronização indisponível no momento.");
   }
   const user = await getAuthUser();
   if (!user) throw new Error("Faça login para enviar fichas locais.");

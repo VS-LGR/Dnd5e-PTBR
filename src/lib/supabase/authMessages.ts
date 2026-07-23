@@ -82,7 +82,7 @@ export function signupFeedback(args: {
   if (args.hasSession) {
     return {
       tone: "success",
-      text: `Conta criada e sessão iniciada (${args.email}). Suas fichas já podem sincronizar na nuvem.`,
+      text: `Conta criada e sessão iniciada (${args.email}). Suas fichas já podem sincronizar entre aparelhos.`,
     };
   }
   return {

@@ -128,6 +128,15 @@ export const PHB_RACES: RaceDefinition[] = [
               "Você conhece um truque à sua escolha da lista de magias de mago. Inteligência é sua habilidade de conjuração para ele.",
           },
         ],
+        innateSpellPicks: [
+          {
+            id: "high-elf-wizard-cantrip",
+            count: 1,
+            fromClassList: "wizard",
+            onlyLevel: 0,
+            note: "Truque de Alto Elfo (lista de mago)",
+          },
+        ],
       },
       {
         id: "wood",
@@ -158,6 +167,19 @@ export const PHB_RACES: RaceDefinition[] = [
         id: "drow",
         name: "Elfo Negro (Drow)",
         abilityBonuses: { charisma: 1 },
+        innateSpells: [
+          { spellId: "dancing-lights", minCharacterLevel: 1 },
+          {
+            spellId: "faerie-fire",
+            minCharacterLevel: 3,
+            note: "Uma vez por descanso longo",
+          },
+          {
+            spellId: "darkness",
+            minCharacterLevel: 5,
+            note: "Uma vez por descanso longo",
+          },
+        ],
         traits: [
           {
             id: "superior-darkvision",
@@ -329,6 +351,7 @@ export const PHB_RACES: RaceDefinition[] = [
         id: "forest",
         name: "Gnomo da Floresta",
         abilityBonuses: { dexterity: 1 },
+        innateSpells: [{ spellId: "minor-illusion", minCharacterLevel: 1 }],
         traits: [
           {
             id: "natural-illusionist",

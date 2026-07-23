@@ -20,12 +20,31 @@ export interface InnateSpellGrant {
   note?: string;
 }
 
+/**
+ * Escolha de magia de origem (ex.: truque de mago do Alto Elfo).
+ * O jogador só pode escolher magias que passem nestes filtros.
+ */
+export interface InnateSpellPick {
+  id: string;
+  /** Quantas magias o jogador pode escolher neste pacote */
+  count: number;
+  /** Lista de classe (ex. "wizard", "sorcerer") */
+  fromClassList?: string;
+  /** Filtrar por círculo (0 = truques) */
+  onlyLevel?: number;
+  /** Lista explícita de IDs (alternativa ou complemento à lista de classe) */
+  spellIds?: string[];
+  minCharacterLevel?: number;
+  note?: string;
+}
+
 export interface RaceChoiceOption {
   id: string;
   name: string;
   description: string;
   /** Magias liberadas se esta opção for escolhida (ex. linhagem Tiefling) */
   innateSpells?: InnateSpellGrant[];
+  innateSpellPicks?: InnateSpellPick[];
 }
 
 export interface RaceChoiceDefinition {
@@ -44,6 +63,7 @@ export interface SubraceDefinition {
   /** Fixed skill proficiencies granted by this subrace */
   skillProficiencies?: SkillKey[];
   innateSpells?: InnateSpellGrant[];
+  innateSpellPicks?: InnateSpellPick[];
   extraLanguages?: string[];
   speedOverride?: number;
   source?: ContentSource;
@@ -73,6 +93,7 @@ export interface RaceDefinition {
   /** Fixed skill proficiencies granted by this race (choice-based grants omitted) */
   skillProficiencies?: SkillKey[];
   innateSpells?: InnateSpellGrant[];
+  innateSpellPicks?: InnateSpellPick[];
   subraces: SubraceDefinition[];
   darkvision?: number;
   countsAs?: string[];
