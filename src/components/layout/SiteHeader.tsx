@@ -55,8 +55,8 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b-4 border-crimson bg-[linear-gradient(180deg,#2a1a12_0%,#1a1208_100%)] text-parchment shadow-[0_4px_18px_rgba(26,18,8,0.35)]">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:py-4">
-        <Link href="/" className="group min-w-0 flex-1">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 sm:gap-5 sm:py-4 md:gap-3">
+        <Link href="/" className="group min-w-0 flex-1 pr-1">
           <p className="truncate font-display text-[10px] uppercase tracking-[0.18em] text-gold sm:text-xs sm:tracking-[0.22em]">
             Ferramenta de RPG · DnD 5e
           </p>
@@ -67,7 +67,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-sm border-2 border-parchment/30 bg-crimson/40 font-display text-xs uppercase tracking-wider text-parchment touch-manipulation transition hover:bg-crimson md:hidden"
+          className="inline-flex min-h-12 min-w-[4.75rem] shrink-0 items-center justify-center rounded-sm border-2 border-parchment/30 bg-crimson/40 px-4 py-2.5 font-display text-xs uppercase tracking-wider text-parchment touch-manipulation transition hover:bg-crimson md:hidden"
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((v) => !v)}

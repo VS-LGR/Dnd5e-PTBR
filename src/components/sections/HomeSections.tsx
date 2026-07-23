@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 
 export function HomeHeroSection() {
@@ -12,32 +13,47 @@ export function HomeHeroSection() {
         }}
         aria-hidden
       />
-      <div
-        className="pointer-events-none absolute -right-8 top-1/2 hidden h-56 w-56 -translate-y-1/2 rounded-full border border-gold/25 md:block"
-        aria-hidden
-      />
-      <div className="relative max-w-2xl">
-        <p className="font-display text-[11px] uppercase tracking-[0.28em] text-gold sm:text-xs sm:tracking-[0.32em]">
-          Ferramenta de RPG compatível com DnD 5e
-        </p>
-        <h1 className="mt-3 font-display text-[2.15rem] leading-[1.1] tracking-wide text-crimson sm:text-5xl md:text-[3.25rem]">
-          Grimório do Aventureiro
-        </h1>
-        <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
-          Crie fichas em português, evolua personagens, gerencie magias e consulte regras —
-          feito para a mesa brasileira.
-        </p>
-        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Link href="/characters/new" className="sm:w-auto">
-            <Button type="button" className="w-full sm:w-auto">
-              Criar personagem
-            </Button>
-          </Link>
-          <Link href="/characters" className="sm:w-auto">
-            <Button type="button" variant="secondary" className="w-full sm:w-auto">
-              Meus personagens
-            </Button>
-          </Link>
+      <div className="relative grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:gap-10 lg:gap-14">
+        <div className="min-w-0 max-w-2xl">
+          <p className="font-display text-[11px] uppercase tracking-[0.28em] text-gold sm:text-xs sm:tracking-[0.32em]">
+            Ferramenta de RPG compatível com DnD 5e
+          </p>
+          <h1 className="mt-3 font-display text-[2.15rem] leading-[1.1] tracking-wide text-crimson sm:text-5xl md:text-[3.25rem]">
+            Grimório do Aventureiro
+          </h1>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
+            Crie fichas em português, evolua personagens, gerencie magias e consulte regras —
+            feito para a mesa brasileira.
+          </p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link href="/characters/new" className="sm:w-auto">
+              <Button type="button" className="w-full sm:w-auto">
+                Criar personagem
+              </Button>
+            </Link>
+            <Link href="/characters" className="sm:w-auto">
+              <Button type="button" variant="secondary" className="w-full sm:w-auto">
+                Meus personagens
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="mx-auto flex shrink-0 items-center justify-center md:mx-0 md:justify-self-end">
+          <div className="relative flex h-36 w-36 items-center justify-center sm:h-44 sm:w-44 md:h-52 md:w-52 lg:h-60 lg:w-60">
+            <div
+              className="pointer-events-none absolute inset-0 rounded-full border border-gold/30 bg-parchment/35 shadow-[inset_0_0_40px_rgba(139,105,20,0.12)]"
+              aria-hidden
+            />
+            <Image
+              src="/icon.svg"
+              alt=""
+              width={240}
+              height={240}
+              priority
+              className="relative h-[78%] w-[78%] drop-shadow-[0_8px_18px_rgba(26,18,8,0.28)]"
+            />
+          </div>
         </div>
       </div>
     </section>
