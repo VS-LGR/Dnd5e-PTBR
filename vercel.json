@@ -1,5 +1,13 @@
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.dnd-br.com.br" }],
+      "destination": "https://dnd-br.com.br/$1",
+      "permanent": true
+    }
+  ]
 }

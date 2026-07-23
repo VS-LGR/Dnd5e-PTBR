@@ -2,6 +2,8 @@
 
 Ferramenta de RPG **compatível com DnD 5e** — criação e gestão de fichas em português.
 
+**Produção:** [https://dnd-br.com.br](https://dnd-br.com.br)
+
 ## Stack
 
 - Next.js (App Router) + TypeScript + TailwindCSS
@@ -18,6 +20,10 @@ npm run dev
 ```
 
 Abra [http://localhost:3000](http://localhost:3000).
+
+## Domínio
+
+Passo a passo de DNS / Vercel / AdSense / Supabase: [docs/DOMAIN.md](docs/DOMAIN.md).
 
 ## Documentação
 

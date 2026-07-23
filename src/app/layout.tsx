@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cinzel, Libre_Baskerville } from "next/font/google";
 import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import { ADSENSE_CLIENT } from "@/config/ads";
+import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/config/site";
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
 
@@ -18,12 +19,15 @@ const libre = Libre_Baskerville({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Grimório do Aventureiro | Ferramenta de RPG compatível com DnD 5e",
-    template: "%s | Grimório do Aventureiro",
+    default: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Ferramenta de RPG compatível com DnD 5e: criação e gestão de fichas de personagem em português.",
+  description: `${SITE_TAGLINE}: criação e gestão de fichas de personagem em português.`,
+  alternates: {
+    canonical: "/",
+  },
   other: {
     "google-adsense-account": ADSENSE_CLIENT,
   },

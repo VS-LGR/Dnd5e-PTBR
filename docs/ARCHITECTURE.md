@@ -94,6 +94,8 @@ Híbrido: formas do PDF filtradas por nível/subclasse; ficha completa se existi
 
 Vercel + env Supabase; SQL em `supabase/migrations/001_init.sql`.
 
+Domínio canônico: **https://dnd-br.com.br** — ver [DOMAIN.md](DOMAIN.md).
+
 ## Monetização (AdSense)
 
 - Meta tag de conta no `layout.tsx`: `google-adsense-account`
