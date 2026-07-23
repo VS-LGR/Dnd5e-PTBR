@@ -525,13 +525,10 @@ export const XGTE_SUBCLASSES: Record<string, SubclassDefinition[]> = {
 export function enrichClassesWithXgte(classes: ClassDefinition[]): ClassDefinition[] {
   return classes.map((cls) => {
     const extras = XGTE_SUBCLASSES[cls.id] ?? [];
-    const invocations =
-      cls.id === "warlock" ? XGTE_WARLOCK_INVOCATIONS : [];
-    if (!extras.length && !invocations.length) return cls;
+    if (!extras.length) return cls;
     return {
       ...cls,
       subclasses: [...cls.subclasses, ...extras],
-      optionalFeatures: [...(cls.optionalFeatures ?? []), ...invocations],
     };
   });
 }

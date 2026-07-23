@@ -13,7 +13,8 @@ export function characterOwnsSpell(state: CharacterState, spellId: string): bool
   return (
     state.spells.cantrips.includes(spellId) ||
     state.spells.known.includes(spellId) ||
-    state.spells.prepared.includes(spellId)
+    state.spells.prepared.includes(spellId) ||
+    (state.originSpells ?? []).some((e) => e.spellId === spellId)
   );
 }
 

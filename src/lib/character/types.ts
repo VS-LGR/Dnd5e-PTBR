@@ -114,6 +114,13 @@ export interface CharacterSpells {
   slots: SpellSlotsState;
 }
 
+/** Magias concedidas por raça/origem — não consomem vagas de classe. */
+export interface OriginSpellEntry {
+  spellId: string;
+  source: "race" | "custom";
+  note?: string;
+}
+
 export interface CharacterHp {
   max: number;
   current: number;
@@ -168,6 +175,10 @@ export interface CharacterState {
   feats: string[];
   /** Feat id → ability bonuses chosen for that feat */
   featAbilityPicks: Record<string, Partial<AbilityScores>>;
+  /** Magias de raça/origem (não contam no limite de classe) */
+  originSpells: OriginSpellEntry[];
+  /** Invocações místicas do bruxo */
+  eldritchInvocations: string[];
   personality: Personality;
   appearance: Appearance;
   backstory: string;
@@ -209,13 +220,13 @@ export function createEmptyCharacterState(partial?: Partial<CharacterState>): Ch
     backgroundId: "folk-hero",
     alignment: "n",
     experiencePoints: 0,
-    abilityMethod: "standardArray",
+    abilityMethod: "pointBuy",
     baseAbilities: {
-      strength: 15,
-      dexterity: 14,
-      constitution: 13,
-      intelligence: 12,
-      wisdom: 10,
+      strength: 8,
+      dexterity: 8,
+      constitution: 8,
+      intelligence: 8,
+      wisdom: 8,
       charisma: 8,
     },
     abilityOverrides: {},
@@ -226,6 +237,8 @@ export function createEmptyCharacterState(partial?: Partial<CharacterState>): Ch
     languages: ["Comum"],
     feats: [],
     featAbilityPicks: {},
+    originSpells: [],
+    eldritchInvocations: [],
     personality: { traits: [], ideals: [], bonds: [], flaws: [] },
     appearance: {
       age: "",
@@ -270,6 +283,11 @@ export function migrateCharacterState(raw: unknown): CharacterState {
     if (!merged.wildShape) {
       merged.wildShape = { usesRemaining: 2, activeFormId: null };
     }
+    if (!merged.originSpells) merged.originSpells = [];
+    if (!merged.eldritchInvocations) merged.eldritchInvocations = [];
+    if (merged.abilityMethod === "standardArray") {
+      merged.abilityMethod = "roll4d6";
+    }
     return merged;
   }
   return createEmptyCharacterState({
@@ -284,6 +302,10 @@ export function migrateCharacterState(raw: unknown): CharacterState {
     startingLevel: data.startingLevel ?? data.classes?.[0]?.level ?? 1,
     asiChoices: data.asiChoices ?? [],
     featAbilityPicks: data.featAbilityPicks ?? {},
+    originSpells: data.originSpells ?? [],
+    eldritchInvocations: data.eldritchInvocations ?? [],
+    abilityMethod:
+      data.abilityMethod === "standardArray" ? "roll4d6" : (data.abilityMethod ?? "pointBuy"),
     wildShape: data.wildShape ?? { usesRemaining: 2, activeFormId: null },
   });
 }

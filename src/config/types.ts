@@ -1,6 +1,6 @@
 import type { AbilityKey, AbilityScores, CastingType, SizeCategory, SkillKey } from "@/lib/character/types";
 
-export type ContentSource = "phb" | "motm" | "tcoe" | "xgte";
+export type ContentSource = "phb" | "motm" | "tcoe" | "xgte" | "scag" | "mtf";
 
 export type AbilityScoreModel = "fixed" | "motm-floating";
 
@@ -12,10 +12,20 @@ export interface RacialTrait {
   description: string;
 }
 
+/** Magia nativa concedida pela raça/sub-raça a partir de um nível de personagem. */
+export interface InnateSpellGrant {
+  spellId: string;
+  /** Nível de personagem mínimo (default 1) */
+  minCharacterLevel?: number;
+  note?: string;
+}
+
 export interface RaceChoiceOption {
   id: string;
   name: string;
   description: string;
+  /** Magias liberadas se esta opção for escolhida (ex. linhagem Tiefling) */
+  innateSpells?: InnateSpellGrant[];
 }
 
 export interface RaceChoiceDefinition {
@@ -33,6 +43,7 @@ export interface SubraceDefinition {
   traits: RacialTrait[];
   /** Fixed skill proficiencies granted by this subrace */
   skillProficiencies?: SkillKey[];
+  innateSpells?: InnateSpellGrant[];
   extraLanguages?: string[];
   speedOverride?: number;
   source?: ContentSource;
@@ -61,6 +72,7 @@ export interface RaceDefinition {
   traits: RacialTrait[];
   /** Fixed skill proficiencies granted by this race (choice-based grants omitted) */
   skillProficiencies?: SkillKey[];
+  innateSpells?: InnateSpellGrant[];
   subraces: SubraceDefinition[];
   darkvision?: number;
   countsAs?: string[];

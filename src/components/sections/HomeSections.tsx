@@ -1,6 +1,67 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+
+function HeroBrandMark({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 64 64"
+      className={className}
+      role="img"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id="hero-cover" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#6b1c1c" />
+          <stop offset="100%" stopColor="#3d1010" />
+        </linearGradient>
+        <linearGradient id="hero-page" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#f4e4c1" />
+          <stop offset="100%" stopColor="#e0c994" />
+        </linearGradient>
+      </defs>
+      <rect
+        x="10"
+        y="8"
+        width="44"
+        height="48"
+        rx="3"
+        fill="url(#hero-cover)"
+        stroke="#8b6914"
+        strokeWidth="2"
+      />
+      <rect x="10" y="8" width="7" height="48" rx="2" fill="#4a1212" />
+      <rect x="20" y="12" width="30" height="40" rx="1.5" fill="url(#hero-page)" />
+      <path
+        d="M24 20h22M24 26h22M24 32h16M24 38h20"
+        stroke="#8b6914"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        opacity="0.45"
+      />
+      <path
+        d="M35 22 L43 30 L35 44 L27 30 Z"
+        fill="#6b1c1c"
+        stroke="#8b6914"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path d="M35 22 L43 30 L35 30 Z" fill="#8b1e1e" />
+      <path d="M35 30 L43 30 L35 44 Z" fill="#4a1212" />
+      <text
+        x="35"
+        y="34.5"
+        textAnchor="middle"
+        fontFamily="Georgia, serif"
+        fontSize="9"
+        fontWeight="700"
+        fill="#f4e4c1"
+      >
+        20
+      </text>
+    </svg>
+  );
+}
 
 export function HomeHeroSection() {
   return (
@@ -45,14 +106,7 @@ export function HomeHeroSection() {
               className="pointer-events-none absolute inset-0 rounded-full border border-gold/30 bg-parchment/35 shadow-[inset_0_0_40px_rgba(139,105,20,0.12)]"
               aria-hidden
             />
-            <Image
-              src="/icon.svg"
-              alt=""
-              width={240}
-              height={240}
-              priority
-              className="relative h-[78%] w-[78%] drop-shadow-[0_8px_18px_rgba(26,18,8,0.28)]"
-            />
+            <HeroBrandMark className="relative h-[78%] w-[78%] drop-shadow-[0_8px_18px_rgba(26,18,8,0.28)]" />
           </div>
         </div>
       </div>

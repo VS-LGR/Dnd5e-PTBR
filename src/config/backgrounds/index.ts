@@ -583,6 +583,408 @@ export const BACKGROUNDS: BackgroundDefinition[] = [
       "Sou um covarde. Fugirei ao primeiro sinal de perigo.",
     ],
   },
+  // ——— SCAG (Costa da Espada) ———
+  {
+    id: "city-watch",
+    name: "Vigilante da Cidade",
+    source: "scag",
+    description:
+      "Você serviu na guarda ou milícia de uma cidade, aprendendo a manter a ordem e a investigar crimes.",
+    skillProficiencies: ["athletics", "insight"],
+    toolProficiencies: [],
+    languages: 2,
+    equipment: ["Uniforme", "Chifre", "Algemas", "Roupas comuns", "Bolsa com 10 po"],
+    feature: {
+      name: "Patrulha da Guarda",
+      description:
+        "Você tem uma conexão oficial com a aplicação da lei. Pode obter ajuda e informações de guardas e milícias em assentamentos onde sua organização seja reconhecida.",
+    },
+    personalityTraits: [
+      "Sou sempre educado e respeitoso.",
+      "Sou obcecado por seguir a letra da lei.",
+    ],
+    ideals: [
+      "Comunidade. É dever de todo cidadão civilizado fortalecer os laços da comunidade. (Leal)",
+      "Responsabilidade. É meu dever proteger e cuidar das pessoas sob minha guarda. (Leal)",
+    ],
+    bonds: [
+      "Meu honor é minha vida.",
+      "Lutei bravamente, mas meu companheiro não — desejo a vingança.",
+    ],
+    flaws: [
+      "Sou muito rigoroso na aplicação da lei.",
+      "Tenho um segredo obscuro que me envergonha.",
+    ],
+  },
+  {
+    id: "clan-crafter",
+    name: "Artesão de Clã",
+    source: "scag",
+    description:
+      "Você foi criado entre anões ou outro clã de artesãos, aprendendo ofícios e a valorizar a tradição.",
+    skillProficiencies: ["history", "insight"],
+    toolProficiencies: ["Um tipo de ferramenta de artesão"],
+    languages: 1,
+    equipment: [
+      "Ferramentas de artesão",
+      "Carta de apresentação do clã",
+      "Roupas de viajante",
+      "Bolsa com 5 po e uma gema de 10 po",
+    ],
+    feature: {
+      name: "Respeito dos Artesãos",
+      description:
+        "Você recebe hospitalidade e descontos modestos entre guildas e clãs artesãos que reconhecem sua linhagem ou treinamento.",
+    },
+    personalityTraits: [
+      "Sou perfeccionista no meu ofício.",
+      "Respeito tradições ancestrais acima de moda passageira.",
+    ],
+    ideals: [
+      "Comunidade. A força vem do clã e da tradição. (Leal)",
+      "Beleza. O que é feito com cuidado enriquece o mundo. (Bom)",
+    ],
+    bonds: [
+      "Meu clã é tudo para mim.",
+      "Um rival desonrou meu trabalho — quero provar meu valor.",
+    ],
+    flaws: [
+      "Sou teimoso e lento para aceitar ideias novas.",
+      "Desconfio de quem não trabalha com as mãos.",
+    ],
+  },
+  {
+    id: "cloistered-scholar",
+    name: "Erudito de Claustro",
+    source: "scag",
+    description:
+      "Você passou anos em bibliotecas e scriptoria, estudando conhecimentos obscuros longe do mundo.",
+    skillProficiencies: ["history", "religion"],
+    toolProficiencies: [],
+    languages: 2,
+    equipment: [
+      "Tinta e pena",
+      "Livro de estudos",
+      "Roupas comuns",
+      "Bolsa com 10 po",
+    ],
+    feature: {
+      name: "Acesso às Bibliotecas",
+      description:
+        "Você conhece a localização de grandes bibliotecas e pode obter acesso privilegiado a arquivos acadêmicos e religiosos.",
+    },
+    personalityTraits: [
+      "Prefiro livros a pessoas.",
+      "Cito textos antigos em qualquer discussão.",
+    ],
+    ideals: [
+      "Conhecimento. O caminho para o poder é o estudo. (Neutro)",
+      "Beleza. O que é belo deve ser preservado. (Bom)",
+    ],
+    bonds: [
+      "A biblioteca onde cresci é meu verdadeiro lar.",
+      "Protegerei um manuscrito raro a qualquer custo.",
+    ],
+    flaws: [
+      "Sou socialmente desajeitado.",
+      "Sacrifico o prático pelo teórico.",
+    ],
+  },
+  {
+    id: "courtier",
+    name: "Cortesão",
+    source: "scag",
+    description:
+      "Você conhece os corredores do poder: cortes, diplomatas e a arte da intriga política.",
+    skillProficiencies: ["insight", "persuasion"],
+    toolProficiencies: [],
+    languages: 2,
+    equipment: ["Roupas finas", "Anel ou joia", "Cartas de apresentação", "Bolsa com 5 po"],
+    feature: {
+      name: "Intriga da Corte",
+      description:
+        "Você sabe como obter audiências e informações em ambientes nobres e burocráticos, e pode identificar facções políticas locais.",
+    },
+    personalityTraits: [
+      "Meço cada palavra.",
+      "Adoro fofoca — desde que eu controle a narrativa.",
+    ],
+    ideals: [
+      "Responsabilidade. O poder deve servir ao bem comum. (Bom)",
+      "Poder. Status é a verdadeira moeda. (Mau)",
+    ],
+    bonds: [
+      "Sirvo a um senhor ou casa nobre.",
+      "Um escândalo político me marcou — quero limpar meu nome.",
+    ],
+    flaws: [
+      "Não confio em ninguém completamente.",
+      "Sou viciado em aprovação de superiores.",
+    ],
+  },
+  {
+    id: "faction-agent",
+    name: "Agente de Facção",
+    source: "scag",
+    description:
+      "Você pertence a uma organização com agendas próprias — Ordem do Gauntlet, Harpistas, Zhentarim, etc.",
+    skillProficiencies: ["insight", "deception"],
+    toolProficiencies: [],
+    languages: 2,
+    equipment: [
+      "Insígnia da facção",
+      "Cópia de um texto ou código da ordem",
+      "Roupas comuns",
+      "Bolsa com 15 po",
+    ],
+    feature: {
+      name: "Rede Segura",
+      description:
+        "Você tem contatos na sua facção que podem oferecer abrigo, informações e ajuda limitada em territórios onde a organização atue.",
+    },
+    personalityTraits: [
+      "Minha lealdade à facção vem antes de tudo.",
+      "Sempre tenho um plano de fuga.",
+    ],
+    ideals: [
+      "Independência. A facção existe para proteger a liberdade. (Caótico)",
+      "Tradição. As regras da ordem devem ser preservadas. (Leal)",
+    ],
+    bonds: [
+      "Devo minha vida a um mentor da facção.",
+      "Um traidor ameaça a ordem — quero detê-lo.",
+    ],
+    flaws: [
+      "Desconfio de quem está fora da facção.",
+      "Sigo ordens mesmo quando discordo.",
+    ],
+  },
+  {
+    id: "far-traveler",
+    name: "Viajante Distante",
+    source: "scag",
+    description:
+      "Você veio de terras distantes e carrega costumes, idiomas e perspectivas estrangeiras.",
+    skillProficiencies: ["insight", "perception"],
+    toolProficiencies: ["Um instrumento musical"],
+    languages: 1,
+    equipment: [
+      "Roupas de viajante",
+      "Instrumento musical",
+      "Mapas ruins da região",
+      "Lembrança da terra natal",
+      "Bolsa com 5 po",
+    ],
+    feature: {
+      name: "Todos os Olhos em Você",
+      description:
+        "Sua origem estrangeira atrai atenção. Em muitos lugares você consegue audiências, curiosidade e hospitalidade — ou suspeita — com mais facilidade.",
+    },
+    personalityTraits: [
+      "Tenho costumes que confundem os locais.",
+      "Comparo tudo com a minha terra natal.",
+    ],
+    ideals: [
+      "Mundo aberto. Todos os povos merecem respeito. (Bom)",
+      "Aventura. Vim longe para ver o desconhecido. (Caótico)",
+    ],
+    bonds: [
+      "Carrego uma missão da minha terra natal.",
+      "Quero encontrar um compatriota perdido.",
+    ],
+    flaws: [
+      "Ofendo pessoas sem perceber.",
+      "Tenho saudade demais para pensar com clareza.",
+    ],
+  },
+  {
+    id: "inheritor",
+    name: "Herdeiro",
+    source: "scag",
+    description:
+      "Você herdou um artefato, título simbólico ou legado misterioso que define seu destino.",
+    skillProficiencies: ["survival", "arcana"],
+    toolProficiencies: ["Um tipo de kit de jogos ou instrumento"],
+    languages: 1,
+    equipment: [
+      "Herança (objeto significativo)",
+      "Roupas de viagem",
+      "Kit de exploração",
+      "Bolsa com 15 po",
+    ],
+    feature: {
+      name: "Herança",
+      description:
+        "Você possui um item ou documento especial ligado ao seu legado. Ele pode abrir portas, atrair inimigos ou revelar pistas conforme a campanha.",
+    },
+    personalityTraits: [
+      "Sinto o peso do legado a cada decisão.",
+      "Protejo minha herança com a vida.",
+    ],
+    ideals: [
+      "Destino. Meu legado me guia. (Neutro)",
+      "Família. Honrarei meus ancestrais. (Leal)",
+    ],
+    bonds: [
+      "A herança deve voltar ao lugar de origem.",
+      "Alguém deseja roubar meu legado.",
+    ],
+    flaws: [
+      "Sou paranoico com a herança.",
+      "Acho que o mundo me deve algo por causa do meu sangue.",
+    ],
+  },
+  {
+    id: "knight-of-the-order",
+    name: "Cavaleiro da Ordem",
+    source: "scag",
+    description:
+      "Você jurou uma ordem de cavalaria com códigos, símbolos e deveres sagrados ou seculares.",
+    skillProficiencies: ["persuasion", "religion"],
+    toolProficiencies: ["Um tipo de kit de jogos"],
+    languages: 1,
+    equipment: [
+      "Insígnia da ordem",
+      "Estandarte ou símbolo",
+      "Roupas de viagem",
+      "Bolsa com 10 po",
+    ],
+    feature: {
+      name: "Respeito da Ordem",
+      description:
+        "Membros e aliados da sua ordem reconhecem seu status e podem oferecer apoio, abrigo e informações.",
+    },
+    personalityTraits: [
+      "Cito o código da ordem com frequência.",
+      "Sou cortês até com inimigos.",
+    ],
+    ideals: [
+      "Responsabilidade. O poder implica dever. (Leal)",
+      "Greater Good. Sacrifício pelo bem maior. (Bom)",
+    ],
+    bonds: [
+      "A ordem é minha família.",
+      "Busco provar meu valor em uma questa.",
+    ],
+    flaws: [
+      "Sou rígido demais com o código.",
+      "Desprezo quem não tem honra.",
+    ],
+  },
+  {
+    id: "mercenary-veteran",
+    name: "Veterano Mercenário",
+    source: "scag",
+    description:
+      "Você lutou por ouro em companhias mercenárias e conhece a vida de campanha e contrato.",
+    skillProficiencies: ["athletics", "persuasion"],
+    toolProficiencies: ["Um tipo de kit de jogos", "Veículos (terrestres)"],
+    languages: 0,
+    equipment: [
+      "Uniforme da companhia",
+      "Insígnia",
+      "Dados ou baralho",
+      "Roupas de viagem",
+      "Bolsa com 10 po",
+    ],
+    feature: {
+      name: "Vida de Mercenário",
+      description:
+        "Você sabe identificar e negociar com companhias mercenárias, obtendo informações sobre contratos, rotas e reputações militares.",
+    },
+    personalityTraits: [
+      "Falo como soldado de campanha.",
+      "Sempre nego o preço do meu aço.",
+    ],
+    ideals: [
+      "Independência. Não sirvo a reis — sirvo a contratos. (Neutro)",
+      "Povo. Protejo quem paga e quem não pode. (Bom)",
+    ],
+    bonds: [
+      "Minha antiga companhia ainda importa.",
+      "Um contrato quebrado me manchou — quero limpar o nome.",
+    ],
+    flaws: [
+      "Sou cínico demais.",
+      "Arrisco demais por ouro.",
+    ],
+  },
+  {
+    id: "urban-bounty-hunter",
+    name: "Caçador de Recompensas Urbano",
+    source: "scag",
+    description:
+      "Você rastreia fugitivos e dívidas nas ruas, usando contatos do submundo e da lei.",
+    skillProficiencies: ["deception", "insight"],
+    toolProficiencies: [
+      "Um tipo de kit de jogos",
+      "Ferramentas de ladrão ou instrumento",
+    ],
+    languages: 0,
+    equipment: [
+      "Roupas adequadas a vários meios",
+      "Kit de disfarce ou ferramentas",
+      "Bolsa com 20 po",
+    ],
+    feature: {
+      name: "Ouvinte das Ruas",
+      description:
+        "Você tem contatos entre informantes, tavernas e autoridades locais para rastrear pessoas e rumores em ambientes urbanos.",
+    },
+    personalityTraits: [
+      "Sempre observo saídas e rostos.",
+      "Não me apego — é só trabalho.",
+    ],
+    ideals: [
+      "Povo. Alguém precisa trazer os culpados. (Leal)",
+      "Ganância. A recompensa justifica o meio. (Mau)",
+    ],
+    bonds: [
+      "Uma presa escapou — não descansarei.",
+      "Protejo um informante leal.",
+    ],
+    flaws: [
+      "Confio demais em fofoca.",
+      "Tenho inimigos em ambos os lados da lei.",
+    ],
+  },
+  {
+    id: "waterdhavian-noble",
+    name: "Nobre Waterdeepano",
+    source: "scag",
+    description:
+      "Você pertence (ou fingia pertencer) à alta sociedade de Waterdeep, com etiqueta, títulos e rivalidades.",
+    skillProficiencies: ["history", "persuasion"],
+    toolProficiencies: ["Um tipo de kit de jogos", "Um instrumento musical"],
+    languages: 1,
+    equipment: [
+      "Roupas finas",
+      "Anel-sinete",
+      "Pergaminho de linhagem",
+      "Bolsa com 20 po",
+    ],
+    feature: {
+      name: "Posição Retida",
+      description:
+        "Seu nome ou conexões abrem portas em Waterdeep e em círculos nobres que reconheçam sua casa — hospitalidade, audiências e intriga inclusas.",
+    },
+    personalityTraits: [
+      "Minha etiqueta é impecável.",
+      "Coleciono favores como joias.",
+    ],
+    ideals: [
+      "Família. O nome da casa é sagrado. (Leal)",
+      "Responsabilidade. Nobreza implica dever. (Bom)",
+    ],
+    bonds: [
+      "Minha casa deve recuperar prestígio.",
+      "Um rival nobre me humilhou publicamente.",
+    ],
+    flaws: [
+      "Sou arrogante com plebeus.",
+      "Temo perder status mais do que a vida.",
+    ],
+  },
 ];
 
 export function getBackground(id: string): BackgroundDefinition | undefined {

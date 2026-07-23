@@ -13,8 +13,9 @@ import {
   shouldOfferSubclassChoice,
 } from "@/lib/character/levelUp";
 import { characterLevel } from "@/lib/rules";
+import { syncOriginSpellsForCharacter } from "@/lib/character/originSpells";
 import { Button } from "@/components/ui/Button";
-import { Input, Select } from "@/components/ui/Input";
+import { NumberField, Select } from "@/components/ui/Input";
 import { Panel, Badge } from "@/components/ui/Panel";
 import {
   AsiChoicePanel,
@@ -128,6 +129,7 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
           },
         };
       }
+      next = syncOriginSpellsForCharacter(next);
       await saveCharacter(next, characterId);
       router.push(`/characters/${characterId}`);
     } catch (e) {
@@ -215,14 +217,12 @@ export function LevelUpSection({ characterId }: LevelUpSectionProps) {
           )}
 
           <div className="space-y-1.5">
-            <Input
+            <NumberField
               label={`Rolagem do dado de vida (d${classDef?.hitDie ?? 8})`}
-              type="number"
-              inputMode="numeric"
               min={1}
               max={classDef?.hitDie ?? 12}
               value={hitDieRoll}
-              onChange={(e) => setHitDieRoll(Number(e.target.value))}
+              onValueChange={setHitDieRoll}
             />
             <p className="text-xs leading-relaxed text-ink-muted">
               Some o valor rolado (ou a média {avgHit}) + modificador de Constituição aos PV

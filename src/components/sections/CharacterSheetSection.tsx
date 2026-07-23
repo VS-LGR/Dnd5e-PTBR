@@ -34,7 +34,7 @@ import {
 import { getSpell } from "@/config/spells";
 import { getItem } from "@/config/items";
 import { Button } from "@/components/ui/Button";
-import { Input, Textarea, Select } from "@/components/ui/Input";
+import { Input, Textarea, Select, NumberField } from "@/components/ui/Input";
 import { Panel, Tabs, Badge } from "@/components/ui/Panel";
 import { SpellManagerPanel } from "@/components/sections/SpellManagerPanel";
 import {
@@ -189,31 +189,26 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
               </div>
             </div>
             <div className="mt-3 grid grid-cols-3 gap-2">
-              <Input
+              <NumberField
                 label="PV atuais"
-                type="number"
+                min={0}
                 value={state.hp.current}
-                onChange={(e) =>
+                onValueChange={(n) =>
                   updateState((s) => ({
                     ...s,
-                    hp: { ...s.hp, current: Number(e.target.value) },
+                    hp: { ...s.hp, current: n },
                   }))
                 }
               />
-              <Input
-                label="PV máx"
-                type="number"
-                value={derived.maxHp}
-                readOnly
-              />
-              <Input
+              <Input label="PV máx" type="number" value={derived.maxHp} readOnly />
+              <NumberField
                 label="PV temp"
-                type="number"
+                min={0}
                 value={state.hp.temporary}
-                onChange={(e) =>
+                onValueChange={(n) =>
                   updateState((s) => ({
                     ...s,
-                    hp: { ...s.hp, temporary: Number(e.target.value) },
+                    hp: { ...s.hp, temporary: n },
                   }))
                 }
               />
@@ -345,18 +340,17 @@ export function CharacterSheetSection({ characterId }: CharacterSheetSectionProp
                   ["cp", "Cobre"],
                 ] as const
               ).map(([key, label]) => (
-                <Input
+                <NumberField
                   key={key}
                   label={label}
-                  type="number"
                   min={0}
                   value={state.currency[key]}
-                  onChange={(e) =>
+                  onValueChange={(n) =>
                     updateState((s) => ({
                       ...s,
                       currency: {
                         ...s.currency,
-                        [key]: Math.max(0, Number(e.target.value) || 0),
+                        [key]: n,
                       },
                     }))
                   }

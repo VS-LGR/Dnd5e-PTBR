@@ -15,7 +15,7 @@ import {
   toggleShieldPurchase,
 } from "@/lib/character/equipment";
 import { Button } from "@/components/ui/Button";
-import { Input, Select } from "@/components/ui/Input";
+import { Input, Select, NumberField } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Panel";
 
 export interface EquipmentStepPanelProps {
@@ -164,17 +164,16 @@ export function EquipmentStepPanel({ state, onChange }: EquipmentStepPanelProps)
                 ["cp", "Cobre"],
               ] as const
             ).map(([key, label]) => (
-              <Input
+              <NumberField
                 key={key}
                 label={label}
-                type="number"
                 min={0}
                 value={state.currency[key]}
-                onChange={(e) =>
+                onValueChange={(n) =>
                   onChange({
                     currency: {
                       ...state.currency,
-                      [key]: Math.max(0, Number(e.target.value) || 0),
+                      [key]: n,
                     },
                   })
                 }

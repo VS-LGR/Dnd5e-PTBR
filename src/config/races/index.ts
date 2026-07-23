@@ -466,7 +466,123 @@ export const PHB_RACES: RaceDefinition[] = [
         id: "infernal-legacy",
         name: "Legado Infernal",
         description:
-          "Você conhece o truque taumaturgia. No 3º nível, pode conjurar repreensão infernal como magia de 2º nível uma vez por descanso longo. No 5º nível, pode conjurar escuridão uma vez por descanso longo. Carisma é sua habilidade de conjuração.",
+          "Escolha uma linhagem diaboica. Você ganha magias de origem conforme o nível do personagem (não consomem vagas de classe). Carisma é sua habilidade de conjuração.",
+      },
+    ],
+    choices: [
+      {
+        id: "bloodline",
+        name: "Linhagem infernal",
+        options: [
+          {
+            id: "asmodeus",
+            name: "Asmodeus",
+            description: "Taumaturgia; 3º: repreensão infernal (2º); 5º: escuridão.",
+            innateSpells: [
+              { spellId: "thaumaturgy", minCharacterLevel: 1 },
+              {
+                spellId: "hellish-rebuke",
+                minCharacterLevel: 3,
+                note: "Uma vez por descanso longo, como magia de 2º círculo",
+              },
+              {
+                spellId: "darkness",
+                minCharacterLevel: 5,
+                note: "Uma vez por descanso longo",
+              },
+            ],
+          },
+          {
+            id: "levistus",
+            name: "Levistus",
+            description: "Raio de gelo; 3º: armadura de Agathys; 5º: escuridão.",
+            innateSpells: [
+              { spellId: "ray-of-frost", minCharacterLevel: 1 },
+              {
+                spellId: "armor-of-agathys",
+                minCharacterLevel: 3,
+                note: "Uma vez por descanso longo",
+              },
+              {
+                spellId: "darkness",
+                minCharacterLevel: 5,
+                note: "Uma vez por descanso longo",
+              },
+            ],
+          },
+          {
+            id: "zariel",
+            name: "Zariel",
+            description: "Taumaturgia; 3º: mãos flamejantes; 5º: escuridão.",
+            innateSpells: [
+              { spellId: "thaumaturgy", minCharacterLevel: 1 },
+              {
+                spellId: "burning-hands",
+                minCharacterLevel: 3,
+                note: "Uma vez por descanso longo",
+              },
+              {
+                spellId: "darkness",
+                minCharacterLevel: 5,
+                note: "Uma vez por descanso longo",
+              },
+            ],
+          },
+          {
+            id: "mephistopheles",
+            name: "Mefistófeles",
+            description: "Mãos mágicas; 3º: mãos flamejantes; 5º: escuridão.",
+            innateSpells: [
+              { spellId: "mage-hand", minCharacterLevel: 1 },
+              {
+                spellId: "burning-hands",
+                minCharacterLevel: 3,
+                note: "Uma vez por descanso longo",
+              },
+              {
+                spellId: "darkness",
+                minCharacterLevel: 5,
+                note: "Uma vez por descanso longo",
+              },
+            ],
+          },
+          {
+            id: "dispater",
+            name: "Dispater",
+            description: "Taumaturgia; 3º: disfarçar-se; 5º: detectar pensamentos (se disponível) / escuridão.",
+            innateSpells: [
+              { spellId: "thaumaturgy", minCharacterLevel: 1 },
+              {
+                spellId: "disguise-self",
+                minCharacterLevel: 3,
+                note: "Uma vez por descanso longo",
+              },
+              {
+                spellId: "darkness",
+                minCharacterLevel: 5,
+                note: "Uma vez por descanso longo",
+              },
+            ],
+          },
+          {
+            id: "fierna",
+            name: "Fierna",
+            description: "Amigos menores / enfeitiçar pessoa legado; 3º: enfeitiçar pessoa; 5º: escuridão.",
+            innateSpells: [
+              { spellId: "thaumaturgy", minCharacterLevel: 1 },
+              {
+                spellId: "charm-person",
+                minCharacterLevel: 3,
+                note: "Uma vez por descanso longo",
+              },
+              {
+                spellId: "darkness",
+                minCharacterLevel: 5,
+                note: "Uma vez por descanso longo",
+              },
+            ],
+          },
+        ],
       },
     ],
     subraces: [],

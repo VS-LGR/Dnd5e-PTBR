@@ -13,7 +13,6 @@ import {
   getBackground,
   FEATS,
 } from "@/config";
-import { STANDARD_ARRAY } from "@/config/tables/progression";
 import { ABILITY_LABELS, ALIGNMENT_LABELS, SKILL_META } from "@/config/tables/labels";
 import {
   createEmptyCharacterState,
@@ -25,9 +24,10 @@ import {
 } from "@/lib/character/types";
 import { syncDerivedHp, asiLevelsForClass } from "@/lib/character/levelUp";
 import { saveCharacter } from "@/lib/character/repository";
+import { syncOriginSpellsForCharacter } from "@/lib/character/originSpells";
 import { finalAbilityScores, abilityModifier } from "@/lib/rules";
 import { Button } from "@/components/ui/Button";
-import { Input, Select, Textarea } from "@/components/ui/Input";
+import { Input, Select, Textarea, NumberField } from "@/components/ui/Input";
 import { Panel, Badge } from "@/components/ui/Panel";
 import { PointBuyPanel, isPointBuyValid } from "@/components/ui/PointBuyPanel";
 import { MotmAsiPicker, isMotmAsiValid, type MotmAsiMode } from "@/components/ui/MotmAsiPicker";
@@ -35,6 +35,7 @@ import { EquipmentStepPanel } from "@/components/sections/EquipmentStepPanel";
 import { ClassFlavorPanel } from "@/components/ui/ClassFlavorPanel";
 import { LifePathPanel } from "@/components/ui/LifePathPanel";
 import { ToolProficienciesPanel } from "@/components/ui/ToolProficienciesPanel";
+import { InvocationPicker } from "@/components/ui/InvocationPicker";
 import {
   AsiChoicePanel,
   asiBonusesFromPanel,
@@ -253,6 +254,7 @@ export function CharacterWizardSection() {
         classPicks,
       );
       next.toolProficiencies = composeToolProficiencies(classId, next.backgroundId);
+      next = syncOriginSpellsForCharacter(next);
       const record = await saveCharacter(next);
       router.push(`/characters/${record.id}`);
     } catch (e) {
@@ -305,13 +307,12 @@ export function CharacterWizardSection() {
               onChange={(e) => update({ alignment: e.target.value as Alignment })}
               options={Object.entries(ALIGNMENT_LABELS).map(([value, label]) => ({ value, label }))}
             />
-            <Input
+            <NumberField
               label="Nível inicial (1–20)"
-              type="number"
               min={1}
               max={20}
               value={startingLevel}
-              onChange={(e) => setStartingLevel(Number(e.target.value))}
+              onValueChange={setStartingLevel}
             />
           </div>
           <p className="mt-3 text-sm text-ink-muted">
@@ -344,7 +345,8 @@ export function CharacterWizardSection() {
                   subraceId,
                   languages: r?.languages ?? ["Comum"],
                   motmAbilityBonuses: {},
-                  raceChoices: {},
+                  raceChoices:
+                    raceId === "tiefling" ? { bloodline: "asmodeus" } : {},
                   chosenSize: r?.sizeOptions?.[0] ?? null,
                   customLineage: raceId === "custom-lineage",
                   skillProficiencies: composeSkillProficiencies(
@@ -627,6 +629,11 @@ export function CharacterWizardSection() {
               </div>
             </div>
           )}
+          {classDef.id === "warlock" && startingLevel >= 2 && (
+            <div className="mt-4">
+              <InvocationPicker state={state} onChange={(next) => setState(next)} />
+            </div>
+          )}
           <ClassFlavorPanel
             classId={classDef.id}
             backstory={state.backstory}
@@ -639,22 +646,12 @@ export function CharacterWizardSection() {
         <Panel title="Atributos">
           <Select
             label="Método"
-            value={state.abilityMethod}
+            value={
+              state.abilityMethod === "standardArray" ? "roll4d6" : state.abilityMethod
+            }
             onChange={(e) => {
               const method = e.target.value as AbilityMethod;
-              if (method === "standardArray") {
-                update({
-                  abilityMethod: method,
-                  baseAbilities: {
-                    strength: 15,
-                    dexterity: 14,
-                    constitution: 13,
-                    intelligence: 12,
-                    wisdom: 10,
-                    charisma: 8,
-                  },
-                });
-              } else if (method === "pointBuy") {
+              if (method === "pointBuy") {
                 update({
                   abilityMethod: method,
                   baseAbilities: {
@@ -667,13 +664,12 @@ export function CharacterWizardSection() {
                   },
                 });
               } else {
-                update({ abilityMethod: method });
+                update({ abilityMethod: "roll4d6" });
               }
             }}
             options={[
-              { value: "standardArray", label: "Array padrão (15,14,13,12,10,8)" },
               { value: "pointBuy", label: "Compra de pontos (27)" },
-              { value: "roll4d6", label: "4d6 descartando o menor" },
+              { value: "roll4d6", label: "4d6 descartando o menor / manual" },
             ]}
           />
           {state.abilityMethod === "pointBuy" ? (
@@ -686,42 +682,43 @@ export function CharacterWizardSection() {
             </div>
           ) : (
             <>
-              {state.abilityMethod === "roll4d6" && (
-                <Button
-                  type="button"
-                  className="mt-3"
-                  variant="secondary"
-                  onClick={() =>
-                    update({
-                      baseAbilities: {
-                        strength: roll4d6DropLowest(),
-                        dexterity: roll4d6DropLowest(),
-                        constitution: roll4d6DropLowest(),
-                        intelligence: roll4d6DropLowest(),
-                        wisdom: roll4d6DropLowest(),
-                        charisma: roll4d6DropLowest(),
-                      },
-                    })
-                  }
-                >
-                  Rolar atributos
-                </Button>
-              )}
+              <Button
+                type="button"
+                className="mt-3"
+                variant="secondary"
+                onClick={() =>
+                  update({
+                    abilityMethod: "roll4d6",
+                    baseAbilities: {
+                      strength: roll4d6DropLowest(),
+                      dexterity: roll4d6DropLowest(),
+                      constitution: roll4d6DropLowest(),
+                      intelligence: roll4d6DropLowest(),
+                      wisdom: roll4d6DropLowest(),
+                      charisma: roll4d6DropLowest(),
+                    },
+                  })
+                }
+              >
+                Rolar atributos
+              </Button>
               <div className="mt-4 grid gap-3 sm:grid-cols-3">
                 {ABILITY_KEYS.map((key) => (
                   <div key={key} className="rounded-sm border border-frame p-3">
-                    <p className="font-display text-sm text-crimson">{ABILITY_LABELS[key]}</p>
-                    <input
-                      type="number"
+                    <NumberField
+                      label={ABILITY_LABELS[key]}
                       min={3}
                       max={18}
-                      className="mt-1 w-full border border-frame bg-parchment p-1"
                       value={state.baseAbilities[key]}
-                      onChange={(e) =>
+                      onValueChange={(n) =>
                         update({
+                          abilityMethod:
+                            state.abilityMethod === "standardArray"
+                              ? "roll4d6"
+                              : state.abilityMethod,
                           baseAbilities: {
                             ...state.baseAbilities,
-                            [key]: Number(e.target.value),
+                            [key]: n,
                           },
                         })
                       }
@@ -733,11 +730,6 @@ export function CharacterWizardSection() {
                   </div>
                 ))}
               </div>
-              {state.abilityMethod === "standardArray" && (
-                <p className="mt-2 text-xs text-ink-muted">
-                  Array: {STANDARD_ARRAY.join(", ")} — ajuste os valores acima para redistribuir.
-                </p>
-              )}
             </>
           )}
         </Panel>
@@ -769,7 +761,10 @@ export function CharacterWizardSection() {
                 toolProficiencies: composeToolProficiencies(classId, backgroundId),
               });
             }}
-            options={BACKGROUNDS.map((b) => ({ value: b.id, label: b.name }))}
+            options={BACKGROUNDS.map((b) => ({
+              value: b.id,
+              label: `${b.name}${b.source === "scag" ? " (SCAG)" : ""}`,
+            }))}
           />
           {(() => {
             const bg = getBackground(state.backgroundId);

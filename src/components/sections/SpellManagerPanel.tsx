@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
-import { getSpell } from "@/config";
+import { getSpell, SPELLS } from "@/config";
 import type { CharacterState } from "@/lib/character/types";
 import {
   addSpellToCharacter,
@@ -20,10 +20,16 @@ import {
   togglePreparedSpell,
   ownedLeveledSpellIds,
 } from "@/lib/spells";
+import {
+  addCustomOriginSpell,
+  removeOriginSpell,
+  syncOriginSpellsForCharacter,
+} from "@/lib/character/originSpells";
 import { maxSpellLevelAvailable } from "@/lib/rules";
 import { Button } from "@/components/ui/Button";
-import { Input, Select } from "@/components/ui/Input";
+import { Input, Select, NumberField } from "@/components/ui/Input";
 import { Panel, Badge } from "@/components/ui/Panel";
+import { InvocationPicker } from "@/components/ui/InvocationPicker";
 
 const ADD_BLOCK_MESSAGES: Record<string, string> = {
   missing: "Magia não encontrada.",
@@ -56,6 +62,9 @@ export function SpellManagerPanel({
   const [hideOwned, setHideOwned] = useState(true);
   const [selectedSpell, setSelectedSpell] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
+
+  const [originMode, setOriginMode] = useState(false);
+  const [originQuery, setOriginQuery] = useState("");
 
   const casterIds = castingClassIds(state);
   const prepared = isPreparedCaster(state);
@@ -98,17 +107,46 @@ export function SpellManagerPanel({
   }, [canLearnCantrips, maxSpellLevel]);
 
   useEffect(() => {
-    if (levelFilter === "all") return;
-    const allowed = new Set(levelFilterOptions.map((o) => o.value));
-    if (!allowed.has(String(levelFilter))) {
-      setLevelFilter("all");
-    }
-  }, [levelFilter, levelFilterOptions]);
+    const synced = syncOriginSpellsForCharacter(state);
+    const prev = state.originSpells ?? [];
+    const next = synced.originSpells;
+    const same =
+      prev.length === next.length &&
+      prev.every(
+        (e, i) =>
+          e.spellId === next[i]?.spellId &&
+          e.source === next[i]?.source &&
+          e.note === next[i]?.note,
+      );
+    if (!same) onChange(synced);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.raceId, state.subraceId, JSON.stringify(state.raceChoices), state.classes, state.startingLevel]);
 
   const ownedCantrips = state.spells.cantrips;
   const ownedLeveled = ownedLeveledSpellIds(state);
+  const originEntries = state.originSpells ?? [];
+
+  const originCatalog = useMemo(() => {
+    const q = originQuery.trim().toLowerCase();
+    return SPELLS.filter((s) => {
+      if (characterOwnsSpell(state, s.id)) return false;
+      if (!q) return true;
+      return s.name.toLowerCase().includes(q) || s.id.includes(q);
+    }).slice(0, 40);
+  }, [originQuery, state]);
 
   function addSpell(spellId: string) {
+    if (originMode) {
+      const next = addCustomOriginSpell(state, spellId, "Origem / raça customizada");
+      if (next === state) {
+        setFeedback("Magia já está na ficha ou não encontrada.");
+        return;
+      }
+      onChange(next);
+      setSelectedSpell(spellId);
+      setFeedback(`Magia de origem: ${getSpell(spellId)?.name ?? spellId}`);
+      return;
+    }
     const spell = getSpell(spellId);
     if (!spell) return;
     const reason = reasonCannotAddSpell(state, spellId);
@@ -139,18 +177,118 @@ export function SpellManagerPanel({
     setFeedback(`Removida: ${getSpell(spellId)?.name ?? spellId}`);
   }
 
+  const warlockLevel =
+    state.classes.find((c) => c.classId === "warlock")?.level ?? 0;
+
+  const originPanel = (
+    <Panel title="Magias de origem / raça">
+      <p className="text-xs text-ink-muted">
+        Magias nativas (Tiefling, linhagem customizada, etc.) não consomem vagas de
+        truques/conhecidas da classe.
+      </p>
+      {originEntries.length === 0 ? (
+        <p className="mt-2 text-sm text-ink-muted">Nenhuma magia de origem ainda.</p>
+      ) : (
+        <ul className="mt-2 space-y-1 text-sm">
+          {originEntries.map((e) => {
+            const spell = getSpell(e.spellId);
+            return (
+              <li key={e.spellId} className="flex items-center justify-between gap-2">
+                <button
+                  type="button"
+                  className="text-left underline"
+                  onClick={() => setSelectedSpell(e.spellId)}
+                >
+                  {spell?.name ?? e.spellId}{" "}
+                  <Badge tone={e.source === "race" ? "gold" : "crimson"}>
+                    {e.source === "race" ? "Raça" : "Custom"}
+                  </Badge>
+                  {e.note ? (
+                    <span className="block text-xs text-ink-muted">{e.note}</span>
+                  ) : null}
+                </button>
+                {e.source === "custom" ? (
+                  <button
+                    type="button"
+                    className="text-xs text-crimson"
+                    onClick={() => {
+                      onChange(removeOriginSpell(state, e.spellId));
+                      setFeedback(`Removida da origem: ${spell?.name ?? e.spellId}`);
+                    }}
+                  >
+                    Remover
+                  </button>
+                ) : (
+                  <span className="text-[10px] text-ink-muted">automática</span>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      <div className="mt-3 space-y-2">
+        <Input
+          label="Buscar magia de origem"
+          value={originQuery}
+          onChange={(e) => setOriginQuery(e.target.value)}
+          placeholder="Ex.: raio de gelo…"
+        />
+        <ul className="max-h-40 space-y-1 overflow-y-auto text-sm">
+          {originCatalog.map((spell) => (
+            <li key={spell.id} className="flex items-center justify-between gap-2">
+              <span>
+                {spell.name}{" "}
+                <span className="text-ink-muted">
+                  ({spell.level === 0 ? "Truque" : `${spell.level}º`})
+                </span>
+              </span>
+              <Button
+                type="button"
+                variant="secondary"
+                className="!px-2 !py-1 text-xs"
+                onClick={() => {
+                  setOriginMode(true);
+                  const next = addCustomOriginSpell(
+                    state,
+                    spell.id,
+                    "Adicionada manualmente (origem)",
+                  );
+                  onChange(next);
+                  setFeedback(`Origem: ${spell.name}`);
+                }}
+              >
+                + Origem
+              </Button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Panel>
+  );
+
   if (casterIds.length === 0) {
     return (
-      <Panel title="Magias">
-        <p className="text-sm text-ink-muted">
-          Esta ficha não tem classe conjuradora com lista de magias configurada.
-        </p>
-      </Panel>
+      <div className="space-y-4">
+        {originPanel}
+        {warlockLevel >= 2 && (
+          <InvocationPicker state={state} onChange={onChange} />
+        )}
+        <Panel title="Magias de classe">
+          <p className="text-sm text-ink-muted">
+            Esta ficha não tem classe conjuradora com lista de magias configurada.
+          </p>
+        </Panel>
+      </div>
     );
   }
 
   return (
-    <div className="grid gap-4 lg:grid-cols-3">
+    <div className="space-y-4">
+      {originPanel}
+      {warlockLevel >= 2 && (
+        <InvocationPicker state={state} onChange={onChange} />
+      )}
+      <div className="grid gap-4 lg:grid-cols-3">
       <Panel title="Conjuração" className="lg:col-span-1">
         <p className="text-sm">
           Classes:{" "}
@@ -204,30 +342,26 @@ export function SpellManagerPanel({
           <ul className="mt-1 space-y-1 text-sm">
             {spellSlots.map((total, i) =>
               total > 0 ? (
-                <li key={i} className="flex items-center justify-between gap-2">
-                  <span>Nível {i + 1}</span>
-                  <span>
-                    usados{" "}
-                    <input
-                      type="number"
-                      min={0}
-                      max={total}
-                      className="w-12 border border-frame bg-parchment px-1"
-                      value={state.spells.slots.used[i + 1] ?? 0}
-                      onChange={(e) => {
-                        const used = [...state.spells.slots.used];
-                        used[i + 1] = Number(e.target.value);
-                        onChange({
-                          ...state,
-                          spells: {
-                            ...state.spells,
-                            slots: { ...state.spells.slots, used },
-                          },
-                        });
-                      }}
-                    />{" "}
-                    / {total}
-                  </span>
+                <li key={i} className="flex items-end justify-between gap-2">
+                  <NumberField
+                    label={`Usados Nv. ${i + 1}`}
+                    className="!min-h-9 !py-1.5"
+                    min={0}
+                    max={total}
+                    value={state.spells.slots.used[i + 1] ?? 0}
+                    onValueChange={(n) => {
+                      const used = [...state.spells.slots.used];
+                      used[i + 1] = n;
+                      onChange({
+                        ...state,
+                        spells: {
+                          ...state.spells,
+                          slots: { ...state.spells.slots, used },
+                        },
+                      });
+                    }}
+                  />
+                  <span className="pb-2 text-sm text-ink-muted">/ {total}</span>
                 </li>
               ) : null,
             )}
@@ -474,6 +608,7 @@ export function SpellManagerPanel({
           </div>
         )}
       </Panel>
+      </div>
     </div>
   );
 }
