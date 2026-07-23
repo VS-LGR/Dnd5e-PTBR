@@ -168,16 +168,17 @@ export function CharacterWizardSection() {
     }));
   }, [classDef]);
 
+  const primaryClassId = state.classes[0]?.classId ?? "fighter";
+
   useEffect(() => {
-    const classId = state.classes[0]?.classId ?? "fighter";
-    const levels = asiLevelsUpTo(classId, startingLevel);
+    const levels = asiLevelsUpTo(primaryClassId, startingLevel);
     setAsiDraft((prev) =>
       levels.map((level) => {
         const existing = prev.find((a) => a.level === level);
         return existing ?? { level, mode: "asi", abilityBonuses: { strength: 2 } };
       }),
     );
-  }, [startingLevel, state.classes[0]?.classId]);
+  }, [startingLevel, primaryClassId]);
 
   function update(partial: Partial<CharacterState>) {
     setState((prev) => ({ ...prev, ...partial }));

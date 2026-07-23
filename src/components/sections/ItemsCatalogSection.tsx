@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   filterItems,
@@ -51,11 +51,6 @@ export function ItemsCatalogSection() {
   const [rarity, setRarity] = useState<ItemRarity | "all">("all");
   const [attunement, setAttunement] = useState<"all" | "yes" | "no">("all");
   const [kind, setKind] = useState<"all" | "mundane" | "magic">("all");
-  const [tick, setTick] = useState(0);
-
-  useEffect(() => {
-    setTick((t) => t + 1);
-  }, []);
 
   const results = useMemo(
     () =>
@@ -66,7 +61,7 @@ export function ItemsCatalogSection() {
         attunement,
         kind,
       }),
-    [query, preset, rarity, attunement, kind, tick],
+    [query, preset, rarity, attunement, kind],
   );
 
   return (

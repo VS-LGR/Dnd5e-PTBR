@@ -90,7 +90,7 @@ export function NumberField({
           if (next !== "" && !/^-?\d*$/.test(next)) return;
           setText(next);
           if (next !== "" && next !== "-" && Number.isFinite(Number(next))) {
-            let n = Number(next);
+            const n = Number(next);
             if (max != null && n > max) return;
             if (min == null || n >= min) onValueChange(n);
           }

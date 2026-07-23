@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { DONATE_URL } from "@/config/site";
 import { AdSlot } from "@/components/ads/AdSlot";

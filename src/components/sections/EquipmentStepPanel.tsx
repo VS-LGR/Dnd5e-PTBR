@@ -15,7 +15,7 @@ import {
   toggleShieldPurchase,
 } from "@/lib/character/equipment";
 import { Button } from "@/components/ui/Button";
-import { Input, Select, NumberField } from "@/components/ui/Input";
+import { Select, NumberField } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Panel";
 
 export interface EquipmentStepPanelProps {
